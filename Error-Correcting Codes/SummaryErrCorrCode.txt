@@ -1,0 +1,12 @@
+--Error-Correcting Codes--
+
+
+# Hemming's Code - ITMO Software Engineering 1 semester - Lab 2 part of Informatics Course
+Classical error-correcting code based on parity bit and syndromes
+Task: write a decoder for message containing an error
+encoded with Hemming's code in Python
+
+
+Hemming's Code/
+	- task.py - the decoder in Python
+ 	- ReprtHemCodLab.docx (!In Russian!) - the report containing the task and code
