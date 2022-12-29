@@ -1,0 +1,219 @@
+#Creating the dirs and files. I, honestly, don't really know what do the names of these files mean(some fictional  character names, probaby)
+#but it's kind of funny. Oh, and there is something wrong with Cyrillic chars, so no jokes in Russian. 
+
+mkdir lab0
+cd lab0
+
+mkdir buizel3
+mkdir infernape7
+mkdir roselia9
+
+
+touch elgyem6
+touch rampardos5
+touch spoink7
+
+
+#I'm not cd'ing into buizel3 here, because I want to test different method of creating and moving files.
+touch grotle
+touch galvantula
+mkdir togetic
+mkdir rampardos
+mkdir haxorus
+mkdir voltorb
+
+mv grotle galvantula togetic rampardos haxorus voltorb buizel3
+
+
+#Here is where im cd'ing
+
+cd infernape7
+
+touch wailord
+touch chandelure
+touch rufflet
+mkdir wobbuffet
+touch seaking
+
+
+#Can be changed to cd ..   , as I've found out. But I'm not lazy, I can do it the way i did!
+cd ~/lab0/
+
+
+cd roselia9
+
+mkdir mantyke
+touch beldum
+mkdir ninetales
+mkdir torterra
+
+cd ..
+
+#echo LS LOGGING
+
+#echo In lab0:
+#ls
+
+#echo in buizel3:
+
+#ls buizel3
+
+#echo in infernape7:
+#ls infernape7
+
+#echo in roselia9:
+#ls roselia9
+
+
+#Adding the content
+
+cd buizel3
+echo "Возможности Overland=5 Jump=1 Power=2 Intelligence=3 Sinker=0
+Sprouter=0" 1>> grotle
+echo "satk=10 sdef=6 spd=11" 1>> galvantula
+cd ..
+echo "Ходы  After You
+Dark Pulse Gravity Magic Coat Pain Split Recycle Role Play Signal Beam
+Skill Swap Sleep Talk Snatch Snore Trick Uproar Wonder Room Zen
+Headbutt" 1>> elgyem6
+cd infernape7
+echo "Тип диеты Herbivore" 1>> wailord
+echo "Тип покемона  GHOST
+FIRE" 1>> chandelure
+echo "Развитые способности Hustle" 1>> rufflet
+echo "Способности
+Supersonic Horn Attack Water Pulse Flail Aqua Ring Fury Attack
+Waterfall Horn Drill Agility Soak Megahorn" 1>> seaking
+cd ..
+echo "Живет Cave
+Mountain" 1>> rampardos5
+cd roselia9
+echo "Ходы Iron Defense Iron Head Zen
+Headbutt" 1>> beldum
+cd ..
+echo "Способности Mind Mold Own Tempo Thick Fat" 1> spoink7
+cd ~
+#Setting up the modifiers
+
+#echo "!!The output of ls -l for every file, which had their modifiers changed!!"
+
+
+cd lab0
+cd buizel3
+chmod 404 grotle
+chmod 363 togetic
+chmod 046 galvantula
+chmod 375 rampardos
+chmod 737 haxorus
+chmod 357 voltorb
+
+#ls -l
+cd ..
+chmod 312 buizel3
+
+chmod 622 elgyem6
+
+
+cd infernape7
+chmod 404 wailord
+chmod 620 chandelure
+chmod 044 rufflet
+chmod 373 wobbuffet
+chmod 060 seaking
+#ls -l
+cd ..
+
+chmod 764 infernape7
+chmod 404 rampardos5
+
+cd roselia9
+
+chmod 577 mantyke
+chmod 404 beldum
+chmod 317 ninetales
+chmod 733 torterra
+#ls -l
+cd ..
+
+chmod 512 roselia9
+
+chmod 006 spoink7
+#ls -l
+
+cd ~
+#This file copies some part of the lab0 tree, creates some links and merges some files into a new one
+cd lab0
+
+#Givind additional mods
+cd infernape7
+
+chmod u+r rufflet wobbuffet seaking
+chmod u+w seaking
+
+cd ..
+
+chmod u+w roselia9
+
+
+
+cp -R infernape7 buizel3/togetic
+cp elgyem6 infernape7/seakingelgyem
+#In the task it says to copy elgyem6 into a file with a name lab0/roselia9/beldumelgyem, but
+#I assume it just means, that the file is named beldumelgyem. Professura bi tak ne izdevalas, pravda?
+
+ln elgyem6 roselia9/beldumelgyem
+ln -s infernape7 Copy_56
+cat infernape7/seaking infernape7/wailord 1> rampardos5_62
+cp elgyem6 buizel3/rampardos/
+#The same thing as with the last comment - the task says that the 'path' should be a name of the file.
+ln -s rampardos5 infernape7/wailordrampardos
+
+
+
+
+echo "!!Successfully copied trees and made links!!"
+
+cd infernape7
+
+chmod u-r rufflet wobbuffet seaking
+chmod u-w seaking
+
+cd ..
+ 
+chmod u-w roselia9 
+
+cd ~
+
+
+#This is the task for filters
+wc -m lab0/infernape7/* 2> /dev/null | sort -r
+
+ls -lnRt lab0 | grep " "s[a-zA-Z0-9]*$ | tail -n 3 2>&1
+
+#I think, the task expects me to do cat -n lab0/*7 | sort -k 2 -r
+# Which doesn't actually do this whole "recursive" stuff.
+#For that reason I will have to use find and --exec key
+
+cd lab0
+
+cat -n **/*7 2>/dev/null | sort -r -k 2
+
+ls -lR | grep studs | sort -r -k 2 | head -n 3
+
+grep -rl ./ -e 'ra' | sort -u | xargs ls -l | sort -r -k 5
+
+cd infernape7
+cat ~/lab0/buizel3/galvantula wailord chandelure rufflet seaking | grep -v -e e$ 2>&1
+
+cd ~
+cd lab0
+
+chmod -R u+rwx buizel3
+chmod u+r infernape7/wobbuffet
+chmod u+w roselia9
+
+rm -f rampardos5 infernape7/wailord infernape7/wailordrampard* roselia9/beldumelgy*
+rm -r -f infernape7 buizel3/rampardos
+
+
+cd ~

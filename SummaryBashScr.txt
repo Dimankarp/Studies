@@ -1,0 +1,13 @@
+--BASH SCRIPTING--
+
+
+# ITMO Software Engineering 1 semester - Lab 1
+The idea of the Lab. was to introduce students to 
+the console interfaces, UNIX and UNIX-like OS (Free BSD)
+and bash scripting.
+
+ReportBPALab1.docx - The laboratory work report containing script codes,
+outputtings and the tasks
+Scripts/ - collection of bash scripts
+logLS.txt -  -ls -l log after scripts execution
+

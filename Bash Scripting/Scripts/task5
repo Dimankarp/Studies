@@ -1,0 +1,11 @@
+cd lab0
+
+chmod -R u+rwx buizel3
+chmod u+r infernape7/wobbuffet
+chmod u+w roselia9
+
+rm -f rampardos5 infernape7/wailord infernape7/wailordrampard* roselia9/beldumelgy*
+rm -r -f infernape7 buizel3/rampardos
+
+
+cd ~

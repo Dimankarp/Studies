@@ -1,0 +1,22 @@
+
+#This is the task for filters
+wc -m lab0/infernape7/* 2> /dev/null | sort -r
+
+ls -lnRt lab0 | grep " "s[a-zA-Z0-9]*$ | tail -n 3 2>&1
+
+#I think, the task expects me to do cat -n lab0/*7 | sort -k 2 -r
+# Which doesn't actually do this whole "recursive" stuff.
+#For that reason I will have to use find and --exec key
+
+cd lab0
+
+cat -n **/*7 2>/dev/null | sort -r -k 2
+
+ls -lR | grep studs | sort -r -k 2 | head -n 3
+
+grep -rl ./ -e 'ra' | sort -u | xargs ls -l | sort -r -k 5
+
+cd infernape7
+cat ~/lab0/buizel3/galvantula wailord chandelure rufflet seaking | grep -v -e e$ 2>&1
+
+cd ~

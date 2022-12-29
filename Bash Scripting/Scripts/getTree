@@ -1,0 +1,13 @@
+cd lab0
+
+chmod u+r buizel3 infernape7/wobbuffet roselia9/ninetales
+chmod -R u+r  buizel3/
+ls -lR .
+
+
+chmod  u-r  buizel3/
+chmod  u+r buizel3/grotle buizel3/haxorus
+
+chmod u-r buizel3 infernape7/wobbuffet roselia9/ninetales
+
+

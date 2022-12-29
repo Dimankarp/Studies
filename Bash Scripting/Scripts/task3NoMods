@@ -1,0 +1,24 @@
+
+
+
+cd lab0
+
+cp -R infernape7 buizel3/togetic
+cp elgyem6 infernape7/seakingelgyem
+#In the task it says to copy elgyem6 into a file with a name lab0/roselia9/beldumelgyem, but
+#I assume it just means, that the file is named beldumelgyem. Professura bi tak ne izdevalas, pravda?
+
+ln elgyem6 roselia9/beldumelgyem
+ln -s infernape7 Copy_56
+cat infernape7/seaking infernape7/wailord 1> rampardos5_62
+cp elgyem6 buizel3/rampardos/
+#The same thing as with the last comment - the task says that the 'path' should be a name of the file.
+ln -s rampardos5 infernape7/wailordrampardos
+
+
+
+
+echo "!!Successfully copied trees and made links!!"
+
+
+

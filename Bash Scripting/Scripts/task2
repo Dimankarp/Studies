@@ -1,0 +1,48 @@
+#Setting up the modifiers
+
+#echo "!!The output of ls -l for every file, which had their modifiers changed!!"
+
+
+cd lab0
+cd buizel3
+chmod 404 grotle
+chmod 363 togetic
+chmod 046 galvantula
+chmod 375 rampardos
+chmod 737 haxorus
+chmod 357 voltorb
+
+#ls -l
+cd ..
+chmod 312 buizel3
+
+chmod 622 elgyem6
+
+
+cd infernape7
+chmod 404 wailord
+chmod 620 chandelure
+chmod 044 rufflet
+chmod 373 wobbuffet
+chmod 060 seaking
+#ls -l
+cd ..
+
+chmod 764 infernape7
+chmod 404 rampardos5
+
+cd roselia9
+
+chmod 577 mantyke
+chmod 404 beldum
+chmod 317 ninetales
+chmod 733 torterra
+#ls -l
+cd ..
+
+chmod 512 roselia9
+
+chmod 006 spoink7
+#ls -l
+
+cd ~

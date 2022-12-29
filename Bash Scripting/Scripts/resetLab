@@ -1,0 +1,8 @@
+#This file will give me the right mods to do everythink in lab0 directory
+
+chmod -R 700 lab0
+echo "Successfully set mods of lab0 to 700. Feel free to remove anything(including something important)!"
+
+#This file just remove the whole lab0 tree
+
+rm -r lab0

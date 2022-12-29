@@ -1,0 +1,45 @@
+total 32
+d-wx--x-w-  6 s367597  studs    8 19 сент. 14:11 buizel3
+lrwxr-xr-x  1 s367597  studs   10 19 сент. 14:11 Copy_56 -> infernape7
+-rw--w--w-  2 s367597  studs  164 19 сент. 14:11 elgyem6
+drwxrw-r--  3 s367597  studs    9 19 сент. 14:11 infernape7
+-r-----r--  1 s367597  studs   25 19 сент. 14:11 rampardos5
+-rw-r--r--  1 s367597  studs  157 19 сент. 14:11 rampardos5_62
+dr-x--x-w-  5 s367597  studs    7 19 сент. 14:11 roselia9
+-------rw-  1 s367597  studs   53 19 сент. 14:11 spoink7
+
+lab0/buizel3:
+total 0
+ls: lab0/buizel3: Permission denied
+
+lab0/infernape7:
+total 8
+-rw--w----  1 s367597  studs   36 19 сент. 14:11 chandelure
+----r--r--  1 s367597  studs   47 19 сент. 14:11 rufflet
+----rw----  1 s367597  studs  129 19 сент. 14:11 seaking
+-rw-------  1 s367597  studs  164 19 сент. 14:11 seakingelgyem
+-r-----r--  1 s367597  studs   28 19 сент. 14:11 wailord
+lrwxr-xr-x  1 s367597  studs   10 19 сент. 14:11 wailordrampardos -> rampardos5
+d-wxrwx-wx  2 s367597  studs    2 19 сент. 14:11 wobbuffet
+
+lab0/infernape7/wobbuffet:
+total 0
+ls: lab0/infernape7/wobbuffet: Permission denied
+
+lab0/roselia9:
+total 7
+-r-----r--  1 s367597  studs   45 19 сент. 14:11 beldum
+-rw--w--w-  2 s367597  studs  164 19 сент. 14:11 beldumelgyem
+dr-xrwxrwx  2 s367597  studs    2 19 сент. 14:11 mantyke
+d-wx--xrwx  2 s367597  studs    2 19 сент. 14:11 ninetales
+drwx-wx-wx  2 s367597  studs    2 19 сент. 14:11 torterra
+
+lab0/roselia9/mantyke:
+total 0
+
+lab0/roselia9/ninetales:
+total 0
+ls: lab0/roselia9/ninetales: Permission denied
+
+lab0/roselia9/torterra:
+total 0
