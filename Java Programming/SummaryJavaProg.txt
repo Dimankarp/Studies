@@ -1,0 +1,34 @@
+--Java Programming--
+
+# ITMO Software Engineering 1 semester - Lab 1
+The idea of the Lab. was to introduce students to 
+the basic syntax of Java and primitive programming
+concepts
+
+lab1/
+	ReportJavaProgLab1.docx (!In Russian!) - The laboratory work report containing code and task
+	LabOne.* - Java code Lab.1
+
+# ITMO Software Engineering 1 semester - Lab 2
+The idea: introduce students to 
+OOP, working with jars and external libs
+on a simple Pokemon autofighting game
+
+lab2/
+	ReportJavaProgLab2.docx (!In Russian!) - The laboratory work report containing code and task
+	extension/ - the task solution package - Rewritten and new classes
+	Pokemon.jar - external classes of the game provided with the task
+	... - unimportant
+
+# ITMO Software Engineering 1 semester - Lab 3-4
+The idea: work with complex Java features, different
+class types, exceptions, reflection API by creating
+a sizable project.
+
+My project is a ship autofighting game with high
+ship destructability?
+
+lab3-4/
+	ReportJavaProgLab3.docx/ ReportJavaProgLab3.docx (!In Russian!) - The laboratory work report containing code link and task
+	src/ - the game package
+

@@ -1,0 +1,4 @@
+Main-Class: extension.DopsaClass
+Class-Path: Pokemon.jar
+Manifest-Version: 1.1
+Created-By: Mitya Ha-ha
