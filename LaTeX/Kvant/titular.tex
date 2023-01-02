@@ -1,0 +1,131 @@
+\documentclass[10dd, a5paper]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{xcolor}
+\definecolor{kvant-paper}{RGB}{238,213,172}
+\pagecolor{kvant-paper}
+
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+\usepackage{fontspec}
+\setmainfont[
+Extension = .ttf,
+BoldFont = SchoolBook Bold Cyrillic,
+ItalicFont = SchoolBook Italic Cyrillic]{SchoolBook Cyrillic}
+\usepackage{multicol}
+
+\usepackage[a5paper,lmargin=1.5cm,rmargin=1cm, tmargin=1.5cm, bmargin=1cm, footskip=0.2cm]{geometry}
+
+\usepackage{sectsty}
+\sectionfont{\fontsize{9dd}{8}\selectfont}
+
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\newenvironment{Biglogo}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\vspace{1.5cm}}
+
+\usepackage{tabularx}
+\usepackage{layout}
+\righthyphenmin=2
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[RO]{\textbf{\LARGE\thepage}}
+\noindent
+
+\begin{minipage}[t][][t]{0.45\linewidth}
+\begin{Biglogo}
+\raggedright
+\includegraphics[width=0.7\linewidth]{Kvant_logo}
+
+\smallskip
+\fontsize{9dd}{7dd}\selectfont
+\raggedright
+\textit{Основан в 1970 году}
+\end{Biglogo}
+\fontsize{8dd}{7dd}\selectfont
+\raggedright
+\itshape Научно-популярный физико-математический\\ журнал Академии наук СССР и Академии педагогических\\ наук СССР
+
+\vspace{0.3cm}
+\begin{minipage}[l]{0.1\linewidth}
+\includegraphics[width=\linewidth]{nauka}
+\end{minipage}%
+\hspace{3dd}%
+\begin{minipage}[с]{0.87\linewidth}
+\fontsize{8dd}{6dd}\selectfont
+\raggedright
+Издательство <<Наука>>. Главная редакция физико-\\математической литературы
+\end{minipage}
+\end{minipage}%
+\begin{minipage}[t][][b]{0.55\linewidth}
+
+{\fontfamily{lmss}\fontsize{20dd}{6dd}\selectfont
+\hspace{20dd}1988
+
+{\fontsize{30dd}{6dd}\selectfont 4}
+}
+\vspace{1cm}
+
+%Стилизуем содержаниее
+\fontsize{17dd}{6dd}\selectfont{В номере:}
+
+\fontsize{7dd}{6dd}\selectfont
+\begin{tabularx}{\linewidth}{lX}
+{\bf 2} & {\itshape И. Д. Новиков.} Вселенная как тепловая машина\\
+{\bf 9} & {\itshape Ю. М. Львов, Л. А. Фейгн.} Ленгмюровские пленки --- путь к молекулярной электронике?\\
+{\bf 14} & {\itshape М. Гарднер.} Рамсеевская теория графов\\
+{\bf 21} & {\itshape} Интервью с американским математиком Рональдом Грэхемом\\
+& \vspace{1dd}{\bf Задачник <<Кванта>>}\\
+{\bf 27} & Задачи М1096-М1100, Ф110--Ф1112\\
+{\bf 28} & Problems М109--М1100, Ф1108-Ф1112\\
+{\bf 29} & Решения задач М1071, М1076-М1080, Ф1088-Ф1092\\
+{\bf 36} & Избранные школьные задачи\\
+& \vspace{1dd}{\bf <<Кванта>> для младших школьников }\\
+{\bf 37} & Задачи\\
+{\bf 38} & {\itshape А. П. Савин.} Десять цифры\\
+& \vspace{1dd}{\bf Калейдоском <<Кванта>>}\\
+{\bf 40} & Простые машины\\
+& \vspace{1dd}{\bf Лаборатория <<Кванта>>}\\
+{\bf 44} & {\itshape В. Ф. Яковлев} <<Физика для дураков>>\\
+& \vspace{1dd}{\bf Математический кружок}\\
+{\bf 48} & {\itshape Д. К. Фаддеев, М. С. Никулин, И. Ф. Соколовский.} Основной принцип дифференциального исчисления. Часть  {\MakeUppercase{\romannumeral 2}}: Свойства производной\\
+& \vspace{1dd}{\bf Практикум абитуриента}\\
+{\bf 44} & {\itshape В. Ф. Яковлев.} <<Физика для дураков>>\\
+{\bf 54} & {\itshape В. А. Петров.} Неравенства и графики\\
+{\bf 56} & {\itshape А. И. Буздин, С. С. Кротов.} Поверхностное натяжение и капиллярные явления\\
+\vspace{1dd}&\\
+{\bf 62} & {\bf Варианты вступительных экзаменов}\\
+& \vspace{1dd}{\bf Информация}\\
+{\bf 68} & Заочная физическая школа при МГУ\\
+{\bf 69} & Омскому НОУ - 20 лет\\
+{\bf 73} & {\bf Ответы, указания решения}\\
+& {\bf <<Квант>> улыбается} {\it (61)}\\
+& {\bf Смесь} {\it (72)}\\
+& \vspace{1dd}{\bf Наша обложка}\\
+{\bf 1} & {\it Читайте в этом номере статью на с. 2!}\\
+{\bf 2} & {\it Этот рисунок Леонардо да Винчи, сделанный 500 лет назад, - своеобразный анонс <<Калейдоскопа <<Кванта>> из этого номера.}\\
+{\bf 3} & {\it Шахматная страничка}\\
+{\bf 4} & {\it Головоломка Рамсея.}\\
+\end{tabularx}
+\vspace{1cm}
+\medskip
+\raggedleft
+\begin{minipage}[l]{0.05\linewidth}
+{\fontsize{20dd}{6dd}\selectfont $\bullet$}
+\end{minipage}%
+\raggedright
+\begin{minipage}[с]{0.95\linewidth}
+\fontsize{6dd}{6dd}\selectfont
+\raggedright
+\textcopyright Издательство <<Наука>>.\\
+Главная редакция физико математической литературы, <<Квант>>, 1988 
+\end{minipage}
+\end{minipage}
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[10dd, a5paper]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{xcolor}
+\definecolor{kvant-paper}{RGB}{238,213,172}
+\pagecolor{kvant-paper}
+
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+\usepackage{fontspec}
+\setmainfont[
+Extension = .ttf,
+BoldFont = SchoolBook Bold Cyrillic,
+ItalicFont = SchoolBook Italic Cyrillic]{SchoolBook Cyrillic}
+\usepackage{multicol}
+
+\usepackage[labelsep=none, labelfont=it, font=footnotesize, singlelinecheck=false]{caption}
+\captionsetup[table]{justification = raggedleft, skip=0pt}
+\captionsetup[figure]{justification=raggedright}
+\setcounter{figure}{3}
+
+\usepackage[a5paper,hmargin=0.2cm, tmargin=0.1cm, bmargin=0.85cm, footskip=0.8cm]{geometry}
+
+\newtheorem{exmp}{Пример}
+\renewcommand{\exmp}{П\,р\,и\,м\,е\,р\quad\arabic{exmp}.\itshape}
+\setcounter{exmp}{3}
+
+\newtheorem{sol}{Решение}
+\renewcommand{\sol}{Р\,е\,ш\,е\,н\,и\,е.\upshape}
+
+\newtheorem{theor}{Теорема}
+\renewcommand{\theor}{Т\,е\,о\,р\,е\,м\,а.\itshape}
+
+\usepackage{amsmath}
+
+\usepackage{sectsty}
+\sectionfont{\fontsize{10dd}{8}\selectfont}
+
+\usepackage{fancyhdr}
+
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\newenvironment{Biglogo}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\vspace{1.5cm}}
+
+\usepackage{tabularx}
+\title{Преамбулка к Лабораторной работе - 6}
+\author{Дмитрий Х.}
+
+\begin{document}
+\maketitle
+Задачу выполнил. <<Квант>> сваял. Сделал все на \verb|\begin{minipage}|. Код страшный вышел. Вот так вот-с!
+\newpage
+\input{page.tex}
+\newpage
+\input{titular.tex}
+\end{document}

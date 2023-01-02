@@ -1,0 +1,52 @@
+\documentclass[a4paper, 14pt]{article}
+
+\usepackage{musixtex}
+\usepackage[english]{babel}
+\usepackage[lmargin = 1 cm, rmargin = 0.1cm]{geometry}
+\usepackage{fontspec}
+\newfontfamily{\playfair}{[Playfair.ttf]}
+\newfontfamily{\diplomata}{[Diplomata.ttf]}
+
+\begin{document}
+\begin{center}
+{\diplomata\huge GOD\hskip1.1em SAVE\hskip1.1em THE\hskip1.1em SOUTH!}
+
+\vspace{1em}
+{\playfair\huge AN\hskip1.1em ANTHEM}
+
+\vspace{2em}
+{\LARGE BY EARNEST HALPHIN}
+\vspace{1.5em}
+
+\end{center}
+\begin{music}
+\parindent10mm
+\instrumentnumber{2}
+\setname{1}{PIANO.\hspace{3em}}
+\setname{2}{VOICE.\hspace{3em}}
+\sepbarrules
+\akkoladen{{1}{2}}
+\setstaffs{1}{2}
+\setstaffs{2}{1}
+\setclef{1}{\bass\treble}
+\generalmeter{\meterfrac34}
+\smallmusicsize
+\nobarnumbers
+\startextract 
+\NOTes\zq J\qa Q\zq J\qa C\zq J\qa D|\zq e\qa g\zqp e\zqp g\zcharnote{-2}{\decrescendo{0.5em}}\qup j\zq f\rq g\cu i&\qa g\zcharnote{2}{\decrescendo{0.5em}}\qup j\cu i\en
+\bar
+\NOTes\zq E\qu L\zq G\qu N\zq E\qu L |\sk\zhlp e\zhlp g\zhlp j &\sk\hup j\en
+\bar
+\NOTes\zq F\qu M\zq D\qu K\zq E\qu L|\zq c\zq f\qu h\zqp f\zqp h\zcharnote{-2}{\decrescendo{0.5em}}\qup m\zcl h\lq g\ql{^j} &\qa h\zcharnote{4}{\decrescendo{0.5em}}\qup k\cu{^j}\en
+\bar
+\NOTes\zh F\hu M\zq E\qu L|\zh f\zh h\hl k\zq h\lq g\ql l &\zcharnote{9}{\decrescendo{0.5em}}\hl k\zcharnote{11}{\crescendo{4.5em}}\ql l\en
+\bar
+\NOTes\zq D\qu K\zq E\qu L\zq F\qu M|\zq f\zq h\ql n\zq g\zq j\ql l\zq h\lq k\ql j &\qa m\zcharnote{11}{\decrescendo{4.5em}}\qa l\qa k\en
+\bar
+\NOTes\zq G\qu N\zq{^G}\qu {^N}\zq H\qu O|\isslurd{2}{g}\zqp g\zq j\issluru{1}{l}\qap l\tslur{2}{f}\zq f\zq i\tslur{1}{k}\cl k\zq e\zq h\ql j &\issluru{0}{l}\qap l\tslur{0}{k}\cl k\qa j\en
+
+\zendextract
+
+\end{music}
+
+\end{document}

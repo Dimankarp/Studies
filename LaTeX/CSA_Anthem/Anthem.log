@@ -1,0 +1,636 @@
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.10) (preloaded format=xelatex 2022.12.9)  14 DEC 2022 23:29
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./Anthem.tex
+(Anthem.tex
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-10-26> (C:\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(C:\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count181
+\c@section=\count182
+\c@subsection=\count183
+\c@subsubsection=\count184
+\c@paragraph=\count185
+\c@subparagraph=\count186
+\c@figure=\count187
+\c@table=\count188
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(C:\MiKTeX\tex/latex/musixtex\musixtex.sty
+(C:\MiKTeX\tex/generic/musixtex\musixtex.tex
+MusiXTeX(c) 1.34 <2021-07-24>
+\n@i=\count189
+\n@ii=\count190
+\n@iii=\count191
+\n@iv=\count192
+\n@v=\count193
+\n@vi=\count194
+\n@vii=\count195
+\n@viii=\count196
+\count@=\count197
+\toks@box=\box51
+\w@rkbox=\box52
+\n@otebox=\box53
+\y@=\dimen139
+\y@i=\dimen140
+\y@ii=\dimen141
+\y@iii=\dimen142
+\y@iv=\dimen143
+\y@v=\dimen144
+\group@no=\count198
+\interinstrument=\dimen145
+\N@s=\count199
+\s@Y=\dimen146
+\lin@pos=\dimen147
+\meet@minus@n@iv=\count266
+\interbeam=\dimen148
+\b@amthick=\dimen149
+\Interligne=\dimen150
+\Internote=\dimen151
+\ch@box=\box54
+\musicsize=\count267
+\qd@skip=\dimen152
+\qn@width=\dimen153
+\wn@width=\dimen154
+\txt@ff=\skip49
+\s@indent=\skip50
+\big@spc=\skip51
+\lthick=\dimen155
+\afterruleskip=\skip52
+\staffbotmarg=\dimen156
+\stafftopmarg=\dimen157
+\line@width=\dimen158
+\interportee=\dimen159
+\noport@@=\count268
+\noinstrum@nt=\count269
+\altportee=\dimen160
+\systemheight=\dimen161
+\altplancher=\dimen162
+\instrum@in@group=\skip53
+\boxitsep=\skip54
+\barsinpi@c@=\count270
+\barno=\count271
+\startbarno=\count272
+\sign@skip=\dimen163
+\maxsign@skip=\dimen164
+\x@skip=\dimen165
+\n@skip=\dimen166
+\beforeruleskip=\skip55
+\widthtyp@=\count273
+\lastbarno=\count274
+\cut@v=\skip56
+\init@volta@pos=\skip57
+\volta@startcor=\skip58
+\volta@endcor=\skip59
+\writ@volta@box=\box55
+\barsinlin@=\count275
+\maxbarsinlin@=\count276
+\lastbarpos=\skip60
+\ut@ref=\count277
+\meterskip=\skip61
+\t@c=\toks16
+\clef@skip=\skip62
+\noteskip=\dimen167
+\transpose=\count278
+\normaltranspose=\count279
+\locx@skip=\dimen168
+\elemskip=\dimen169
+\@l@mskip=\dimen170
+\inh@alt=\count280
+\st@bot=\dimen171
+\st@top=\dimen172
+\stem@skip=\dimen173
+\s@lope=\dimen174
+\y@vi=\dimen175
+\lift@rest=\dimen176
+\accshift=\skip63
+\@icresc=\skip64
+\pdl@pos=\dimen177
+\bigwedgebox=\box56
+\@itrillei=\skip65
+\@itrilleii=\skip66
+\@itrilleiii=\skip67
+\@itrilleiv=\skip68
+\@itrillev=\skip69
+\@itrillevi=\skip70
+\tr@number=\count281
+\tr@nspose=\count282
+\o@swz=\toks17
+\o@number=\count283
+\y@vii=\dimen178
+\y@viii=\dimen179
+\y@ix=\dimen180
+\tuptxtb@x=\box57
+\notes@open=\count284
+\k@ii=\skip71
+\i@ni=\dimen181
+\b@xi=\dimen182
+\b@zi=\dimen183
+\c@xi=\dimen184
+\c@zi=\skip72
+\d@xi=\dimen185
+\d@zi=\skip73
+\e@xi=\dimen186
+\e@zi=\skip74
+\b@pi=\count285
+\b@ni=\count286
+\n@pi=\count287
+\a@si=\count288
+\o@si=\count289
+\a@ci=\toks18
+\o@ci=\toks19
+\m@ti=\toks20
+\k@iii=\skip75
+\i@nii=\dimen187
+\b@xii=\dimen188
+\b@zii=\dimen189
+\c@xii=\dimen190
+\c@zii=\skip76
+\d@xii=\dimen191
+\d@zii=\skip77
+\e@xii=\dimen192
+\e@zii=\skip78
+\b@pii=\count290
+\b@nii=\count291
+\n@pii=\count292
+\a@sii=\count293
+\o@sii=\count294
+\a@cii=\toks21
+\o@cii=\toks22
+\m@tii=\toks23
+\k@iiii=\skip79
+\i@niii=\dimen193
+\b@xiii=\dimen194
+\b@ziii=\dimen195
+\c@xiii=\dimen196
+\c@ziii=\skip80
+\d@xiii=\dimen197
+\d@ziii=\skip81
+\e@xiii=\dimen198
+\e@ziii=\skip82
+\b@piii=\count295
+\b@niii=\count296
+\n@piii=\count297
+\a@siii=\count298
+\o@siii=\count299
+\a@ciii=\toks24
+\o@ciii=\toks25
+\m@tiii=\toks26
+\k@iiv=\skip83
+\i@niv=\dimen199
+\b@xiv=\dimen256
+\b@ziv=\dimen257
+\c@xiv=\dimen258
+\c@ziv=\skip84
+\d@xiv=\dimen259
+\d@ziv=\skip85
+\e@xiv=\dimen260
+\e@ziv=\skip86
+\b@piv=\count300
+\b@niv=\count301
+\n@piv=\count302
+\a@siv=\count303
+\o@siv=\count304
+\a@civ=\toks27
+\o@civ=\toks28
+\m@tiv=\toks29
+\k@iv=\skip87
+\i@nv=\dimen261
+\b@xv=\dimen262
+\b@zv=\dimen263
+\c@xv=\dimen264
+\c@zv=\skip88
+\d@xv=\dimen265
+\d@zv=\skip89
+\e@xv=\dimen266
+\e@zv=\skip90
+\b@pv=\count305
+\b@nv=\count306
+\n@pv=\count307
+\a@sv=\count308
+\o@sv=\count309
+\a@cv=\toks30
+\o@cv=\toks31
+\m@tv=\toks32
+\k@ivi=\skip91
+\i@nvi=\dimen267
+\b@xvi=\dimen268
+\b@zvi=\dimen269
+\c@xvi=\dimen270
+\c@zvi=\skip92
+\d@xvi=\dimen271
+\d@zvi=\skip93
+\e@xvi=\dimen272
+\e@zvi=\skip94
+\b@pvi=\count310
+\b@nvi=\count311
+\n@pvi=\count312
+\a@svi=\count313
+\o@svi=\count314
+\a@cvi=\toks33
+\o@cvi=\toks34
+\m@tvi=\toks35
+maxinstruments=6
+\f@xi=\dimen273
+\f@zi=\skip95
+\f@xii=\dimen274
+\f@zii=\skip96
+\f@xiii=\dimen275
+\f@ziii=\skip97
+\f@xiv=\dimen276
+\f@ziv=\skip98
+\f@xv=\dimen277
+\f@zv=\skip99
+\f@xvi=\dimen278
+\f@zvi=\skip100
+ max128beams=6
+\g@bi=\skip101
+\g@hi=\skip102
+\g@bii=\skip103
+\g@hii=\skip104
+\g@biii=\skip105
+\g@hiii=\skip106
+ maxgroups=3
+\s@xi=\dimen279
+\s@si=\toks36
+\s@Yi=\dimen280
+\s@ai=\skip107
+\s@yi=\count315
+\s@Ni=\count316
+\s@zi=\count317
+\s@di=\toks37
+\s@xii=\dimen281
+\s@sii=\toks38
+\s@Yii=\dimen282
+\s@aii=\skip108
+\s@yii=\count318
+\s@Nii=\count319
+\s@zii=\count320
+\s@dii=\toks39
+\s@xiii=\dimen283
+\s@siii=\toks40
+\s@Yiii=\dimen284
+\s@aiii=\skip109
+\s@yiii=\count321
+\s@Niii=\count322
+\s@ziii=\count323
+\s@diii=\toks41
+\s@xiv=\dimen285
+\s@siv=\toks42
+\s@Yiv=\dimen286
+\s@aiv=\skip110
+\s@yiv=\count324
+\s@Niv=\count325
+\s@ziv=\count326
+\s@div=\toks43
+\s@xv=\dimen287
+\s@sv=\toks44
+\s@Yv=\dimen288
+\s@av=\skip111
+\s@yv=\count327
+\s@Nv=\count328
+\s@zv=\count329
+\s@dv=\toks45
+\s@xvi=\dimen289
+\s@svi=\toks46
+\s@Yvi=\dimen290
+\s@avi=\skip112
+\s@yvi=\count330
+\s@Nvi=\count331
+\s@zvi=\count332
+\s@dvi=\toks47
+ maxslurs=6
+\tr@xi=\skip113
+\tr@swi=\toks48
+\tr@yi=\skip114
+\tr@xii=\skip115
+\tr@swii=\toks49
+\tr@yii=\skip116
+\tr@xiii=\skip117
+\tr@swiii=\toks50
+\tr@yiii=\skip118
+\tr@xiv=\skip119
+\tr@swiv=\toks51
+\tr@yiv=\skip120
+\tr@xv=\skip121
+\tr@swv=\toks52
+\tr@yv=\skip122
+\tr@xvi=\skip123
+\tr@swvi=\toks53
+\tr@yvi=\skip124
+ maxtrills=6
+\o@xi=\skip125
+\o@yi=\skip126
+\o@swi=\toks54
+\o@xii=\skip127
+\o@yii=\skip128
+\o@swii=\toks55
+\o@xiii=\skip129
+\o@yiii=\skip130
+\o@swiii=\toks56
+\o@xiv=\skip131
+\o@yiv=\skip132
+\o@swiv=\toks57
+\o@xv=\skip133
+\o@yv=\skip134
+\o@swv=\toks58
+\o@xvi=\skip135
+\o@yvi=\skip136
+\o@swvi=\toks59
+
+maxoctlines=6
+\outmux=\write3
+\mulooseness=\count333
+\linegoal=\count334
+\l@eftrightbox=\box58
+\stringraise=\count335
+\stringnum=\count336
+\nslashes=\count337
+\tiny@hgt=\count338
+\inmux=\read2
+) (C:\MiKTeX\tex/latex/musixtex\musixltx.tex
+MusiXLaTeX T.125 <8 April 2017>
+)) (C:\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2022/10/23 3.82 The Babel package
+\babel@savecnt=\count339
+\U@D=\dimen291
+\l@unhyphenated=\language79
+
+(C:\MiKTeX\tex/generic/babel\xebabel.def
+(C:\MiKTeX\tex/generic/babel\txtbabel.def))
+\bbl@readstream=\read3
+\bbl@dirlevel=\count340
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\MiKTeX\tex/latex/babel-english\english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 108.
+))
+(C:\MiKTeX\tex/generic/babel/locale/en\babel-english.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
+)
+(C:\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks60
+)
+(C:\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (C:\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count341
+\Gm@cntv=\count342
+\c@Gm@tempcnt=\count343
+\Gm@bindingoffset=\dimen292
+\Gm@wd@mp=\dimen293
+\Gm@odd@mp=\dimen294
+\Gm@even@mp=\dimen295
+\Gm@layoutwidth=\dimen296
+\Gm@layoutheight=\dimen297
+\Gm@layouthoffset=\dimen298
+\Gm@layoutvoffset=\dimen299
+\Gm@dimlist=\toks61
+ (C:\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(C:\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2022-10-26 L3 programming layer (loader) 
+
+(C:\MiKTeX\tex/latex/l3backend\l3backend-xetex.def
+File: l3backend-xetex.def 2022-10-26 L3 backend support: XeTeX
+\g__graphics_track_int=\count344
+\l__pdf_internal_box=\box59
+\g__pdf_backend_object_int=\count345
+\g__pdf_backend_annotation_int=\count346
+\g__pdf_backend_link_int=\count347
+))
+Package: xparse 2022-06-22 L3 Experimental document command parser
+)
+Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
+
+(C:\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+Package: fontspec-xetex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count348
+\l__fontspec_language_int=\count349
+\l__fontspec_strnum_int=\count350
+\l__fontspec_tmp_int=\count351
+\l__fontspec_tmpa_int=\count352
+\l__fontspec_tmpb_int=\count353
+\l__fontspec_tmpc_int=\count354
+\l__fontspec_em_int=\count355
+\l__fontspec_emdef_int=\count356
+\l__fontspec_strong_int=\count357
+\l__fontspec_strongdef_int=\count358
+\l__fontspec_tmpa_dim=\dimen300
+\l__fontspec_tmpb_dim=\dimen301
+\l__fontspec_tmpc_dim=\dimen302
+
+(C:\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(C:\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+
+Package fontspec Info: Font family '[Playfair.ttf](0)' created for font
+(fontspec)             '[Playfair.ttf]' with options [].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[Playfair].ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"[Playfair].ttf/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"[Playfair]/B.ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->"[Playfair]/B.ttf/OT:script=latn;language=dflt;+smcp;
+"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"[Playfair]/I.ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"[Playfair]/I.ttf/OT:script=latn;language=dflt;+smcp;
+"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"[Playfair]/BI.ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"[Playfair]/BI.ttf/OT:script=latn;language=dflt;+smcp
+;"
+
+
+Package fontspec Info: Font family '[Diplomata.ttf](0)' created for font
+(fontspec)             '[Diplomata.ttf]' with options [].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[Diplomata].ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"[Diplomata]/B.ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"[Diplomata]/I.ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"[Diplomata]/BI.ttf/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+
+
+
+LaTeX Warning: Unused global option(s):
+    [14pt].
+
+(Anthem.aux)
+\openout1 = `Anthem.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
+0.
+ (C:\MiKTeX\tex/latex/base\ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(28.45274pt, 566.20969pt, 2.84544pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=566.20969pt
+* \textheight=591.5302pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-7.86334pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 10.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 10.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 10.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 10.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 10.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 10.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 10.
+LaTeX Font Info:    Redeclaring math accent \check on input line 10.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 10.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 10.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 10.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 10.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 10.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 10.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 10.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 10.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 10.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 10.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 10.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 10.
+\openout3 = `Anthem.mx1'.
+
+bar 1 bar 2 bar 3 bar 4 bar 5 [1
+
+] (Anthem.aux) ) 
+Here is how much of TeX's memory you used:
+ 6650 strings out of 410527
+ 140733 string characters out of 2820269
+ 556594 words of memory out of 3000000
+ 27715 multiletter control sequences out of 15000+600000
+ 538379 words of font info for 198 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 72i,5n,84p,271b,406s stack positions out of 10000i,1000n,20000p,200000b,80000s
+
+Output written on Anthem.pdf (1 page).

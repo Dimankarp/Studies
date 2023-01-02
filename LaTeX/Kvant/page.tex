@@ -1,0 +1,120 @@
+\documentclass[10dd, a5paper]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{xcolor}
+\definecolor{kvant-paper}{RGB}{238,213,172}
+\pagecolor{kvant-paper}
+
+
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+\usepackage{fontspec}
+\setmainfont[
+Extension = .ttf,
+BoldFont = SchoolBook Bold Cyrillic,
+ItalicFont = SchoolBook Italic Cyrillic]{SchoolBook Cyrillic}
+\usepackage{multicol}
+
+\usepackage[labelsep=none, labelfont=it, font=footnotesize, singlelinecheck=false]{caption}
+\captionsetup[table]{justification = raggedleft, skip=0pt}
+\captionsetup[figure]{justification=raggedright}
+\setcounter{figure}{3}
+
+\usepackage[a5paper,hmargin=0.2cm, tmargin=0.1cm, bmargin=0.85cm, footskip=0.8cm]{geometry}
+
+\newtheorem{exmp}{Пример}
+\renewcommand{\exmp}{П\,р\,и\,м\,е\,р\quad\arabic{exmp}.\itshape}
+\setcounter{exmp}{3}
+
+\newtheorem{sol}{Решение}
+\renewcommand{\sol}{Р\,е\,ш\,е\,н\,и\,е.\upshape}
+
+\newtheorem{theor}{Теорема}
+\renewcommand{\theor}{Т\,е\,о\,р\,е\,м\,а.\itshape}
+
+\usepackage{amsmath}
+
+\usepackage{sectsty}
+\sectionfont{\fontsize{10dd}{8}\selectfont}
+
+\usepackage{fancyhdr}
+
+\setcounter{page}{52}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[LO]{\textbf{\LARGE\thepage}}
+\setlength{\textfloatsep}{3dd}
+\setlength{\belowdisplayskip}{1dd} \setlength{\belowdisplayshortskip}{1dd}
+\setlength{\abovedisplayskip}{1dd} \setlength{\abovedisplayshortskip}{1dd}
+\setlength{\parskip}{2dd}
+%Figures row
+\begin{figure}
+\centering
+\begin{minipage}{0.48\textwidth}
+	\raggedleft
+	\includegraphics[width =\linewidth, height = 3.6cm]{fig1}
+	\caption{.}
+	\label{fig:left}
+\end{minipage}%
+\hspace{0.5cm}%
+\begin{minipage}{0.48\textwidth}
+	\raggedleft
+	\includegraphics[width =\linewidth, height = 3.6cm]{fig2}
+	\caption{}
+	\label{fig:right}
+\end{minipage}
+\end{figure}
+\setlength{\textfloatsep}{2dd}
+\begin{multicols}{2}
+\linespread{0.65}\selectfont
+\noindent $f(x)/g(x)$ при значения $x$, приближающихся к $x_0$, если в этой точке числитель и знаменатель обращаются в нуль. Считаем $f(x)$ и $g(x)$ линейными вблизи точки $x_0$, малые кусочки их графиков заменяем касательными к к графикам этих функций в точке $x_0$. Таким образом, считаем, что\[f(x) = f'(x_0)(x-x_0), g(x)=g'(x_0)(x-x_0).\] Тогда, если $g'(x_0)\neq0$, то\[\frac{f(x)}{g(x)}=\frac{f'(x_0)(x-x_0)}{g'(x_0)(x-x_0)}=\frac{f'(x_0)}{g'(x_0)}.\] Надо понмить, что фактически это равеноство приближенное, но тем более точное, чем ближе $x$ к $x_0$. Мы получили правило, известное в математике как \itshape правило Лопиталя для раскрытия неопределенности типа $0/0$\upshape.
+
+\linespread{0.65}\selectfont
+{\footnotesize На языке пределов это правило читается так: предел отношения $\frac{f(x)}{g(x)}$ при $x\rightarrow x_0$, если $f(x_0)~=~0$ и $g(x_0)~=~0$, равен отношению производных $f'(x_0)$ и $g'(x_0)$:
+{\setlength{\belowdisplayskip}{1dd} \setlength{\belowdisplayshortskip}{1dd}
+\setlength{\abovedisplayskip}{1dd} \setlength{\abovedisplayshortskip}{1dd}
+\[\begin{array}{cr}
+\lim\limits_{x \to x_0} \frac{f(x)}{g(x)}=
+\frac{f'(x_0)}{g'(x_0)}&(g'(x_0\neq 0)
+\end{array}\]}}
+\begin{exmp}
+Составить таблицу значений функции \[f(x) = \frac{2x^2-x-
+\sin\pi x/2}{\sqrt{x}-\cos(1-x)}\]вблизи точки $x=1$.
+\end{exmp}
+\begin{sol}
+Результаты вычислений на МК В3-34 показаны в таблице 1. Применим правило Лопиталя
+\begin{multline*}
+(2x^2-x-\sin\frac{\pi}{2}x)'\vert_{x=1}=\\
+= (4x-1-\frac{\pi}{2}\cos\frac{\pi}{2}x)\vert_{x=1} = 4 -1 =3,\\
+(\sqrt{x}-\cos(1-x))'\vert_{x=1}=
+\end{multline*}
+\[=(\frac{1}{2\sqrt{x}}-\sin(1-x))\vert_{x=1}=\frac{1}{2}.\]
+Следовательно, при стремлении $x$ к $1$ значения $f(x)$ приближаются к числу $3:(1/2)=6$. ИЗ таблицы видно, что ошибки в вычислениях начинаются довольно далеко от предела точности МК - уже при $x=1,0001$.
+\end{sol}
+\section*{Признак возрастания (убывания) функции на интервале}
+\begin{theor}
+Если в каждой точке интервала уголовой коэффициент (производная) к графику функция возрастает на этом интервале, а если меньше нуля - то убывает.
+\end{theor}
+\linespread{0.65}\selectfont
+{\footnotesize Действительно, пусть угловой коэффициент касательной к графику функции больше нуля. Тогда касательная в лобой точке графика является поднимающейся прямой и, следовательно, лбой достаточно малый участок графика есть поднимающаяся линия. Интуитивно ясно, что график в целов есть поднимающаяся линия и, следовательно, функция возрастает. Аналогично, отрицательность производной во всех точках интервала влечет убывание функции на этом интервале.}
+\linespread{0.8}\selectfont
+\section*{Численное решение\\ дифференциальных уравнений}
+Во многих случаях удается получить зависимость между велчинами, содержащую их производные, т.е. в виде \textit{дифференциального уравнения}. Далеко не всегда уравнение удается разрешить, т.е. найти функции, являющиеся решением данного дифферен-
+\end{multicols}
+\centering
+\setlength{\textfloatsep}{2dd}
+\begin{table}[b]
+\caption{}
+\small
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}|l|l|l|l|l|l}
+$x$ & 1,1 & 1,01 & 1,001 & 1,0001 & 1,00001 & 1,000001\\
+\hline
+$f(x)$ & 6,1762693 & 6,0196529& 6.0039984 & 6,012024 & 6,1224489 & 7,5
+\end{tabular*}
+\end{table}
+\end{document}
