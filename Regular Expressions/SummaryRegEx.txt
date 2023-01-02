@@ -1,0 +1,9 @@
+--REGULAR EXPRESSIONS--
+
+
+# ITMO Software Engineering 1 semester - Lab 3 of Informatics Course
+Task that require RegEx usage: from basic to advance levels.
+Solved with Python
+
+X.py - file containing solution to X problem
+
