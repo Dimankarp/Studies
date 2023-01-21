@@ -7,4 +7,4 @@ coding.<br>Solved with **Python**.
 
  - [boxBuilder.py](./boxBuilder.py) - matplotlib+pandas box diagram in python
  - [Lab6.xlsm](./Lab6.xlsm) - Solution for Lab6 w/ and w/o macroses
- - [SPFB-ORGIB.csv](./SPFB-ORGIB.csv) - original task file
+ - [SPFB-ORIG.csv](./SPFB-ORIG.csv) - original task file
