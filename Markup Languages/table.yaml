@@ -1,0 +1,11 @@
+---
+race:
+  entries:
+    - id: 11
+      name: Johnson Smith and Jones Co.
+    - id: 22
+    - id: 33
+      name: Barney & Company
+    - id: 44
+      name: Johnson's Automotive
+      food: Pasta
