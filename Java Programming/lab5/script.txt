@@ -1,0 +1,5 @@
+help
+show
+clear
+rm_id 1
+exec script.txt

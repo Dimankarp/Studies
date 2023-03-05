@@ -5,6 +5,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * An annotation for commands methods. Expects targets with signature void (String[], Object[])
+ *
+ * <p>
+ *     Contains necessary metadata for quick command creation.
+ * </p>
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Command {

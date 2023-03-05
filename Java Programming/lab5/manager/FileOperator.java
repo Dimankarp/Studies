@@ -12,6 +12,9 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * A Class for all file operations and XML marshalling
+ */
 public class FileOperator {
 
     private final String PATH;

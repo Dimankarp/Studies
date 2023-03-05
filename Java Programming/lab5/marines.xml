@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<marines>
+    <marine id="2">
+        <name>1</name>
+        <coordinates>
+            <x>0</x>
+            <y>0</y>
+        </coordinates>
+        <creationDate>2023-02-15T00:47:53.759+03:00</creationDate>
+        <health>1</health>
+        <loyal>false</loyal>
+        <achievements>0</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>0</name>
+            <marinesCount>1</marinesCount>
+            <world>0</world>
+        </chapter>
+    </marine>
+    <marine id="1">
+        <name>asdsad</name>
+        <coordinates>
+            <x>100</x>
+            <y>10</y>
+        </coordinates>
+        <creationDate>2023-02-15T00:18:21.324+03:00</creationDate>
+        <health>1000</health>
+        <loyal>true</loyal>
+        <achievements>sgf</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>adasd</name>
+            <marinesCount>100</marinesCount>
+            <world>sdfds</world>
+        </chapter>
+    </marine>
+    <marine id="3">
+        <name>123</name>
+        <coordinates>
+            <x>123</x>
+            <y>123</y>
+        </coordinates>
+        <creationDate>2023-02-15T11:07:12.846+03:00</creationDate>
+        <health>123</health>
+        <loyal>true</loyal>
+        <achievements>12312</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>123</name>
+            <marinesCount>12</marinesCount>
+            <world>123</world>
+        </chapter>
+    </marine>
+</marines>

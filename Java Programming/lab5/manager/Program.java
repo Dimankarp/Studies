@@ -5,6 +5,9 @@ import manager.structure.SetByUser;
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * Launching class with a minimum setup
+ */
 public class Program {
 
 
@@ -29,7 +32,13 @@ public class Program {
         CommandInterpreter interpreter = new CommandInterpreter(scanner, executor);
         executor.setInterpreter(interpreter);
         while(true){
-            interpreter.interpreterCycle();
+            try{
+                interpreter.interpreterCycle();
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
         }
 
 }

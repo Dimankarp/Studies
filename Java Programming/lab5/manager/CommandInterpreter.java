@@ -8,12 +8,21 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+/**
+ * Class for command interpreting and execution calling
+ *
+ * <p>
+ *     Works by interpreter cycles with a maximum call stack of 20.
+ * </p>
+ */
 public class CommandInterpreter {
 
     private Scanner scanner;
 
     private Storage.CommandExecutor commExec;
     private HashMap<String, Method> commands;
+
+    private int currCallLevel;
 
     public Scanner getScanner(){
         return scanner;
@@ -36,14 +45,32 @@ public class CommandInterpreter {
                 }
             }
         }
+        currCallLevel = 0;
     }
 
-    public void interpreterCycle()
-    {
-            if(!scanner.hasNextLine())return;
-            String[] parts = scanner.nextLine().split("\s");
+    public void interpreterCycle() throws Exception {
+            currCallLevel+=1;
+            if(currCallLevel > 20){
+                currCallLevel-=1;
+                throw new Exception("The calls stack can't be more than 20.");
+            }
+
+
+            String input;
+            try{
+                input = scanner.nextLine();
+            }
+            catch (Exception e){
+                //Do if EOF is encountered in the Stream
+                currCallLevel-=1;
+                System.exit(0);
+                return;
+            }
+
+            String[] parts = input.split("\s");
             if(parts.length < 1)
             {
+                currCallLevel-=1;
                 System.out.println("Unknown command");
                 return;
             }
@@ -56,11 +83,13 @@ public class CommandInterpreter {
                 if(parts.length -1 < annot.basicArgsCount())
                 {
                     System.out.printf("Not enough arguments provided. %d basic arguments expected.%n", annot.basicArgsCount());
+                    currCallLevel-=1;
                     return;
                 }
                 if(parts.length -1 > annot.basicArgsCount())
                 {
                     System.out.printf("Too many arguments provided. %d basic arguments expected.%n", annot.basicArgsCount());
+                    currCallLevel-=1;
                     return;
                 }
                 String[] basicArgs = new String[annot.basicArgsCount()];
@@ -76,6 +105,7 @@ public class CommandInterpreter {
                     }
                     catch (Exception e){
                         System.out.println(e.getMessage());
+                        currCallLevel-=1;
                         return;
                     }
                     complexArgs[i] = fieldObj;
@@ -89,10 +119,11 @@ public class CommandInterpreter {
                 }
             } else{
                 System.out.printf("Unknown command %s%n", currCommand);
+                currCallLevel-=1;
                 return;
             }
 
-
+        currCallLevel-=1;
         }
 
 

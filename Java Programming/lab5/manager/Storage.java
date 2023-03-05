@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * Class for working with data structure.
+ */
 public class Storage {
 
     private final PriorityQueue<SpaceMarine> data;
@@ -40,6 +43,9 @@ public class Storage {
 
     }
 
+    /**
+     * Class for executing and keeping commands with @Command annotation
+     */
     public class CommandExecutor {
         private CommandInterpreter interpreter;
 
@@ -176,18 +182,21 @@ public class Storage {
                 aliases = {"exec", "script", "sh"},
                 desc = "execute_script file_name - interprets commands from provided file in PATH by lines",
                 basicArgsCount = 1)
-        public void execute_script(String[] basicArgs, Object[] complexArgs) throws InvalidAttributeValueException {
+        public void execute_script(String[] basicArgs, Object[] complexArgs) throws Exception {
             try {
                 Scanner fileScanner = fileOp.getScanner(basicArgs[0]);
                 Scanner oldScanner = interpreter.getScanner();
                 interpreter.setScanner(fileScanner);
                 while (fileScanner.hasNextLine()) {
-                    interpreter.interpreterCycle();
+                        interpreter.interpreterCycle();
                 }
                 interpreter.setScanner(oldScanner);
                 System.out.printf("Successfully executed %s script\n", basicArgs[0]);
             } catch (FileNotFoundException e) {
                 System.out.println(e.getMessage());
+            }
+            catch (Exception e){
+                throw e;
             }
 
 
@@ -198,10 +207,17 @@ public class Storage {
                 aliases = {"rm_first", "-first"},
                 desc = "remove_first - removes first Space Marine from the Storage")
         public void remove_first(String[] basicArgs, Object[] complexArgs) throws Exception {
-            if (data.poll() == null) {
+            if (data.isEmpty()) {
                 throw new Exception("The Storage is empty!");
             }
-            System.out.println("Successfully removed first Marine.");
+            try{
+                SpaceMarine mar = getData().poll();
+                System.out.printf("Successfully removed first Marine id: %d\n.", mar.getId());
+            }
+            catch (Exception e){
+                throw new Exception("Can't remove the first Marine");
+            }
+
 
         }
 
