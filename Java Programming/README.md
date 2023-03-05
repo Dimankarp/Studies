@@ -57,4 +57,17 @@ dependencies {
 }
 
 ```
+
+#### **ITMO Software Engineering 2 semester - Lab 6 of Java Programming Course**
+
+Introducing students to *Sockets and Datagrams, TCP and UDP protocols*
+along with Client-Server application building.
+
+ - [lab6/](./lab6/)
+	- [MarineLibrary/](./lab6/[MarineLibrary]) - Java Library that Server and Client depend on
+	- [MarineManagerClient/](./lab6/MarineManagerClient/) - The Client side of the Application
+	- [MarineManagerServer](./lab6/MarineManagerServer) - The Server side of the Application
+	- [marines.xml](./lab6/marines.xml) - Serialized array of object stored as an xml file
+	- [script.txt](./lab6/script.txt) - Basic script example that can be executed in the app
+
 		

@@ -1,0 +1,6 @@
+show
+show
+help
+info
+average_of_health
+exec script.txt
