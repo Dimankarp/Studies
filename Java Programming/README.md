@@ -35,3 +35,26 @@ ship destructability.
  - [lab3-4/](./lab3-4/)
 	- [ReportJavaProgLab3.docx](./lab3-4/ReportJavaProgLab3.docx) (!In Russian!) - The laboratory work report containing code and task
 	- [src/](./lab3-4/src/) - The game package
+
+#### **ITMO Software Engineering 2 semester - Lab 5 of Java Programming Course**
+
+Introducing students to *Java Collections* and *Stream API *
+along with object *serialization* and storing.
+
+ - [lab5/](./lab5/)
+	- [ReportJavaProgLab5.docx](./lab5/ReportJavaProgLab5.docx) (!In Russian!) - The laboratory work report containing code and task
+	- [manager/](./lab5/manager/) - The App package
+	- [SpaceMarineManager-1.2-Release.jar](./lab5/SpaceMarineManager-1.2-Release.jar) - FatJar with the App
+	- [marines.xml](./lab5/marines.xml) - Serialized array of object stored as an xml file
+	- [script.txt](./lab5/script.txt) - Basic script example that can be executed in the app
+
+Dependency list as a Gradle dependencies:
+```
+dependencies {
+    implementation 'com.sun.xml.bind:jaxb-core:4.0.2'
+    implementation 'com.sun.xml.bind:jaxb-ri:4.0.2'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+}
+
+```
+		
