@@ -39,21 +39,25 @@ public class FileOperator {
     }
 
     public void exportToXML(Object marineObject) throws JAXBException, IOException {
-            marshaller.marshal(marineObject, new FileWriter(PATH + "marines.xml"));
+            try(FileWriter fw = new FileWriter(PATH + "marines.xml")){
+            marshaller.marshal(marineObject, fw);
             logger.info("Successfully exported Storage to {}", PATH+"marines.xml");
+            }
     }
 
     public Object importFromXML() throws FileNotFoundException, JAXBException, FileSystemException {
-        try {
-            Scanner unnecessaryScanner = getScanner("marines.xml");
+        try(Scanner unnecessaryScanner = getScanner("marines.xml");){
             StringWriter sw = new StringWriter();
 
             while(unnecessaryScanner.hasNextLine()){
                 sw.append(unnecessaryScanner.nextLine());
             }
             StringReader sr = new StringReader(sw.toString());
-            logger.info("Successfully imported Storage from {}", PATH+"marines.xml");
-            return unmarshaller.unmarshal(sr);
+            try(sr)
+            {
+                logger.info("Successfully imported Storage from {}", PATH+"marines.xml");
+                return unmarshaller.unmarshal(sr);
+            }
 
             //And that's what I could've done, if I wasn't obliged to use bloody Scanner for file reading
             //return unmarshaller.unmarshal(new FileReader(PATH + "marines.xml"));

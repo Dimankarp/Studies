@@ -72,24 +72,6 @@
             <world>asdsa</world>
         </chapter>
     </marine>
-    <marine id="3">
-        <name>sadsad</name>
-        <coordinates>
-            <x>100</x>
-            <y>100</y>
-        </coordinates>
-        <creationDate>2023-03-04T17:12:40.160+03:00</creationDate>
-        <health>1000</health>
-        <loyal>true</loyal>
-        <achievements>adsa</achievements>
-        <weaponType>FLAMER</weaponType>
-        <chapter>
-            <name>asad</name>
-            <parentLegion>adasd</parentLegion>
-            <marinesCount>1000</marinesCount>
-            <world>asdsad</world>
-        </chapter>
-    </marine>
     <marine id="7">
         <name>adsad</name>
         <coordinates>
@@ -107,22 +89,22 @@
             <world>adasd</world>
         </chapter>
     </marine>
-    <marine id="1">
-        <name>adas</name>
+    <marine id="13">
+        <name>adsadasd</name>
         <coordinates>
             <x>1000</x>
-            <y>1000</y>
+            <y>100</y>
         </coordinates>
-        <creationDate>2023-03-04T16:37:59.518+03:00</creationDate>
-        <health>1000</health>
+        <creationDate>2023-03-12T01:18:39.389+03:00</creationDate>
+        <health>100</health>
         <loyal>true</loyal>
-        <achievements>asdasd</achievements>
+        <achievements>adsadasd</achievements>
         <weaponType>FLAMER</weaponType>
         <chapter>
-            <name>adsad</name>
-            <parentLegion>adsa</parentLegion>
+            <name>asdsad</name>
+            <parentLegion>adsad</parentLegion>
             <marinesCount>1000</marinesCount>
-            <world>adsad</world>
+            <world>adsa</world>
         </chapter>
     </marine>
     <marine id="5">
@@ -161,20 +143,20 @@
             <world>sadsad</world>
         </chapter>
     </marine>
-    <marine id="6">
-        <name>asdsad</name>
+    <marine id="3">
+        <name>sadsad</name>
         <coordinates>
-            <x>1000</x>
-            <y>1000</y>
+            <x>100</x>
+            <y>100</y>
         </coordinates>
-        <creationDate>2023-03-04T19:41:06.302+03:00</creationDate>
+        <creationDate>2023-03-04T17:12:40.160+03:00</creationDate>
         <health>1000</health>
         <loyal>true</loyal>
-        <achievements>adsadas</achievements>
+        <achievements>adsa</achievements>
         <weaponType>FLAMER</weaponType>
         <chapter>
-            <name>dfsfas</name>
-            <parentLegion>asdasd</parentLegion>
+            <name>asad</name>
+            <parentLegion>adasd</parentLegion>
             <marinesCount>1000</marinesCount>
             <world>asdsad</world>
         </chapter>
@@ -230,6 +212,150 @@
             <parentLegion>sfsdhdg</parentLegion>
             <marinesCount>1000</marinesCount>
             <world>afsfds</world>
+        </chapter>
+    </marine>
+    <marine id="1">
+        <name>adas</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-04T16:37:59.518+03:00</creationDate>
+        <health>1000</health>
+        <loyal>true</loyal>
+        <achievements>asdasd</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>adsad</name>
+            <parentLegion>adsa</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>adsad</world>
+        </chapter>
+    </marine>
+    <marine id="14">
+        <name>sadsad</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-12T01:19:11.506+03:00</creationDate>
+        <health>1000</health>
+        <loyal>true</loyal>
+        <achievements>asdsadsd</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>dsadasdsad</name>
+            <parentLegion>asdsad</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>dadsa</world>
+        </chapter>
+    </marine>
+    <marine id="15">
+        <name>adsdasdsad</name>
+        <coordinates>
+            <x>19999</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-12T01:47:42.104+03:00</creationDate>
+        <health>10000</health>
+        <loyal>true</loyal>
+        <achievements>adsada</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>adsadadsa</name>
+            <parentLegion>adsadasd</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>adsadasdsa</world>
+        </chapter>
+    </marine>
+    <marine id="16">
+        <name>adsadsd</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-12T01:49:27.915+03:00</creationDate>
+        <health>1000</health>
+        <loyal>true</loyal>
+        <achievements>adsadsd</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>asadsad</name>
+            <parentLegion>adsada</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>adsadsad</world>
+        </chapter>
+    </marine>
+    <marine id="17">
+        <name>adsadd</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-12T01:51:05.764+03:00</creationDate>
+        <health>1000</health>
+        <loyal>true</loyal>
+        <achievements>adsadada</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>sadsadad</name>
+            <parentLegion>adsada</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>adsada</world>
+        </chapter>
+    </marine>
+    <marine id="18">
+        <name>sadasdsad</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-12T01:52:59.751+03:00</creationDate>
+        <health>10000</health>
+        <loyal>true</loyal>
+        <achievements>asdsad</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>adsadada</name>
+            <parentLegion>adsadas</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>asdsadad</world>
+        </chapter>
+    </marine>
+    <marine id="6">
+        <name>asdsad</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-04T19:41:06.302+03:00</creationDate>
+        <health>1000</health>
+        <loyal>true</loyal>
+        <achievements>adsadas</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>dfsfas</name>
+            <parentLegion>asdasd</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>asdsad</world>
+        </chapter>
+    </marine>
+    <marine id="20">
+        <name>adsadad</name>
+        <coordinates>
+            <x>1000</x>
+            <y>1000</y>
+        </coordinates>
+        <creationDate>2023-03-12T02:32:06.797+03:00</creationDate>
+        <health>10000</health>
+        <loyal>true</loyal>
+        <achievements>adsadasd</achievements>
+        <weaponType>FLAMER</weaponType>
+        <chapter>
+            <name>asdsadasd</name>
+            <parentLegion>adsada</parentLegion>
+            <marinesCount>1000</marinesCount>
+            <world>dsaadsadsa</world>
         </chapter>
     </marine>
 </marines>

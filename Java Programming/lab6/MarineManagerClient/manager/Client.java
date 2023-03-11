@@ -112,10 +112,7 @@ public class Client {
 
     public void writeObject(Object obj) throws IOException {
         if(clientSocket.isConnected()){
-            try{
-
-                ByteArrayOutputStream outByte = new ByteArrayOutputStream();
-                ObjectOutputStream objStream = new ObjectOutputStream(outByte);
+            try(ByteArrayOutputStream outByte = new ByteArrayOutputStream(); ObjectOutputStream objStream = new ObjectOutputStream(outByte)){
                 objStream.writeObject(obj);
                 ByteBuffer buffer = ByteBuffer.allocate(outByte.size() + 4); //4 is for length integer
                 buffer.put(4, outByte.toByteArray());
@@ -123,8 +120,6 @@ public class Client {
 
                 buffer.position(0);
                 clientSocket.write(buffer);
-
-
             }
             catch (IOException e){
                 throw e;
@@ -276,8 +271,7 @@ public class Client {
                 callStackLevel-=1;
                 throw new Exception("The stack level has reached 20. Aborting script execution");
             }
-            try {
-                Scanner fileScanner = fileOp.getScanner(basicArgs[0]);
+            try(Scanner fileScanner = fileOp.getScanner(basicArgs[0])){
                 Scanner oldScanner = interpreter.getScanner();
                 interpreter.setScanner(fileScanner);
                 while (fileScanner.hasNextLine()) {

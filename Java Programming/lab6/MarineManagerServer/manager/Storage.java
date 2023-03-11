@@ -116,11 +116,11 @@ public class Storage {
         )
         public void info(String[] basicArgs, Object[] complexArgs) {
             StringWriter response = new StringWriter();
-            response.append(String.format("manager.Storage type: %s%n\n", data.getClass().getSimpleName()));
+            response.append(String.format("manager.Storage type: %s\n", data.getClass().getSimpleName()));
             response.append("Element type: Space Marine\n");
-            response.append(String.format("Current Size: %d%n\n", data.size()));
-            response.append(String.format("Creation Date: %s%n\n", creationDate.toString()));
-            response.append(String.format("Last Access Date: %s%n\n", lastAccessDate.toString()));
+            response.append(String.format("Current Size: %d\n", data.size()));
+            response.append(String.format("Creation Date: %s\n", creationDate.toString()));
+            response.append(String.format("Last Access Date: %s\n", lastAccessDate.toString()));
             responder.giveResponse(response.toString());
             logger.info("Showed INFO.");
         }
@@ -264,20 +264,19 @@ public class Storage {
 
                 logger.info("Starting executing script {}", basicArgs[0]);
                 ServerCommandInterpreter currInterpreter = (ServerCommandInterpreter)interpreter;
-                Scanner fileScanner = fileOp.getScanner(basicArgs[0]);
-                Scanner oldScanner = currInterpreter.getScanner();
-                Scanner oldBlockingScanner = currInterpreter.getBlockingScanner();
+                try(Scanner fileScanner = fileOp.getScanner(basicArgs[0]); Scanner oldBlockingScanner = currInterpreter.getBlockingScanner()){
+                    Scanner oldScanner = currInterpreter.getScanner();
+                    currInterpreter.setScanner(fileScanner);
+                    currInterpreter.setBlockingScanner(fileScanner);
 
-            currInterpreter.setScanner(fileScanner);
-            currInterpreter.setBlockingScanner(fileScanner);
-
-                while (fileScanner.hasNextLine()) {
+                    while (fileScanner.hasNextLine()) {
                         interpreter.interpreterCycle();
+                    }
+                    currInterpreter.setScanner(oldScanner);
+                    currInterpreter.setBlockingScanner(oldBlockingScanner);
+                    System.out.printf("Successfully executed %s script\n", basicArgs[0]);
+                    logger.info("Starting executed script {}", basicArgs[0]);
                 }
-            currInterpreter.setScanner(oldScanner);
-            currInterpreter.setBlockingScanner(oldBlockingScanner);
-                System.out.printf("Successfully executed %s script\n", basicArgs[0]);
-                logger.info("Starting executed script {}", basicArgs[0]);
         }
 
         @Command(
@@ -290,7 +289,7 @@ public class Storage {
             }
             try{
                 SpaceMarine mar = getData().poll();
-                responder.giveResponse(String.format("Successfully removed first Marine id: %d\n.", mar.getId()));
+                responder.giveResponse(String.format("Successfully removed first Marine id: %d.\n", mar.getId()));
             }
             catch (Exception e){
                 throw new Exception("Can't remove the first Marine");

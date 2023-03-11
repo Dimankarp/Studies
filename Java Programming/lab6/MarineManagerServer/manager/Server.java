@@ -44,7 +44,7 @@ public class Server {
         serverSocket = serverSocketChannel.socket();
         serverSocket.bind(new InetSocketAddress("localhost", port));
         int ops = serverSocketChannel.validOps();
-        serverSocketChannel.register(serverSelector, ops, SelectionKey.OP_READ);
+        serverSocketChannel.register(serverSelector, ops);
 
         mainResponder = new Responder();
 
@@ -57,9 +57,10 @@ public class Server {
             try {
                 storageExecutor.save(new String[0], new Object[0]);
                 System.out.println("Successfully exported Storage at exit.");
+                logger.info("Successfully exported Storage at exit.");
             } catch (JAXBException | IOException e) {
                 System.out.println("Couldn't export Storage at exit.");
-
+                logger.warn("Couldn't export Storage at exit.");
             }
         }));
 
@@ -67,16 +68,14 @@ public class Server {
         connectedExecutor = storageExecutor;
         System.out.println("Waiting for connections...");
         while(true){
-            serverSelector.select(2 * 100l);
+            serverSelector.select(2 * 100L);
             Iterator<SelectionKey> iterator = serverSelector.selectedKeys().iterator();
             while(iterator.hasNext()){
                 SelectionKey key = iterator.next();
                 logger.info("Started selector cycle with key {}", key);
                 mainResponder.setCurrentRespondent(key);
                 if(key.isAcceptable()){
-
                     try{
-
                         accept(key);
                     }
                     catch (IOException e){
@@ -87,15 +86,16 @@ public class Server {
                 }
                 else if(key.isReadable()){
 
-                    CommandContainer fetchedCommand = null;
-                    logger.info("Reading command of client {}", ((SocketChannel)key.channel()).getRemoteAddress().toString());
-                    System.out.printf("Reading command of client %s \n", ((SocketChannel)key.channel()).getRemoteAddress().toString());
+                    SocketChannel keyChannel = (SocketChannel)key.channel();
+                    CommandContainer fetchedCommand;
+                    logger.info("Reading command of client {}", keyChannel.getRemoteAddress().toString());
+                    System.out.printf("Reading command of client %s \n", keyChannel.getRemoteAddress().toString());
                     try{
                         fetchedCommand = (CommandContainer) readObject(key);
                     }
                     catch (NotYetConnectedException|IOException e){
-                        logger.warn("Connection is lost from {}", ((SocketChannel)key.channel()).getRemoteAddress().toString(), e);
-                        System.out.printf("Connection is lost from %s!\n", ((SocketChannel)key.channel()).getRemoteAddress().toString());
+                        logger.warn("Connection is lost from {}", keyChannel.getRemoteAddress().toString(), e);
+                        System.out.printf("Connection is lost from %s!\n", keyChannel.getRemoteAddress().toString());
                         key.cancel();
                         continue;
                     }
@@ -110,7 +110,11 @@ public class Server {
                     }
 
                     try{
+                        System.out.printf("Executing command - %s %s from %s \n", fetchedCommand.commandAnnotation().name(), String.join(" ", fetchedCommand.basicArgs()),  keyChannel.getRemoteAddress().toString());
+                        logger.info("Executing command - {} {} from {}", fetchedCommand.commandAnnotation().name(), String.join(" ", fetchedCommand.basicArgs()),  keyChannel.getRemoteAddress().toString());
                         storageExecutor.executeCommand(fetchedCommand);
+                        System.out.printf("Successfully executed  %s from %s \n", fetchedCommand.commandAnnotation().name(), (keyChannel.getRemoteAddress().toString()));
+                        logger.info("Successfully executed  {} from {}", fetchedCommand.commandAnnotation().name(), keyChannel.getRemoteAddress().toString());
                     }
                     catch (Exception e){
                         mainResponder.giveResponse(e.getMessage());
@@ -126,6 +130,7 @@ public class Server {
             if(System.in.available() > 1){
                 try
                 {
+                    mainResponder.setCurrentRespondent(null);
                     interpreter.interpreterCycle();
                 }
                 catch (Exception e){
@@ -150,8 +155,6 @@ public class Server {
     }
 
     private void read(SelectionKey key) throws IOException {
-
-
 
         SocketChannel client = (SocketChannel)key.channel();
 
@@ -209,17 +212,21 @@ public class Server {
 
 //
 //                    System.out.println(Arrays.toString(commandBuffer.array()));
-                    ObjectInputStream objStream = new ObjectInputStream(new ByteArrayInputStream(serializedObj));
-                    logger.info("Successfully received an object");
-                    System.out.printf("Received an object.\n");
-                    return objStream.readObject();
+                    try(ObjectInputStream objStream = new ObjectInputStream(new ByteArrayInputStream(serializedObj))){
+                        logger.info("Successfully received an object");
+                        System.out.printf("Received an object.\n");
+                        return objStream.readObject();
+                    }
                 }
                 else{
                     commandBuffer.reset();
+                    logger.warn("Failed to fully receive an object - not enough bytes in the stream. Expected {}, came {}!", expectedLen, commandBuffer.remaining());
+                    System.out.printf("Not enough bytes in the stream to fully create an object!\n");
+                    return null;
                 }
             }
-            logger.warn("Failed to fully receive an object!");
-            System.out.printf("Didn't fully receive an object!\n");
+            logger.warn("Failed to fully receive an object - not enough bytes to read object length!");
+            System.out.printf("Didn't fully receive an object - not enough bytes in the stream to read object length!\n");
             return null;
 
 
@@ -239,9 +246,7 @@ public class Server {
 
             System.out.println(response);
             if(currentRespondent != null) {
-                try {
-                    ByteArrayOutputStream outByte = new ByteArrayOutputStream();
-                    ObjectOutputStream objStream = new ObjectOutputStream(outByte);
+                try(ByteArrayOutputStream outByte = new ByteArrayOutputStream(); ObjectOutputStream objStream = new ObjectOutputStream(outByte)){
                     objStream.writeObject(response);
                     ByteBuffer buffer = ByteBuffer.allocate(outByte.size() + 4); //4 is for length integer
                     buffer.put(4, outByte.toByteArray());

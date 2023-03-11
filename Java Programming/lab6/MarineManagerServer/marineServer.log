@@ -1,0 +1,9 @@
+2023-03-12 02:36:06,546 [main] INFO  manager.Program - Initializing server on port :8089 ...
+2023-03-12 02:36:06,628 [main] INFO  manager.Program - Creating storage ...
+2023-03-12 02:36:06,629 [main] INFO  manager.Storage - Create File Operator with PATH null
+2023-03-12 02:36:06,709 [main] INFO  manager.Storage - Fetching the Storage data from nullmarine.xml
+2023-03-12 02:36:06,710 [main] WARN  m.FileOperator - Have no permission to read file nullmarines.xml
+2023-03-12 02:36:06,710 [main] WARN  m.FileOperator - Can't locate file nullmarines.xml
+2023-03-12 02:36:06,712 [main] WARN  m.FileOperator - Couldn't import Space Marines Data from nullmarines.xml, because marines.xml doesn't exist there.
+2023-03-12 02:36:06,712 [main] INFO  manager.Storage - Couldn't fetch storage from %s, because of: Couldn't import Space Marines Data from null, because marines.xml doesn't exist there.
+2023-03-12 02:36:06,712 [main] INFO  manager.Program - Starting server ...

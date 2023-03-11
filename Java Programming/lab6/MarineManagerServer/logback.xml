@@ -1,0 +1,32 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{18} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>marineServer.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{18} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="manager.Server" level="INFO" >
+
+</logger>
+    <logger name="manager.Storage" level="INFO">
+
+</logger>
+    <logger name="manager.FileOperator" level="INFO">
+
+    </logger>
+    <logger name="manager.Logger" level="INFO">
+
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
