@@ -1,0 +1,92 @@
+*{
+    -fx-base: #282828;
+    -fx-base2: #3b3b3b;
+    -fx-base3: #66ff66;
+}
+
+*{
+    -fx-font-family: "Consolas";
+    -fx-background-color: -fx-base;
+    -fx-text-fill: -fx-base3;
+}
+
+.root {
+    -fx-accent: -fx-base3;
+
+    -fx-focus-color: -fx-base3;
+}
+
+*{
+    -fx-highlight-text-fill: -fx-base;
+}
+
+#usernameLabel{
+    -fx-padding: 0 0 0 5;
+}
+#passwordLabel{
+    -fx-padding: 0 0 0 5;
+}
+
+*:disabled{
+    -fx-background-color: -fx-base2;
+}
+
+.text-field
+{
+    -fx-padding: 0 5 0 5;
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 4;
+    -fx-background-insets: 4;
+}
+.button
+{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.button:hover
+{
+    -fx-border-color: -fx-base3;
+    -fx-background-color: -fx-base3;
+    -fx-text-fill: -fx-base;
+}
+
+.combo-box{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+
+.combo-box .list-cell:hover{
+    -fx-text-fill: -fx-base;
+    -fx-background-color: -fx-base3;
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.combo-box .list-cell:selected{
+    -fx-underline: true;
+}
+
+.combo-box .combo-box-popup .list-view {
+    -fx-border-color: -fx-base3;
+}
+
+.combo-box .arrow{
+    -fx-background-color: -fx-base3;
+}
+
+.combo-box .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+

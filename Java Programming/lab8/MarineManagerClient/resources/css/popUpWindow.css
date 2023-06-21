@@ -1,0 +1,49 @@
+*{
+    -fx-base: #282828;
+    -fx-base2: #3b3b3b;
+    -fx-base3: #66ff66;
+}
+
+*{
+    -fx-font-family: "Consolas";
+    -fx-background-color: -fx-base;
+    -fx-text-fill: -fx-base3;
+}
+
+.root {
+    -fx-accent: -fx-base3;
+
+    -fx-focus-color: -fx-base3;
+}
+
+*{
+    -fx-highlight-text-fill: -fx-base;
+}
+
+*:disabled{
+    -fx-background-color: -fx-base2;
+}
+.text-field
+{
+    -fx-padding: 0 5 0 5;
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 4;
+    -fx-background-insets: 4;
+}
+
+.button
+{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+.button:hover
+{
+    -fx-border-color: -fx-base3;
+    -fx-background-color: -fx-base3;
+    -fx-text-fill: -fx-base;
+}
+
+.label{
+    -fx-padding: 0 0 0 5;
+}

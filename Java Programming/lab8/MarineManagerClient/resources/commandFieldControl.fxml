@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml">
+    <rowConstraints>
+        <RowConstraints  percentHeight="50" />
+        <RowConstraints  percentHeight="50" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="30"  />
+        <ColumnConstraints percentWidth="70"  />
+    </columnConstraints>
+
+    <Label fx:id="fieldLabel" text="FIELD_NAME" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="fieldField" GridPane.rowIndex="0"  GridPane.columnIndex="1"/>
+    <Label fx:id="errorLabel" text="FIELD_NAME" wrapText="true" GridPane.rowIndex="1"  GridPane.columnSpan="2"  GridPane.columnIndex="0"/>
+
+</fx:root>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<fx:root type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml">
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" percentHeight="100" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="100"  />
+    </columnConstraints>
+    <ScrollPane fx:id="scrollPane" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS"  maxWidth="Infinity" maxHeight="Infinity" pannable="true"
+    hbarPolicy="ALWAYS" vbarPolicy="ALWAYS">
+        <Group fx:id="canvasGroup">
+
+        </Group>
+    </ScrollPane>
+
+
+</fx:root>

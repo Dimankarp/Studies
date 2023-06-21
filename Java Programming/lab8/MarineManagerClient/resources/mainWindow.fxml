@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<SplitPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="gui.MainWindowController"
+          prefHeight="400.0" prefWidth="600.0" orientation="VERTICAL">
+<GridPane>
+    <rowConstraints>
+        <RowConstraints  vgrow="ALWAYS"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints  hgrow="ALWAYS"/>
+        <ColumnConstraints prefWidth="210" minWidth="210"/>
+    </columnConstraints>
+
+
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="0" >
+        <TabPane fx:id="mainTabPane" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        </TabPane>
+
+        <HBox fx:id="tabButtonBox" AnchorPane.topAnchor="12" AnchorPane.rightAnchor="10" spacing="10">
+        </HBox>
+
+    </AnchorPane>
+
+    <VBox fx:id="secondaryBox" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <GridPane fx:id="secondaryPane">
+            <rowConstraints>
+                <RowConstraints  vgrow="ALWAYS"/>
+                <RowConstraints  vgrow="NEVER"/>
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="NEVER"/>
+            </columnConstraints>
+            <ComboBox fx:id="loginLangBox" onAction="#languageChanged" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        </GridPane>
+    </VBox>
+
+</GridPane>
+
+    <VBox fx:id="logBox"  maxWidth="Infinity" maxHeight="Infinity"  fillWidth="true">
+    </VBox>
+
+</SplitPane>

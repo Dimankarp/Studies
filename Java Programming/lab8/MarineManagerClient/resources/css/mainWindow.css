@@ -1,0 +1,230 @@
+
+
+
+*{
+    -fx-base: #282828;
+    -fx-base2: #3b3b3b;
+    -fx-base3: #66ff66;
+}
+
+*{
+    -fx-font-family: "Consolas";
+    -fx-background-color: -fx-base;
+    -fx-text-fill: -fx-base3;
+}
+
+.root {
+    -fx-accent: -fx-base3;
+
+    -fx-focus-color: -fx-base3;
+}
+
+*{
+    -fx-highlight-text-fill: -fx-base;
+}
+
+*:disabled{
+    -fx-background-color: -fx-base2;
+}
+.text-field
+{
+    -fx-padding: 0 5 0 5;
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 4;
+    -fx-background-insets: 4;
+}
+
+.button
+{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+.button:hover
+{
+    -fx-border-color: -fx-base3;
+    -fx-background-color: -fx-base3;
+    -fx-text-fill: -fx-base;
+}
+
+
+
+.autoRefresh>.box>.mark {
+    -fx-background-image: url("/icons/Refresh-Auto2.png");
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-shape: none;
+    -fx-padding: 16px;
+}
+
+.autoRefresh:selected>.box>.mark{
+    -fx-background-color: transparent;
+    -fx-background-image: url("/icons/Refresh-Auto1.png");
+    -fx-padding: 16px;
+}
+
+
+.table-row-cell {
+    -fx-table-cell-border-color: -fx-base3;
+    -fx-border-color: -fx-base3;
+}
+
+.table-view .nested-column-header {
+    -fx-border-color: -fx-base3;
+}
+
+.table-view  .column-header {
+    -fx-border-color: -fx-base3;
+}
+
+.table-view .arrow {
+    -fx-background-color: -fx-base3;
+    -fx-border-color: null;
+}
+
+.table-view:focused .table-row-cell:focused *{
+    -fx-border-color: -fx-base3;
+    -fx-background-color: -fx-base3;
+    -fx-text-fill: -fx-base;
+}
+
+
+
+
+.tab-pane .tab-header-area{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.tab-pane .tab {
+    -fx-border-color: -fx-base3;
+    -fx-text-fill: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+    -fx-pref-height: 40;
+}
+
+.tab-pane .tab:hover, .tab-pane .tab:hover .tab-label{
+    -fx-background-color: -fx-base3;
+    -fx-text-fill: -fx-base2;
+}
+
+.tab-pane .tab:selected, .tab-pane .tab:selected .tab-label{
+    -fx-background-color: -fx-base3;
+    -fx-text-fill: -fx-base2;
+    -fx-underline: true;
+}
+
+
+
+
+
+.tab-pane .tab-header-area *{
+    -fx-background-color: null;
+
+}
+
+.tab-pane .tab-header-area {
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+
+}
+
+
+.scroll-pane {
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.scroll-pane .scroll-bar{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.scroll-pane .scroll-bar .thumb{
+    -fx-background-color: -fx-base3;
+
+}
+
+.scroll-pane .scroll-bar  .decrement-arrow{
+    -fx-background-color: -fx-base3;
+}
+
+.scroll-pane .scroll-bar .increment-arrow {
+    -fx-background-color: -fx-base3;
+}
+
+#logBox{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+
+}
+
+#scrollPane{
+    -fx-border-color: null;
+}
+
+
+
+#logFlow > Text{
+    -fx-fill: -fx-base3;
+    -fx-font-size: 14
+}
+
+
+.split-pane .split-pane-divider .vertical-grabber, .split-pane .split-pane-divider .horizontal-grabber{
+    -fx-background-color: -fx-base3;
+}
+
+.combo-box{
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+
+.combo-box .list-cell:hover{
+    -fx-text-fill: -fx-base;
+    -fx-background-color: -fx-base3;
+    -fx-border-color: -fx-base3;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.combo-box .list-cell:selected{
+    -fx-underline: true;
+}
+
+.combo-box .combo-box-popup .list-view{
+    -fx-border-color: -fx-base3;
+}
+
+.combo-box .arrow{
+    -fx-background-color: -fx-base3;
+}
+
+.combo-box .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+
+
+
+

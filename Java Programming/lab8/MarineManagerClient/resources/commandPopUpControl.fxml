@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" fillWidth="true">
+    <BorderPane>
+        <center>
+            <Label fx:id="titleLabel" text="PLACEHOLDER"/>
+        </center>
+    </BorderPane>
+
+
+    <BorderPane>
+        <center>
+            <Button fx:id="doneButton" text="PLACEHOLDER"/>
+        </center>
+    </BorderPane>
+    </fx:root>

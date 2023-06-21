@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:id ="loginPane"
+          fx:controller="gui.LoginWindowController" alignment="CENTER">
+    <rowConstraints>
+        <RowConstraints percentHeight="25" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="15" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="9" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="9" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="9" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="10" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="25" vgrow="ALWAYS"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="100" hgrow="ALWAYS"/>
+    </columnConstraints>
+    <Label fx:id="welcomeLabel" text="%loginWelcomeLabelText" wrapText="true" textAlignment="CENTER" alignment="CENTER" GridPane.rowIndex="1" maxWidth="Infinity" maxHeight="Infinity"/>
+    <Label fx:id="usernameLabel" text="%loginUsernameLabelText" GridPane.rowIndex="2" maxWidth="Infinity" maxHeight="Infinity"/>
+    <TextField  fx:id="userField" GridPane.rowIndex="3" maxWidth="Infinity" maxHeight="Infinity" onAction="#login"/>
+    <Label fx:id="passwordLabel" text="%loginPasswordLabelText" GridPane.rowIndex="4" maxWidth="Infinity" maxHeight="Infinity" />
+    <PasswordField fx:id="passwordField" GridPane.rowIndex="5" maxWidth="Infinity" maxHeight="Infinity" onAction="#login"/>
+    <HBox  GridPane.rowIndex="6" maxHeight="Infinity" maxWidth="Infinity" spacing="10">
+        <Button fx:id = "loginButton" onAction="#login" text="%loginButtonText" GridPane.rowIndex="6" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="loginLangBox" onAction="#languageChanged" />
+    </HBox>
+
+</GridPane>
