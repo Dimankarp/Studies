@@ -1,5 +1,6 @@
 package manager;
 
+import jakarta.xml.bind.JAXBException;
 import marine.Command;
 import marine.CommandContainer;
 import marine.structure.SpaceMarine;
@@ -33,6 +34,13 @@ public class Client {
             clientSocket = SocketChannel.open(new InetSocketAddress(host, port));
             clientSocket.configureBlocking(false);
             responseStream = new ByteArrayOutputStream();
+
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                try {
+                    clientSocket.close();
+                } catch( IOException ignored) {}
+            }));
+
         } catch (IOException e) {
             throw new IOException(String.format("Couldn't connect to %s:%d", host, port));
         }
@@ -57,7 +65,8 @@ public class Client {
         while(clientSocket.isConnected() && System.currentTimeMillis()-startingTime < responseTimeMills){
         try{
             inputBuffer.clear();
-            clientSocket.read(inputBuffer);
+            int readBytesCount = clientSocket.read(inputBuffer);
+            if(readBytesCount == -1) throw new IOException("The server socket has been closed!");
             inputBuffer.flip();
 
             byte[] currInput = new byte[inputBuffer.limit()];

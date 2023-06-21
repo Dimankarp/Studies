@@ -62,6 +62,11 @@ public class Server {
                 System.out.println("Couldn't export Storage at exit.");
                 logger.warn("Couldn't export Storage at exit.");
             }
+            try{serverSocketChannel.close();}
+            catch (IOException e){
+                System.out.println("Couldn't properly close server socket.");
+                logger.warn("Couldn't properly close server socket.");
+            }
         }));
 
         interpreter = interp;
@@ -162,7 +167,9 @@ public class Server {
 
         ByteBuffer buffer = ByteBuffer.allocate(8096);
 
-        client.read(buffer);
+        int readCount = client.read(buffer);
+
+        if(readCount == -1) throw new IOException(String.format("The socket %s has been closed", client.getRemoteAddress().toString()));
 
         String data = new String(buffer.array()).trim();
         System.out.println(data);
@@ -176,6 +183,9 @@ public class Server {
             logger.info("Reading object from client {}", ((SocketChannel)key.channel()).getRemoteAddress().toString());
 
             int readBytesCount = client.read(inputBuffer);
+
+            if(readBytesCount == -1) throw new IOException(String.format("The socket %s has been closed", client.getRemoteAddress().toString()));
+
             logger.info("Read {} bytes from client {}", readBytesCount, ((SocketChannel)key.channel()).getRemoteAddress().toString());
             inputBuffer.flip();
             System.out.printf("Reading client %s \n", client.getRemoteAddress().toString());
