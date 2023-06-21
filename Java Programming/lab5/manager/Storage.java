@@ -145,15 +145,22 @@ public class Storage {
                 aliases = {"rm_id", "-id"},
                 desc = "remove_by_id id - removes the Marine with passed id from Storage",
                 basicArgsCount = 1)
-        public void remove_by_id(String[] basicArgs, Object[] complexArgs) throws InvalidAttributeValueException {
+        public void remove_by_id(String[] basicArgs, Object[] complexArgs) throws Exception {
+            if (data.isEmpty()) {
+                throw new Exception("The Storage is empty!");
+            }
             int id;
             try {
                 id = Integer.parseInt(basicArgs[0]);
             } catch (Exception e) {
                 throw new InvalidAttributeValueException("Passed id is not an Integer!");
             }
-            getData().removeIf(x -> x.getId() == id);
-            System.out.printf("Successfully removed marine with id: %d\n", id);
+            if(getData().removeIf(x -> x.getId() == id)){
+                System.out.printf("Successfully removed marine with id: %d\n", id);
+                return;
+            }
+            System.out.println("Couldn't find a Space Marine with the specified id");
+
         }
 
         @Command(
@@ -229,6 +236,11 @@ public class Storage {
                 objectArgsTypes = {SpaceMarine.class})
         public void add_if_min(String[] basicArgs, Object[] complexArgs) {
             SpaceMarine marine = (SpaceMarine) complexArgs[0];
+            if(data.isEmpty()){
+                data.offer(marine);
+                System.out.println("Successfully added new Space Marine to the Storage, although it was empty!");
+                return;
+            }
             if(marine.compareTo(data.peek()) < 0){
                 getData().offer(marine);
                 System.out.println("Successfully added new Space Marine to the Storage");
@@ -243,10 +255,11 @@ public class Storage {
                 desc = "remove_greater {SpaceMarine} - removes every Space marine that has bigger rating than passed one from Storage.",
                 objectArgsCount = 1,
                 objectArgsTypes = {SpaceMarine.class})
-        public void remove_greater(String[] basicArgs, Object[] complexArgs) {
+        public void remove_greater(String[] basicArgs, Object[] complexArgs) throws Exception {
+            if(data.isEmpty()) throw new Exception("The Storage is empty - can't calculate average");
             SpaceMarine marine = (SpaceMarine) complexArgs[0];
             getData().removeIf(x -> (marine.compareTo(x) < 0));
-            System.out.println("Successfully remove greater elements");
+            System.out.println("Successfully removed greater elements");
         }
 
         @Command(
@@ -264,7 +277,7 @@ public class Storage {
                 aliases = {"average", "avrg"},
                 desc = "average_of_health - prints average of health of every Marine in Storage")
         public void average_of_health(String[] basicArgs, Object[] complexArgs) throws Exception {
-            if(data.size() == 0) throw new Exception("The Storage is empty - can't calculate average");
+            if(data.isEmpty()) throw new Exception("The Storage is empty - can't calculate average");
             int sumHp = 0;
             for (SpaceMarine marine : data) sumHp += marine.getHealth();
             System.out.printf("Average of health: %.2f\n", (float)sumHp/data.size());
@@ -275,6 +288,7 @@ public class Storage {
                 aliases = {"unique", "weapType"},
                 desc = "print_unique_weapon_type - prints every unique weapon type of Marines in Storage")
         public void print_unique_weapon_type(String[] basicArgs, Object[] complexArgs) throws Exception {
+            if(data.isEmpty()) throw new Exception("The Storage is empty - can't calculate average");
             HashSet<Weapon> uniqueTypes = new HashSet<>();
             for (SpaceMarine marine : data) uniqueTypes.add(marine.getWeaponType());
             System.out.print("Unique weapons: ");
