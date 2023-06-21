@@ -70,4 +70,12 @@ along with Client-Server application building.
 	- [marines.xml](./lab6/marines.xml) - Serialized array of object stored as an xml file
 	- [script.txt](./lab6/script.txt) - Basic script example that can be executed in the app
 
+#### **ITMO Software Engineering 2 semester - Lab 7 of Java Programming Course**
+
+Introducing students to *Realtional DB (PostgreSQL) and Multithreading in Java*.
+
+ - [lab7/](./lab7/)
+	- [MarineLibrary/](./lab7/MarineLibrary) - Java Library that Server and Client depend on
+	- [MarineManagerClient/](./lab7/MarineManagerClient/) - The Client side of the Application
+	- [MarineManagerServer](./lab7/MarineManagerServer) - The Server side of the Application
 		

@@ -1,0 +1,9 @@
+show
+show
+help
+info
+average_of_health
+sleep 1000
+average_of_health
+sleep 1000
+exec add.txt
