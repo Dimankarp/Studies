@@ -1,0 +1,563 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{xcolor}
+\pgfplotsset{width=0.85\textwidth, compat=1.13}
+
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns.meta}
+
+
+\graphicspath{{./}}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+\pagestyle{plain}
+
+\fancypagestyle{firstpage}{%
+  \chead{
+  МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ 
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ  
+ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ\bigskip
+
+«Национальный исследовательский университет ИТМО»\bigskip
+
+ФАКУЛЬТЕТ ПРОГРАММНОЙ ИНЖЕНЕРИИ И КОМПЬЮТЕРНОЙ ТЕХНИКИ 
+}
+\fancyfoot[CO]{Санкт-Петербург, 2023}%
+}
+
+
+
+\definecolor{aqua}{HTML}{003844}
+\definecolor{peri}{HTML}{5EB1BF}
+\definecolor{royal_blue}{HTML}{0A2463}
+\definecolor{periwinkle}{HTML}{D8DCFF}
+\definecolor{cerulean}{HTML}{247BA0}
+\definecolor{bloodred}{HTML}{690500}
+\definecolor{imperial_red}{HTML}{FB3640}
+\definecolor{purple}{HTML}{511730}
+\definecolor{tangerine}{HTML}{FFA781}
+
+\newtheorem*{task}{Задача}
+
+\tikzexternalize
+\begin{document}
+\newgeometry{top=1.6cm,bottom=1.6cm, left = 1.2cm, right = 1.2cm}
+
+\topskip0pt
+\vspace*{0.25\textheight}
+\begin{center}
+\textbf{\LARGE КУРСОВАЯ РАБОТА}
+
+\LARGE по теме
+
+\LARGE <<Нечёткие множества и системы нечёткого вывода>>
+
+\LARGE по дисциплине
+
+\LARGE <<Дискретная математика>>\bigskip
+
+\end{center}
+\vspace*{5cm}
+\begin{flushright}
+\begin{minipage}{.2\linewidth}
+\textit{\textbf{Выполнил:}}\\
+Митя ХХ
+
+\textit{\textbf{Преподаватель:}}\\
+П. В. И
+\end{minipage}
+\end{flushright}
+
+
+\thispagestyle{firstpage}
+\newpage
+\tableofcontents
+
+\restoregeometry
+\def\pcolor{peri}
+\def\scolor{royal_blue}
+\section{Задача}
+Часто студентам хочется дружить с девушками, и, как известно, такая дружба требует определённых финансовых затрат. В связи с ограниченностью денежных ресурсов студента,  в месяц на дружбу ему рекомендуется выделять столько средств, сколько, по его ощущениям, достойна подруга. 
+
+Студент, как эксперт в вопросах, связанных с девушками, может безошибочно и точно определить у любой подруги 2 характеристики: \textbf{интеллект} (\textit{измеряемый в \textbf{IQ} }) и \textbf{красоту} (\textit{измеряемую в условных единицах красоты $\left[ \text{у.е.к.} \right]$ в диапазоне $\left[1, 100 \right]$, где $100$ - \textbf{эталон красоты}, а $1$ - \textbf{<<Не в моём вкусе>>}}).
+
+Задача состоит в нахождении оптимальной суммы месячных трат на дружбу с девушкой по её характеристике.
+
+
+\section{Построение системы нечёткого вывода}
+Для решения поставленной задачи построим систему нечёткого вывода типа Мамдани.
+\subsection{Построение базы нечётких лингвистических правил}
+Предварительно определим входные и выходные лингвистические переменные для системы.
+В качестве \textbf{входных лингвистических переменных} имеем:
+\begin{itemize}
+\item Интеллект девушки (IQ) с термом-множеством:
+
+ $T_{ \text{интеллект} }$ = $\{ \text{Глупая, Недалёкая, Обыкновенного ума, Умная, Гениальная} \}$ %рассматриваемый в диапазоне $\left[10,160\right]$ $\left[ \text{у.е.и.} \right]$
+\item Красота девушки ($\left[ \text{у.е.к.} \right]$) с термом-множеством
+
+ $T_{\text{красота}} = \{\text{Некрасивая, Немилая,  Типичной красоты, Симпатичная, Красивая}\}$ %, рассматриваемая в диапазоне% $\left[0,100\right]$  $\left[ \text{c.е.к.} \right]$
+\end{itemize}
+\textbf{Выходные лингвистические переменные:}
+\begin{itemize}
+\item Сумма месячных трат на дружбу (руб.) с термом-множеством %  $\left[ \text{руб.} \right]$
+
+ $T_{\text{сумма}} = \{\text{Мизерная, Малая,   Подъёмная, Существенная, Огромная}\}$
+\end{itemize}
+На основе \textbf{субъективных} представлений о связи ума и красоты девушек с пределом месячных трат на дружбу с ними составим матрицу правил нечёткой продукции для системы: 
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{c|ccccc}
+\textbf{И} & \textbf{Глупая} & \textbf{Недалёкая} & \textbf{Обыкн. ума} & \textbf{Умная} & \textbf{Гениальная}\\[5pt]
+\hline
+\textbf{Некрасивая} & Мизерная & Мизерная & Малая & Подъёмная & Существенная\\[5pt]
+
+\textbf{Немилая} & Мизерная & Малая & Подъёмная & Подъёмная & Существенная \\[5pt]
+
+\textbf{Типич. красоты} & Мизерная & Малая & Подъёмная & Существенная & Существенная\\[5pt]
+
+\textbf{Симпатичная} & Малая & Малая &  Подъёмная & Существенная & Огромная\\[5pt]
+
+\textbf{Красивая} & Малая & Подъёмная & Существенная & Огромная & Огромная\\[5pt]
+
+
+\end{tabular}
+\caption{Правила нечёткой продукции.}
+\end{table}
+\end{center}
+\subsection{Функции принадлежности нечётких термов}
+Сопоставим множества значений входных переменных функциям принадлежности $M(x_1)$, то есть установим правила определения степени истинности для предпосылок лингвистических правил.
+
+\begin{enumerate}
+\item Интеллект девушки (IQ):
+\begin{equation*}
+\begin{aligned}
+x_1 &- \text{Интеллект девушки}\\
+M_{\text{глуп.}}(x_1) &= \frac{1}{1+\exp \left( 0.2 * (x_1-30) \right)}, x_1\in \left(-\infty, 60\right)\\
+M_{\text{недалёк.}}(x_1) &= \exp{\left( -\frac{(x_1-60)^2}{2 * (8)^2}  \right)}, x_1\in \left[30,85\right)\\
+M_{\text{обык.ум.}}(x_1) &= \exp{\left( -\frac{(x_1-90)^2}{2 * (8)^2}  \right)}, x_1\in \left[60, 120\right)\\
+M_{\text{умн.}}(x_1) &= \exp{\left( -\frac{(x_1-110)^2}{2 * (8)^2}  \right)}, x_1\in \left[85, 135\right]\\
+M_{\text{гениал.}}(x_1) &= \frac{1}{1+\exp \left( -0.3 * (x_1-140) \right)}, x_1\in \left[120, +\infty\right)\\
+\end{aligned}
+\end{equation*}
+\begin{center}
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(x_1\),
+	ylabel = {\(M(x_1)\)},
+	ymin=0,
+	xmin=1,
+	xmax=150,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = 0,
+	ymax=1.1,
+	xtick distance={20},
+	%extra x ticks={ -0.87, 0.87},
+	%extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	%extra x tick style ={
+	%grid = none},
+	%legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=-10:60,
+    samples=100,
+    color=\pcolor,
+    name path = f1,
+]
+{1/(1+exp(0.2 * (x-30))};
+
+\addplot[
+	ultra thick,
+    domain=30:85,
+    samples=100,
+    color=\scolor,
+    name path = f2,
+]
+{exp(-( (x-60)^2 / (2 * (8)^2 ))};
+
+
+
+\addplot[
+	ultra thick,
+    domain=60:120,
+    samples=100,
+    color=purple,
+    name path = f3,
+]
+{exp(-( (x-90)^2 / (2 * (8)^2 ))};
+
+\addplot[
+	ultra thick,
+    domain=85:135,
+    samples=100,
+    color=tangerine,
+    name path = f4,
+]
+{exp(-( (x-110)^2 / (2 * (8)^2 ))};
+
+\addplot[
+	ultra thick,
+    domain=120:150,
+    samples=100,
+    color=imperial_red,
+    name path = f1,
+]
+{1/(1+exp(-0.3 * (x-140))};
+
+
+
+\legend{Глупая, Недалёкая, Обык. Ума, Умная, Гениальн.}
+\end{axis}
+\end{tikzpicture}
+\caption{Графики функций $M(x_2)$ для лингв. переменной - интеллект.}
+\label{gr:1}
+\end{figure}
+\end{center}
+
+
+\item Красота девушки ([у.е.к]):
+\begin{equation*}
+\begin{aligned}
+x_2 &- \text{Красота девушки}\\
+M_{\text{некрас.}}(x_2) &= \frac{1}{1+\exp \left( 0.3 * (x_2-15) \right)}, x_2\in \left[0, 30\right)\\
+M_{\text{немил.}}(x_2) &= \exp{\left( -\frac{(x_2-30)^2}{2 * (6)^2}  \right)}, x_2\in \left[10, 50\right]\\
+M_{\text{типич.крас.}}(x_2) &= \exp{\left( -\frac{(x_2-50)^2}{2 * (6)^2}  \right)}, x_2\in \left[30, 70\right]\\
+M_{\text{симпат.}}(x_2) &= \exp{\left( -\frac{(x_2-80)^2}{2 * (6)^2}  \right)}, x_2\in \left[60, 100\right]\\
+M_{\text{красив.}}(x_2) &= \frac{1}{1+\exp \left( -0.3 * (x_2-90) \right)}, x_2\in \left[75, 100\right]\\
+\end{aligned}
+\end{equation*}
+\begin{center}
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(x_2\),
+	ylabel = {\(M(x_2)\)},
+	ymin=0,
+	xmin=1,
+	xmax=100,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = 0,
+	ymax=1.1,
+	xtick distance={20},
+	%extra x ticks={ -0.87, 0.87},
+	%extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	%extra x tick style ={
+	%grid = none},
+	%legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=-10:30,
+    samples=100,
+    color=\pcolor,
+    name path = f1,
+]
+{1/(1+exp(0.3 * (x-15))};
+
+\addplot[
+	ultra thick,
+    domain=10:50,
+    samples=100,
+    color=\scolor,
+    name path = f2,
+]
+{exp(-( (x-30)^2 / (2 * (6)^2 ))};
+
+
+
+\addplot[
+	ultra thick,
+    domain=30:70,
+    samples=100,
+    color=purple,
+    name path = f3,
+]
+{exp(-( (x-50)^2 / (2 * (6)^2 ))};
+
+\addplot[
+	ultra thick,
+    domain=60:100,
+    samples=100,
+    color=tangerine,
+    name path = f4,
+]
+{exp(-( (x-80)^2 / (2 * (6)^2 ))};
+
+\addplot[
+	ultra thick,
+    domain=73:100,
+    samples=100,
+    color=imperial_red,
+    name path = f1,
+]
+{1/(1+exp(-0.3 * (x-90))};
+
+
+
+\legend{Некрасивая, Немилая, Типич. красоты, Симпатичная, Красивая}
+\end{axis}
+\end{tikzpicture}
+\caption{Графики функций $M(x_2)$ для лингв. переменной - красота.}
+\label{gr:2}
+\end{figure}
+\end{center}
+
+\item Сумма месячынх трат (руб.):
+\begin{equation*}
+\begin{aligned}
+y &- \text{Сумма месячных трат}\\
+M_{\text{мизерн.}}(y) &= \frac{1}{1+\exp \left( 0.002 * (y-2000) \right)}, y\in \left[0, 5000\right)\\
+M_{\text{мал.}}(y) &= \exp{\left( -\frac{(y-5000)^2}{2 * (900)^2}  \right)}, y\in \left[500, 10000\right]\\
+M_{\text{подъёмн.}}(y) &= \exp{\left( -\frac{(y-15000)^2}{3 * (2400)^2}  \right)}, y\in \left[5000, 25000\right)\\
+M_{\text{существ.}}(y) &= \exp{\left( -\frac{(y-25000)^2}{3 * (2400)^2}  \right)}, y\in \left[15000, 35000\right]\\
+M_{\text{огромн.}}(y) &= \frac{1}{1+\exp \left( -0.002 * (y-32000) \right)}, y\in \left[25000, +\infty\right)\\
+\end{aligned}
+\end{equation*}
+\begin{center}
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(y\),
+	ylabel = {\(M(y)\)},
+	ymin=0,
+	xmin=0,
+	xmax=40000,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = 0,
+	ymax=1.1,
+	xtick distance={5000},
+	scaled x ticks=false
+	%extra x ticks={ -0.87, 0.87},
+	%extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	%extra x tick style ={
+	%grid = none},
+	%legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=0:5000,
+    samples=100,
+    color=\pcolor,
+    name path = f1,
+]
+{1/(1+exp(0.002 * (x-2000))};
+
+\addplot[
+	ultra thick,
+    domain=500:10000,
+    samples=100,
+    color=\scolor,
+    name path = f2,
+]
+{exp(-( (x-5000)^2 / (2 * (900)^2 ))};
+
+
+
+\addplot[
+	ultra thick,
+    domain=5000:25000,
+    samples=100,
+    color=purple,
+    name path = f3,
+]
+{exp(-( (x-15000)^2 / (3 * (2400)^2 ))};
+
+\addplot[
+	ultra thick,
+    domain=15000:35000,
+    samples=100,
+    color=tangerine,
+    name path = f4,
+]
+{exp(-( (x-25000)^2 / (3 * (2400)^2 ))};
+
+\addplot[
+	ultra thick,
+    domain=25000:40000,
+    samples=100,
+    color=imperial_red,
+    name path = f1,
+]
+{1/(1+exp(-0.002 * (x-32000))};
+
+
+
+\legend{Мизерная, Малая, Подъёмная, Существенная, Огромная}
+\end{axis}
+\end{tikzpicture}
+\caption{Графики функций $M(y)$ для лингв. переменной - сумма месячных трат.}
+\label{gr:3}
+\end{figure}
+\end{center}
+\end{enumerate}
+
+\section{Получение вывода}
+Используем построенную систему нечёткого вывода для получения заключения по алгоримту Мамдани.
+
+Допустим, что студенту N повезло, и он расмматривет дружбу с подругой, обладающей следующими характеристиками:
+
+\begin{itemize}
+\item \textit{Интеллект} - \textbf{100} IQ 
+\item \textit{Красота} - \textbf{80} [у.е.к] 
+\end{itemize}
+Определим оптимальную месячную сумму трат на дружбу с такой подругой.
+
+\subsection{Фаззификация}
+Переведём точные значения входных переменных в нечёткий формат, определив значения функций принадлежности и активные правила продукции.
+
+На рисунке \ref{gr:1} видно, что значение входной переменной \textit{Интеллект} $x=100$ попадает в область определения только функций $M_{\text{обыкн.ум}(x)}$ и $M_{\text{умн.}(x)}$. Найдём значения этих функций при данном аргументе:
+\begin{equation*}
+\begin{aligned}
+M_{\text{обык.ум.}}(100) &= \exp{\left( -\frac{(100-90)^2}{2 * (8)^2}  \right)} &\approx 0.458 \\
+M_{\text{умн.}}(100) &= \exp{\left( -\frac{(100-110)^2}{2 * (8)^2}  \right)} &\approx 0.458 \\
+\end{aligned}
+\end{equation*}
+
+Аналогично на рисунке \ref{gr:2} легко видеть, что значение входной переменной \textit{Красота} $x=80$ попадает в область определения функций $M_{\text{симпатич.}(x)}$ и $M_{\text{крас.}(x)}$. Также найдём значения этих функций при данном аргументе:
+\begin{equation*}
+\begin{aligned}
+M_{\text{симпат.}}(80) &= \exp{\left( -\frac{(80-80)^2}{2 * (6)^2}  \right)} &= 1\\
+M_{\text{красив.}}(80) &= \frac{1}{1+\exp \left( -0.3 * (80-90) \right)} 	&\approx 0.047\\
+\end{aligned}
+\end{equation*}
+
+Таким образом, для данного случая активными правилами нечёткой продукции являются:
+\begin{enumerate}
+\item Если подруга  \textbf{симпатичная} и \textbf{обыкновенного ума}, то в месяц на дружбу можно потратить \textbf{подъёмную} сумму.
+\item Если подруга  \textbf{симпатичная} и \textbf{умная}, то в месяц на дружбу можно потратить \textbf{существенную} сумму.
+\item Если подруга  \textbf{красивая} и \textbf{обыкновенного ума}, то в месяц на дружбу можно потратить \textbf{существенную} сумму.
+\item Если подруга  \textbf{красивая} и \textbf{уманя}, то в месяц на дружбу можно потратить \textbf{огромную} сумму.
+\end{enumerate}
+\subsection{Блок выработки решения}
+\subsubsection{Агрегирование}
+Агрегируем степени истинности для предпосылок $\alpha_i$  по каждому из активных правил ($i$ - номер правила):
+\begin{equation*}
+\begin{aligned}
+\alpha_1 &= \min(M_{\text{обык.ум.}}(100), M_{\text{симпат.}}(80)) &= 0.458 \\
+\alpha_2 &= \min(M_{\text{обык.ум.}}(100), M_{\text{крас.}}(80)) &= 0.047 \\
+\alpha_3 &= \min(M_{\text{умн.}}(100), M_{\text{симпат.}}(80)) &= 0.458 \\
+\alpha_4 &= \min(M_{\text{умн.}}(100), M_{\text{красив.}}(80)) &= 0.047 \\
+\end{aligned}
+\end{equation*}
+
+\subsubsection{Активация}
+Определим степени истинности $\mu_i$ по каждому из активных правил ($i$ - номер правила):
+\begin{equation*}
+\begin{aligned}
+\mu_{1} &= \min(\alpha_1, M_{\text{подъёмн.}}(y)) &= \min(0.458, M_{\text{подъёмн.}}(y)) \\
+\mu_{2} &= \min(\alpha_2, M_{\text{существ.}}(y)) &= \min(0.047, M_{\text{существ.}}(y)) \\
+\mu_{3} &= \min(\alpha_3, M_{\text{существ.}}(y)) &= \min(0.458, M_{\text{существ.}}(y)) \\
+\mu_{4} &= \min(\alpha_4, M_{\text{оргомн.}}(y)) &= \min(0.047, M_{\text{оргомн.}}(y)) \\
+\end{aligned}
+\end{equation*}
+
+\subsubsection{Аккумулирование}
+Объединим найденные нечёткие множества и сформируем нечёткое множество для выходной переменной с функцией принадлежности:
+\begin{equation*}
+\mu_{B} = \max(\mu_{1}, \mu_{2}, \mu_{3}, \mu_{4})
+\end{equation*}
+
+\begin{center}
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(y\),
+	ylabel = {\( \mu_B(y) \)},
+	ymin=0,
+	xmin=0,
+	xmax=40000,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = 0,
+	ymax=1.1,
+	xtick distance={5000},
+	scaled x ticks=false
+	%extra x ticks={ -0.87, 0.87},
+	%extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	%extra x tick style ={
+	%grid = none},
+	%legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=5000:40000,
+    samples=100,
+    color=\pcolor,
+    name path = f1,
+]
+{max( min(0.458, exp(-( (x-15000)^2 / (3 * (2400)^2 )))) , min(0.047, exp(-( (x-25000)^2 / (3 * (2400)^2 )))) , min(0.458, exp(-( (x-25000)^2 / (3 * (2400)^2 )))) , min(0.047, exp(-( (x-25000)^2 / (3 * (2400)^2 ))))      )};
+
+\path[name path = axis] (5000,0) -- (40000,0);
+
+\addplot [
+        thick,
+        color=\pcolor,
+        fill=\pcolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f1 and axis,
+        soft clip={domain=5000:40000},
+    ];
+\end{axis}
+\end{tikzpicture}
+\caption{График функции $\mu_{B}(y)$ - результата аккумулирования.}
+\label{gr:4}
+\end{figure}
+\end{center}
+\subsection{Дефаззификация}
+Определим чёткое значение выходной переменной $y'$ как значение центра тяжести для функции $\mu_{B}(y)$ (на интервале-носителе $y\in\left[5000, 40000\right]$)\footnote{Подынтегральные функции не расписаны, потому что они слишком громоздки для отображения в обыкновенной дроби. Сами интегралы высчитаны с помощью \textit{WolframAlpha}.}:
+\begin{equation*}
+\begin{aligned}
+y' &= \frac{ \int\limits_{5000}^{40000} y*\mu_{B}(y)dy}{\int\limits_{5000}^{40000} \mu_{B}(y)dy} \approx \frac{1.83782 * 10^8}{9187.14} \approx 20004
+\end{aligned}
+\end{equation*}
+На самом деле центр тяжести функции $\mu_{B}(y)$ можно было установить из рисунка \ref{gr:4}, так как график функции симметричен относительно $y=20,000$.
+
+\subsection{Заключение}
+Таким образом, после выполнения алгоритма Мамдани в построенной системе нечёткого вывода для входных данных: \textit{Интеллект девушки - 100 IQ; Красота девушки - 80 [у.е.к]}, значение выходной переменной составляет \textbf{около 20 тыс. руб}. Именно столько студенту N рекомендовано тратить в месяц на дружбу с подругой.
+
+
+
+
+
+\end{document}

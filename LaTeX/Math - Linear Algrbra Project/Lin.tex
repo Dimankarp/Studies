@@ -1,0 +1,1619 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\pgfplotsset{width=\textwidth, compat=1.13}
+
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns.meta}
+
+
+\graphicspath{{./}}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+\pagestyle{plain}
+
+\fancypagestyle{firstpage}{%
+  \chead{
+  МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ 
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ  
+ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ\bigskip
+
+«Национальный исследовательский университет ИТМО»\bigskip
+
+ФАКУЛЬТЕТ ПРОГРАММНОЙ ИНЖЕНЕРИИ И КОМПЬЮТЕРНОЙ ТЕХНИКИ 
+}
+\fancyfoot[CO]{Санкт-Петербург, 2023}%
+}
+
+
+
+\definecolor{aqua}{HTML}{003844}
+\definecolor{peri}{HTML}{5EB1BF}
+\definecolor{royal_blue}{HTML}{0A2463}
+\definecolor{periwinkle}{HTML}{D8DCFF}
+\definecolor{cerulean}{HTML}{247BA0}
+\definecolor{bloodred}{HTML}{690500}
+\definecolor{imperial_red}{HTML}{FB3640}
+\definecolor{purple}{HTML}{511730}
+\definecolor{tangerine}{HTML}{FFA781}
+
+\newtheorem*{task}{Условие}
+\newtheorem*{finish}{Заключение}
+
+\tikzexternalize
+\begin{document}
+\newgeometry{top=1.6cm,bottom=1.6cm, left = 1.2cm, right = 1.2cm}
+
+\topskip0pt
+\vspace*{0.25\textheight}
+\begin{center}
+\textbf{\LARGE РАСЧЁТНО-ГРАФИЧЕСКАЯ РАБОТА}
+
+\LARGE по теме
+
+\LARGE <<Линейный оператор, спектральный анализ и евклидово пространство>>
+
+\LARGE по дисциплине
+
+\LARGE <<Математика>>\bigskip
+
+\LARGE Вариант № 4
+\end{center}
+\vspace*{5cm}
+\begin{flushright}
+\begin{minipage}{.33\linewidth}
+\textit{\textbf{Выполнили:}}\\
+\begin{tabular}{l l @{\hspace{8pt}-\hspace{8pt}} l l}
+Митя ХХ
+\end{tabular}
+
+\textit{\textbf{Преподаватель:}}\\
+П. К.
+\end{minipage}
+\end{flushright}
+
+
+\thispagestyle{firstpage}
+\newpage
+\tableofcontents
+
+\restoregeometry
+\section{1-е Задание. Линейный оператор и спектральный анализ.}
+\begin{task}
+\begin{enumerate}
+\item[]
+
+\item[А)] Дано пространство геометрических векторов $\mathbb{R}^3$, его подпространство $\mathcal{L}_1$ и $\mathcal{L}_2$ и линейный оператор $\mathcal{A}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$:
+
+$\mathcal{A}$ - оператор проектирования $P_{\mathcal{L}_1}^{\parallel \mathcal{L}_2}:\mathbb{R}^3 \rightarrow \mathcal{L}_1$ пространства $\mathbb{R}^3$ на подпространство $\mathcal{L}_1$ параллельно подпространству $\mathcal{L}_2$, где:
+\begin{equation*}
+\begin{aligned}
+\mathcal{L}_1 &: x=y\\
+\mathcal{L}_2 &:
+\begin{cases}
+x+y+z=0\\
+2x+y+4z=0
+\end{cases}
+\end{aligned}
+\end{equation*}
+
+Проведите исследование по плану.
+
+\item[Б)] Дано множество функций $\mathcal{L}$ и отображение $\mathcal{A}: \mathcal{L} \rightarrow \mathcal{L}$:
+
+$\mathcal{L}$ - множество функций вида:
+\begin{equation*}
+f(x)=a*\cos(x) + b*\sin(x)
+\end{equation*}, 
+где $a,b \in \mathbb{R}$.
+\begin{equation*}
+\mathcal{A}\left(f(x)\right)=\int\limits_{0}^{\pi} K(x;y) f(y) dy
+\end{equation*}, где $K(x;y)=\sin(x+y)$.
+
+Проведите исследование по плану.
+\end{enumerate}
+\end{task}
+
+\subsection{Пункт А).}
+Изобразим на рисунке \ref{gr:spaces} подпространства: $\mathcal{L}_1$ (как плоскость в 3-хмерном пространстве) и $\mathcal{L}_2$ (как прямую в 3-хмерном пространстве).
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 2,
+xmin = -2,
+ymax = 2,
+ymin = -2,
+zmax = 2,
+zmin = -2,
+z buffer=sort,
+view/h=30,
+view/el=50
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+
+\draw[->, black, fill, draw = black, line width = 2pt] (-2,0,0)
+  -- (2,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = black, line width = 2pt] (0,-2,0)
+  -- (0,2,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = black, line width = 2pt] (0,0,-2)
+  -- (0,0,2) node[ black, anchor=45]{\large $Z$};
+
+
+\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=10,domain=-2:2,y domain=-2:2, name path = line]
+({x},
+{x},
+{y});
+
+\addplot3[ultra thick, surf, opacity=0.4,point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(royal_blue) color=(royal_blue)},
+samples=10,domain=-2:2, name path = stick]
+({-3*x},
+{2*x},
+{x});
+\legend{$\mathcal{L}_1$, $\mathcal{L}_2$}
+\end{axis}
+\end{tikzpicture}
+\caption{Подпространства $\mathcal{L}_1$ и $\mathcal{L}_2$.}
+\label{gr:spaces}
+\end{figure}
+Методами векторной алгебры составим формулу для линейного оператора $\mathcal{A}$ ($P_{\mathcal{L}_1}^{\parallel \mathcal{L}_2}$). Для этого найдём вектор нормали $\vec{n}$ к плоскости $\mathcal{L}_1$, а также вектор $\vec{a}$ из подпространства $\mathcal{L}_2$:
+\begin{equation*}
+\begin{aligned}
+\mathcal{L}_1 &: x=y \Rightarrow 1*x-1*y+0*z=0 \Rightarrow \vec{n} =
+\begin{pmatrix}
+1\\
+-1\\
+0
+\end{pmatrix}\\
+\mathcal{L}_2 &=
+\begin{cases}
+x+y+z=0\\
+2x+y+4z=0
+\end{cases} \Rightarrow\\
+ \sqsupset z=1 &\Rightarrow
+\begin{cases}
+z=1\\
+x+y=-1\\
+2x+y=-4
+\end{cases} \Rightarrow\\
+\vec{a}&=
+\begin{pmatrix}
+-3\\
+2\\
+1
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+При этом заранее нормируем вектор нормали $\vec{n}$:
+\begin{equation*}
+\vec{n}^0 = \frac{1}{(\vec{n};\vec{n})}*\vec{n} = \frac{1}{\sqrt{2}}* \begin{pmatrix}
+1\\
+-1\\
+0
+\end{pmatrix}
+\end{equation*}
+Пусть $\vec{x}\in \mathbb{R}^3$ - произвольный вектор, найдём $\vec{x}_1 \in \mathcal{L}_1$ - вектор $\vec{x}$, спроектированный на $\mathcal{L}_1$ параллельно $\mathcal{L}_2$.
+
+Так как проекция параллельная, то из $\vec{x}$ необходимо удалить составляющие из ортогонального дополнения $\mathcal{L}_1^{\perp}$ при помощи вычитания некоторого вектора из $\mathcal{L}_2$. Следовательно:
+\begin{equation*}
+\begin{aligned}
+\vec{x}_1& = \vec{x}-\vec{a}*\frac{(\vec{x};\vec{n}^0)}{(\vec{a};\vec{n}^0)}\\
+&=\vec{x}+\vec{a}*\frac{\sqrt{2}*(\vec{x};\vec{n}^0)}{5}\\
+\end{aligned}
+\end{equation*}
+Таким образом, в стандартном базисе:
+\begin{equation*}
+\begin{aligned}
+\mathcal{A}x = &x+a*\frac{\sqrt{2}*(x;n^0)}{5}\\
+&a: B= \begin{pmatrix}
+-3\\
+2\\
+1
+\end{pmatrix} \\
+& n^0: N^0 = \frac{1}{\sqrt{2}}* \begin{pmatrix}
+1\\
+-1\\
+0
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+Далее в стандартном ОРТН базисе $\{\vec{i},\vec{j},\vec{k}\}$ пространства $\mathbb{R}^3$ составим матрицу $A$ линейного оператора $\mathcal{A}$. Для этого подействуем на каждый базисный вектор линейным оператором и запишем вектор-столбцы полученых векторов в виде матрицы:
+\begin{equation}\label{matrix}
+\begin{aligned}
+\mathcal{A}\vec{i} &= \vec{i}+\vec{a}*\frac{\sqrt{2}*(\vec{i};\vec{n^0})}{5} = \frac{1}{5} * \begin{pmatrix}
+2\\
+2\\
+1
+\end{pmatrix}\\
+\mathcal{A}\vec{j} &= \vec{j}+\vec{a}*\frac{\sqrt{2}*(\vec{j};\vec{n^0})}{5} = \frac{1}{5} * \begin{pmatrix}
+3\\
+3\\
+-1
+\end{pmatrix}\\
+\mathcal{A}\vec{k} &= \vec{k}+\vec{a}*\frac{\sqrt{2}*(\vec{k};\vec{n^0})}{5} = \begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}\\
+A&=\frac{1}{5}*\begin{pmatrix}
+2 & 3 & 0\\
+2 & 3 & 0\\
+1 & -1 & 5
+\end{pmatrix}\\
+\end{aligned}
+\end{equation}
+Диагонализуем полученную матрицу (\ref{matrix}) при помощи методов спектрального анализа.
+
+Найдём собственные числа $\lambda_i$ линейного оператора $\mathcal{A}$ (т.е его спектр) как корни характеристического многочлена:
+\begin{equation}
+\begin{aligned}
+\mathcal{X} &= \left|A-\lambda*I\right| =\begin{vmatrix}
+\frac{2}{5} - \lambda & \frac{3}{5} & 0\\
+\frac{2}{5}  & \frac{3}{5} - \lambda & 0\\
+\frac{1}{5}  & \frac{-1}{5} & \frac{5}{5} - \lambda\\
+\end{vmatrix}\\
+&= (1-\lambda)*\left((\frac{2}{5} - \lambda)*(\frac{3}{5} - \lambda) - \frac{3}{5}*\frac{2}{5}\right)\\
+&= (1-\lambda)(\lambda^2-\lambda) = -\lambda*(1-\lambda)^2 \Rightarrow\\
+\hline\\
+& -\lambda*(1-\lambda)^2 = 0\\
+&\lambda_1 = 0 \text{ кр. 1 }, \lambda_2=1 \text{ кр. 2}\\
+& \sigma = \{0, 1\}
+\end{aligned}
+\end{equation}
+Далее найдём собственные векторы, соответствующие собственным числам $\lambda$ из спектра:
+\begin{equation*}
+\begin{aligned}
+\lambda & =0: (A-0*I)X=0 \Rightarrow 
+\left(
+\begin{array}{@{}ccc|c@{}}
+\frac{2}{5} & \frac{3}{5} & 0 & 0\\
+\frac{2}{5}  & \frac{3}{5} & 0 & 0\\
+\frac{1}{5}  & \frac{-1}{5} & \frac{5}{5}  & 0\\
+\end{array}
+\right) \sim \left(
+\begin{array}{@{}ccc|c@{}}
+1  & -1 & 5 & 0\\
+2 & 3 & 0 & 0\\
+0  & 0 & 0  & 0\\
+\end{array}
+\right) \sim \\
+&\sim \left(
+\begin{array}{@{}ccc|c@{}}
+1  & -1 & 5 & 0\\
+0 & 5 & -10 & 0\\
+0  & 0 & 0  & 0\\
+\end{array}
+\right) \Rightarrow \sqsupset z=c \Rightarrow X = c * \begin{pmatrix}
+-3\\
+2\\
+1
+\end{pmatrix}\\
+\hline\\
+\lambda & = 1: (A-1*I)X=0 \Rightarrow 
+\left(
+\begin{array}{@{}ccc|c@{}}
+-\frac{3}{5} & \frac{3}{5} & 0 & 0\\
+\frac{2}{5}  & -\frac{2}{5} & 0 & 0\\
+\frac{1}{5}  & \frac{-1}{5} & 0  & 0\\
+\end{array}
+\right) \sim \left(
+\begin{array}{@{}ccc|c@{}}
+-3  & 3 & 0 & 0\\
+2 & -2 & 0 & 0\\
+1  & -1 & 0  & 0\\
+\end{array}
+\right) \sim \\
+&\sim \left(
+\begin{array}{@{}ccc|c@{}}
+1  & -1 & 0  & 0\\
+0 & 0 & 0 & 0\\
+0  & 0 & 0  & 0\\
+\end{array}
+\right) \Rightarrow \sqsupset y=c_1, z=c_2  \Rightarrow X = c_1 * \begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix} + c_2 * \begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+Таким образом, получаем базис из собственных векторов:
+\begin{equation} \label{basis}
+\lambda = 0: X_1 =\begin{pmatrix}
+-3\\
+2\\
+1
+\end{pmatrix}, \lambda = 1: X_2 = \begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix}, X_3 = \begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+\end{equation},
+образующий матрицу перехода $T$, необходимую для преобразования подобия:
+\begin{equation*}
+\begin{aligned}
+T &=\begin{pmatrix}
+-3 & 1 & 0\\
+2 & 1  & 0\\
+1 & 0 & 1
+\end{pmatrix}\\
+A' &= T^{-1}AT\\
+T^{-1} &= \frac{1}{\det T} * T_{\text{союзн.}}^T = -\frac{1}{5} * \begin{pmatrix}
+1 & -1 & 0\\
+-2 & -3  & 0\\
+-1 & 1 & -5
+\end{pmatrix}\\
+T^{-1}*A*T &= \frac{-1}{5}\begin{pmatrix}
+1 & -1 & 0\\
+-2 & -3  & 0\\
+-1 & 1 & -5
+\end{pmatrix} * \frac{1}{5}*\begin{pmatrix}
+2 & 3 & 0\\
+2 & 3 & 0\\
+1 & -1 & 5
+\end{pmatrix} * \begin{pmatrix}
+-3 & 1 & 0\\
+2 & 1  & 0\\
+1 & 0 & 1
+\end{pmatrix}\\
+&= \frac{1}{5}*\begin{pmatrix}
+0 & 0 & 0\\
+2 & 3 & 0\\
+1 & -1 & 5
+\end{pmatrix} * \begin{pmatrix}
+-3 & 1 & 0\\
+2 & 1  & 0\\
+1 & 0 & 1
+\end{pmatrix}\\ 
+&= \begin{pmatrix}
+0 & 0 & 0\\
+0 & 1  & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{aligned}
+\end{equation*}
+Итак, в базисе (\ref{basis}) матрица линейного оператора $\mathcal{A}$ диагональна и равна:
+\begin{equation*}
+A' =\begin{pmatrix}
+0 & 0 & 0\\
+0 & 1  & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{equation*}
+Рассмотрим собственные векторы их полученного базиса (\ref{basis}) на графике подпространств $\mathcal{L}_1$ и  $\mathcal{L}_2$:
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 2,
+xmin = -2,
+ymax = 2,
+ymin = -2,
+zmax = 2,
+zmin = -2,
+z buffer=sort,
+view/h=30,
+view/el=50
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=10,domain=-2:2,y domain=-2:2, name path = line]
+({x},
+{x},
+{y});
+
+\addplot3[ultra thick, surf, opacity=0.4,point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(royal_blue) color=(royal_blue)},
+samples=10,domain=-2:2, name path = stick]
+({-3*x},
+{2*x},
+{x});
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (-2,0,0)
+  -- (2,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,-2,0)
+  -- (0,2,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,0,-2)
+  -- (0,0,2) node[ black, anchor=45]{\large $Z$};
+
+\draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (-1.5,1,0.5) node[ bloodred, anchor=45]{\large $\frac{1}{2}\vec{x_1}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (1,1,0) node[ bloodred, anchor=45]{\large $\vec{x_2}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (0,0,1) node[ bloodred, anchor=45]{\large $\vec{x_3}$};
+
+
+
+\legend{$\mathcal{L}_1$, $\mathcal{L}_2$}
+\end{axis}
+\end{tikzpicture}
+\caption{Векторы собственного базиса $x_i$ и подпространства $\mathcal{L}_1$ и $\mathcal{L}_2$.}
+\label{gr:basis}
+\end{figure}
+Подробнее рассмотрим каждый из базисных векторов:
+
+$\lambda = 0$;  $\vec{x}_1$:$X_1$ - на рис. \ref{gr:basis} легко видеть, что этот вектор полностью лежит в подпространстве $\mathcal{L}_2$ (он лежит на синей прямой, изображающей подпространство $\mathcal{L}_2$). Так как линейный оператор $\mathcal{A}$ проецирует векторы параллельно подпространству $\mathcal{L}_2$, то этот вектор проецируется в $\vec{0}$, что подтверждается и формулой $A\vec{x_1}=\lambda \vec{x_1} = 0 *\vec{x_1} = \vec{0}$.
+
+$\lambda = 1$;  $\vec{x}_2$:$X_2$ - на рис. \ref{gr:basis} видно, что вектор $\vec{x}_2$  лежит в подпространстве $\mathcal{L}_1$ (на сиреневой плоскости $\mathcal{L}_1$). Так как линейный оператор $\mathcal{A}$ проецирует векторы на подпространство $\mathcal{L}_1$, то при действии им на этот вектор, он не изменяется. Это подтверждается и формулой $A\vec{x_2}=\lambda \vec{x_2} = 1 * \vec{x_2} = \vec{x_2}$.
+
+$\lambda = 1$;  $\vec{x}_3$:$X_3$ - аналогично вектору $\vec{x_2}$ этот вектор также полность лежит в подпространстве $\mathcal{L}_1$, а значит - не изменяется под действием оператора $\mathcal{A}$. $A\vec{x_3}=\lambda \vec{x_3} = 1 * \vec{x_3} = \vec{x_3}$.
+\subsection{Пункт Б).}
+Проверим аксиомы линейного пространства для $\mathcal{L}$ над полем $\mathbb{R}$:
+\begin{equation*}
+\begin{aligned}
+\forall u,v,w \in \mathcal{L}; \forall &a,b,\lambda,\delta \in \mathbb{R}\\
+1)u+v &= a_u*\cos(x)+b_u*\sin(x) + a_v*\cos(x)+b_v*\sin(x)\\
+& = (a_u+a_v)*\cos(x) + (b_u+b_v)*\sin(x) \in \mathcal{L}\\
+2)u+v &= a_u*\cos(x)+b_u*\sin(x) + a_v*\cos(x)+b_v*\sin(x)\\
+&= a_v*\cos(x)+b_v*\sin(x) + a_u*\cos(x)+b_u*\sin(x) = v + u\\
+3)(u+v)+w &= (a_u*\cos(x)+b_u*\sin(x) + a_v*\cos(x)+b_v*\sin(x)) + a_w*\cos(x)+b_w*\sin(x)\\
+& = a_u*cos(x)+b_u*sin(x) + (a_v*\cos(x)+b_v*\sin(x) + a_w*\cos(x)+b_w*\sin(x)) \\
+&= v + (u+w)\\
+4) \exists \mathcal{O}&=0*\cos(x)+0*\sin(x)\in \mathcal{L}: \mathcal{O} + u = u\\
+5) \lambda*x &=\lambda(a*\cos(x)+b*\sin(x))=\lambda * a * \cos(x) + \lambda * b * \sin(x) \in \mathcal{L}\\
+6)\lambda (u+v)&=\lambda * a_u * \cos(x) + \lambda * b_u * \sin(x) +  \lambda * a_v * \cos(x) + \lambda * b_v * \sin(x) = \lambda*u + \lambda*v\\
+7)(\lambda+\delta)u&=\lambda * a_u * \cos(x) + \lambda * b_u * \sin(x) +  \delta * a_u * \cos(x) + \delta * b_u * \sin(x) = \lambda*u + \delta*u\\
+8) \exists 1: 1*u &= u\\
+\end{aligned}
+\end{equation*}
+Аксиомы выполняются, следовательно $\mathcal{L}$ - линейное пространство над полем $\mathbb{R}$.
+
+Выберим в качестве базисных векторов следующие:
+\begin{equation*}
+\begin{aligned}
+x_1 &= 1 * \cos(x) + 0 * \sin(x) = \cos(x)\\
+x_2 &= 0 * \cos(x) + 1 * \sin(x) = \sin(x)\\
+\end{aligned}
+\end{equation*}
+При этом очевидно, что выбранный набор - базис, т.к. $\forall u \in \mathcal{L}, u=a*\cos(x) + b*sin(x) \overset{!}{=} a*x_1 + b*x_2$. 
+Далее удостоверимся, что оператор $\mathcal{A}$ - линейный, проверив аксиомы:
+\begin{equation*}
+\begin{aligned}
+\forall u,v \in \mathcal{L}; \forall &a,b,\lambda \in \mathbb{R}\\
+1)\mathcal{A}(u+v) &= \int\limits_{0}^{\pi} K(x;y) (u+v) dy = \int\limits_{0}^{\pi} K(x;y) * u + K(x;y)*v dy = \int\limits_{0}^{\pi} K(x;y)u dy + \int\limits_{0}^{\pi} K(x;y) v  dy\\
+&= \mathcal{A}(u) + \mathcal{A}(v)\\
+2)\mathcal{A}(\lambda u) &= \int\limits_{0}^{\pi} K(x;y) * \lambda * u) dy = \lambda * \int\limits_{0}^{\pi} K(x;y) * u dy = \lambda \mathcal{A}(u)
+\end{aligned}
+\end{equation*}
+Следовательно, $\mathcal{A}$ - линейный оператор. Найдём его матрицу в выбранном базисе (аналогично тому, как это было сделано в п. А) ):
+\begin{equation*}
+\begin{aligned}
+\mathcal{A}(x_1) &= \int\limits_{0}^{\pi} \sin(x+y) \cos(y) dy = \int\limits_{0}^{\pi} \left(\sin(x)*\cos(y)+\sin(y)*\cos(x)\right)* \cos(y) dy\\
+&= \int\limits_{0}^{\pi} \sin(x)*\cos^2(y) dy + \int\limits_{0}^{\pi} \sin(y)*\cos(y)* \cos(x) dy \\
+&= \sin(x) * \frac{1}{4} * \int\limits_{0}^{\pi} 1 + \cos(2y) d2y + \cos(x) * \int\limits_{0}^{\pi} \sin(y) d\sin(y)\\
+&= \sin(x) * \frac{1}{4} * \left.\left(2y + \sin(2y)\right)\right|_{0}^{\pi} + \left. \cos(x) * \frac{\sin^2(y)}{2}\right|_{0}^{\pi}\\
+&= \frac{\pi}{2}*sin(x) = \begin{pmatrix}
+0\\
+\frac{\pi}{2}
+\end{pmatrix}\\
+\mathcal{A}(x_2) &= \int\limits_{0}^{\pi} \sin(x+y) \sin(y) dy = \int\limits_{0}^{\pi} \left(\sin(x)*\cos(y)+\sin(y)*\cos(x)\right)* \sin(y) dy\\
+&= \int\limits_{0}^{\pi} \sin(x)*\cos(y)*\sin(y) dy + \int\limits_{0}^{\pi} \sin^2(y)*\cos(x) dy \\
+&= \cos(x) * \frac{1}{4} * \int\limits_{0}^{\pi} 1 - \cos(2y) d2y + \sin(x) * \int\limits_{0}^{\pi} \sin(y) d\sin(y)\\
+&= \cos(x) * \frac{1}{4} * \left.\left(2y - \sin(2y)\right)\right|_{0}^{\pi} + \left. \sin(x) * \frac{\sin^2(y)}{2}\right|_{0}^{\pi}\\
+&= \frac{\pi}{2}*cos(x) = \begin{pmatrix}
+\frac{\pi}{2}\\
+0\\
+
+\end{pmatrix} \Rightarrow\\
+A &= \begin{pmatrix}
+0 & \frac{\pi}{2}\\
+\frac{\pi}{2} & 0\\
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+Заметим, что у матрицы $A^T=A$ обе строки - ЛНЗ, следовательно $\dim(Im\mathcal{A})=2$, а \textbf{по Теореме о ядре и образе, т.к. $\dim(Im\mathcal{A}) + \dim(Ker\mathcal{A})=\dim(\mathcal{L})=2$, то $\dim(Ker\mathcal{A})=0$. }
+
+Далее, диагонализуем матрицу $\mathcal{A}$ в выбранном базисе методом спектрального анализа.
+
+Найдём собственные числа $\lambda_i$ линейного оператора $\mathcal{L}$ (т.е его спектр) как корни характеристического многочлена:
+\begin{equation}
+\begin{aligned}
+\mathcal{X} &= \left|A-\lambda*I\right| =\begin{vmatrix}
+ - \lambda & \frac{\pi}{2}\\
+\frac{\pi}{2} & - \lambda\\
+\end{vmatrix}\\
+&= \lambda^2 - \frac{\pi^2}{4}\\
+\hline\\
+& \lambda^2 - \frac{\pi^2}{4} = 0\\
+&\lambda_1 = \frac{\pi}{2} \text{ кр. 1 }, \lambda_2=-\frac{\pi}{2} \text{ кр. 1}\\
+& \sigma = \{\frac{\pi}{2}, -\frac{\pi}{2}\}
+\end{aligned}
+\end{equation}
+Далее найдём собственные векторы, соответствующие собственным числам $\lambda$ из спектра:
+\begin{equation*}
+\begin{aligned}
+\lambda & =\frac{\pi}{2}: (A-\frac{\pi}{2}*I)X=0 \Rightarrow 
+\left(
+\begin{array}{@{}cc|c@{}}
+-\frac{\pi}{2} & \frac{\pi}{2}  & 0\\
+\frac{\pi}{2}  & -\frac{\pi}{2}  & 0\\
+\end{array}
+\right) \sim \left(
+\begin{array}{@{}cc|c@{}}
+\frac{\pi}{2} & -\frac{\pi}{2}  & 0\\
+0  & 0  & 0\\
+\end{array}
+\right)\\
+&\Rightarrow \sqsupset y=c \Rightarrow X = c * \begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}\\
+\hline\\
+\lambda & =-\frac{\pi}{2}: (A+\frac{\pi}{2}*I)X=0 \Rightarrow 
+\left(
+\begin{array}{@{}cc|c@{}}
+\frac{\pi}{2} & \frac{\pi}{2}  & 0\\
+\frac{\pi}{2}  & \frac{\pi}{2}  & 0\\
+\end{array}
+\right) \sim \left(
+\begin{array}{@{}cc|c@{}}
+\frac{\pi}{2} & \frac{\pi}{2}  & 0\\
+0  & 0  & 0\\
+\end{array}
+\right)\\
+&\Rightarrow \sqsupset y=c \Rightarrow X = c * \begin{pmatrix}
+-1\\
+1\\
+\end{pmatrix}\\
+\end{aligned}
+\end{equation*}
+Таким образом, получаем базис из собственных векторов:
+\begin{equation} \label{bBasis}
+\lambda = \frac{\pi}{2}: X_1 =\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}, \lambda = -\frac{\pi}{2}: X_2 = \begin{pmatrix}
+-1\\
+1\\
+\end{pmatrix}
+\end{equation},
+образующий матрицу перехода $T$, необходимую для преобразования подобия:
+\begin{equation*}
+\begin{aligned}
+T &=\begin{pmatrix}
+1 & -1 \
+1 & 1  \\
+\end{pmatrix}\\
+A' &= T^{-1}AT\\
+T^{-1} &= \frac{1}{\det T} * T_{\text{союзн.}}^T = \frac{1}{2} * \begin{pmatrix}
+1 & 1 \\
+-1 & 1  \\
+\end{pmatrix}\\
+T^{-1}*A*T &= \frac{1}{2} * \begin{pmatrix}
+1 & 1 \\
+-1 & 1  \\
+\end{pmatrix} *\begin{pmatrix}
+0 & \frac{\pi}{2} \\
+\frac{\pi}{2} & 0 \\
+\end{pmatrix} * \begin{pmatrix}
+1 & -1 \\
+1 & 1  \\
+\end{pmatrix}\\
+&= \frac{1}{2}*\begin{pmatrix}
+\frac{\pi}{2} & \frac{\pi}{2}\\
+\frac{\pi}{2} & -\frac{\pi}{2}\\
+\end{pmatrix} * \begin{pmatrix}
+1 & -1 \\
+1 & 1  \\
+\end{pmatrix}\\ 
+&= \begin{pmatrix}
+\frac{\pi}{2} & 0\\
+0 & -\frac{\pi}{2}\\
+\end{pmatrix}\\
+\end{aligned}
+\end{equation*}
+Итак, в базисе (\ref{bBasis}) матрица линейного оператора $\mathcal{A}$ диагональна и равна:
+\begin{equation*}
+A' =\frac{1}{2}*\begin{pmatrix}
+\pi & 0\\
+0 & -\pi\\
+\end{pmatrix}\\
+\end{equation*}
+Сравним трудоёмкость прямого вычисления образа и вычисления через умножение на матрицу. Пусть функция $f(t)=2*\cos(t)- 3*\sin(t)$ c соответствующим вектор-столбцом в исходном базисе: $\begin{pmatrix}
+2\\
+-3
+\end{pmatrix}$. Найдём её образ 2-мя способами:
+\begin{equation*}
+\begin{aligned}
+\mathcal{A}(f(t))&=A * \begin{pmatrix}
+2\\
+-3
+\end{pmatrix} = \begin{pmatrix}
+0 & \frac{\pi}{2}\\
+\frac{\pi}{2} & 0\\
+\end{pmatrix}
+*\begin{pmatrix}
+2\\
+-3
+\end{pmatrix} =\\
+&=\begin{pmatrix}
+\frac{-3\pi}{2}\\
+\pi
+\end{pmatrix} = \frac{-3\pi}{2}*\cos(x) + \pi * \sin(x)\\
+\hline\\
+\mathcal{A}(f(t)) &= \int\limits_{0}^{\pi} \sin(x+y)* (2*\cos(y)- 3*\sin(y)) dy\\
+&= \int\limits_{0}^{\pi} (\sin(x)*\cos(y)+\sin(y)*\cos(x))* (2*\cos(y)- 3*\sin(y)) dy\\
+&= 2*\sin(x)*\int\limits_{0}^{\pi} \cos^2(y)dy + 2*\cos(x)*\int\limits_{0}^{\pi} \cos(y)*\sin(y) dy \\
+& - 3*\sin(x)*\int\limits_{0}^{\pi} \cos(y)*\sin(y) dy - 3*\cos(x)*\int\limits_{0}^{\pi} \sin^2(y) dy=\\
+&=2*\sin(x)*\frac{1}{4}*\left.\left(2y+\sin(2y)\right)\right|_0^{\pi} + 2*\cos(x)*\left.\frac{\sin^2(y)}{2}\right|_0^{\pi}\\
+& -3*\sin(x)*\left.\frac{\sin^2(y)}{2}\right|_0^{\pi}-3 * \cos(x) * \frac{1}{4}*\left.\left(2y-\sin(2y)\right)\right|_0^{\pi}\\
+&=\frac{-3\pi}{2}*\cos(x) + \pi*\sin(x)
+\end{aligned}
+\end{equation*}
+Оба способа вычисления приводят к одному результату, хотя, конечно, очевидно, \textbf{что   использование матрицы линейного оператора требует значительно меньших усилий}, чем прямое вычисление.
+
+\section{2-е Задание. Евклидовы пространства функций.}
+\begin{task}
+\begin{enumerate}
+\item[]
+
+\item[А)] Дано пространство многочленов с вещественными коэффициентами, степени не выше третьей, определённых на отрезке $\left[-1;1\right]$:
+\begin{equation*}
+\begin{aligned}
+P_3(t)=2t^3+3t+1
+\end{aligned}
+\end{equation*}
+Проведите исследование по плану.
+
+\item[Б)] Дано пространство $\mathcal{R}$ функций, непрерывных (или имеющих конечный разрыв) на отрезке $\left[-\pi;\pi\right]$, со скалярным произведением $(f,g)=\int\limits_{-\pi}^{\pi}f(t)g(t)dt$ и длиной вектора $||f||=\sqrt{(f,f)}$. Тригонометрические многочлены $P_n(t)=\frac{a_0}{2} + a_1\cos(t)+b_1\sin(t)+\ldots+a_n\cos(nt)+b_n\sin(nt)$, где $a_k, b_k$ - вещественные коэффициенты, образуют подпространство $P$ пространства  $\mathcal{R}$.
+
+Требуется найти многочлен $P_n(t)$ в пространстве $P$, минимально отличающийся от функции $f(t)$ - вектора пространства $\mathcal{R}$:
+\begin{equation} \label{2taskFunc}
+\begin{aligned}
+f(t)=4t
+\end{aligned}
+\end{equation}
+
+Указание. Требуется решить задачу о перпендикуляре: расстояние от $f(t)$ до $P_n(t)$ будет наименьшим, если это длина перпендикуляра $h=f(t)-P_n(t)$, опущенного из точки $f(t)$ на подпространство $P$. В этом случае, $P_n(t)$ будет ортогональной проекцией вектора $f(t)$ на $P$. Таким образом, требуется найти координаты вектора $P_n(t)$ (коэффициенты многочлена) в заданном базисе $P$. Если выбран ортонормированный базис, то эти координаты суть проекции вектора $f(t)$ на векторы данного базиса. 
+\end{enumerate}
+\end{task}
+\subsection{Пункт А)}
+Пусть система векторов $B=\{1,t,t^2,t^3\}$ - бизс данного пространства. Действительно, общая формула многочлена степени не выше третьей с вещественными коэффициентами:
+\begin{equation*}
+\begin{aligned}
+P_3(t)=a_0 * 1 + a_1*t + a_2 * t^2 + a_3 * t^3, a_i \in \mathbb{R}
+\end{aligned}
+\end{equation*}
+То есть любой такой многочлен можно однозначно представить в виде линейной кобинации выбранных базисных векторов.
+
+В условиях РГР прямо не указывается, как определено скалярное произведение, но, исходя из того, что в плане требуется ортогонализовать выбранный базис (со стандартным скалярным произведением он уже ортогонален), а также из указания на то, что многочлены определены на промежутке $\left[-1, 1\right]$, можно предположить, что оно определяется так:
+\begin{equation*}
+\begin{aligned}
+(f(t); p(t))=\int\limits_{-1}^1 f(t) p(t) dt
+\end{aligned}
+\end{equation*}
+Ортогонализуем выбранный базис методом Грама-Шмидта:
+\begin{equation*}
+\begin{aligned}
+x_1' &= x_1 = 1\\
+x_2' &= x_2 + a_2^1 * x_1 = t + a_2^1 * 1\\
+x_3' &= x_3 + a_3^1 * x_1 + a_3^2 * x_2 = t^2 + a_3^1 * 1 + a_3^2 * t\\
+x_4' &= x_4 + a_4^1 * x_1 + a_4^2 * x_2 + a_4^3 * x_3 =  a_4^1 * 1 + a_4^2 * t + a_4^3 * t^2\\
+\hline\\
+a_2 &: (x_2'; x_1) = 0 \Rightarrow a_2^1=0\\
+\hline\\
+a_3 &: \begin{cases}
+(x_3'; x_1) = 0\\
+(x_3'; x_2) = 0\\
+\end{cases} \Rightarrow a_3^1=-\frac{1}{3}, a_3^2=0\\
+\hline\\
+a_4 &: \begin{cases}
+(x_4'; x_1) = 0\\
+(x_4'; x_2) = 0\\
+(x_4'; x_3) = 0\\
+\end{cases} \Rightarrow  a_4^1=0, a_4^2=-\frac{3}{5}, a_4^3=0\\
+\hline\\
+x_1'&=1\\
+x_2'&=t\\
+x_3'&=t^2-\frac{1}{3}\\
+x_4'&=t^3-\frac{3}{5}t
+\end{aligned}
+\end{equation*}
+Таким образом, получаем ортогональный базис $B_H$:
+\begin{equation*}
+\begin{aligned}
+B_H = \{1, t, t^2-\frac{1}{3}, t^3-\frac{3}{5}t\}
+\end{aligned}
+\end{equation*}
+Выпишим первые четыре ($n=0,1,2,3)$ многочлена Лежандра:
+\begin{equation*}
+\begin{aligned}
+L_n(t)&=\frac{1}{2^n n!}*\left((t^2-1)^n\right)^{(n)}\\
+L_0(t) &= 1\\
+L_1(t) &= t\\
+L_2(t) &= \frac{1}{2} (3t^2-1)\\
+L_3(t) &= \frac{1}{2} (5t^3-3t)\\
+\end{aligned}
+\end{equation*}
+Найдём их координаты в найденном отрогональном базисе $B_H$, решив системы уравнений:
+\begin{equation*}
+\begin{aligned}
+\begin{cases}
+1*x_1 + 0 *x_2 -\frac{1}{3} *x_3 + 0 *x_4 = a_0\\
+0*x_1 + 1 *x_2 + 0*x_3 - \frac{3}{5} *x_4 = a_1\\
+0*x_1 + 0 *x_2 + 1*x_3 + 0 *x_4 = a_2\\
+0*x_1 + 0 *x_2 + 0*x_3 + 1 *x_4 = a_3\\
+\end{cases} &= 
+\left(
+\begin{array}{@{}cccc|c@{}}
+1 & 0 & -\frac{1}{3} & 0 & a_0\\
+0 & 1 & 0 & - \frac{3}{5} & a_1\\
+0  & 0 & 1 & 0  & a_2\\
+0  & 0 & 0 & 1  & a_3\\
+\end{array}
+\right) \Rightarrow\\
+L_0(t): \left(
+\begin{array}{@{}cccc|c@{}}
+1 & 0 & -\frac{1}{3} & 0 & 1\\
+0 & 1 & 0 & - \frac{3}{5} & 0\\
+0  & 0 & 1 & 0  & 0\\
+0  & 0 & 0 & 1  & 0\\
+\end{array}
+\right) & \Rightarrow L_0(t) = \begin{pmatrix}
+1\\
+0\\
+0\\
+0
+\end{pmatrix}\\
+L_1(t): \left(
+\begin{array}{@{}cccc|c@{}}
+1 & 0 & -\frac{1}{3} & 0 & 0\\
+0 & 1 & 0 & - \frac{3}{5} & 1\\
+0  & 0 & 1 & 0  & 0\\
+0  & 0 & 0 & 1  & 0\\
+\end{array}
+\right) & \Rightarrow L_1(t) = \begin{pmatrix}
+0\\
+1\\
+0\\
+0
+\end{pmatrix}\\
+L_2(t): \left(
+\begin{array}{@{}cccc|c@{}}
+1 & 0 & -\frac{1}{3} & 0 & -\frac{1}{2}\\
+0 & 1 & 0 & - \frac{3}{5} & 0\\
+0  & 0 & 1 & 0  & \frac{3}{2}\\
+0  & 0 & 0 & 1  & 0\\
+\end{array}
+\right) & \Rightarrow L_2(t) = \begin{pmatrix}
+0\\
+0\\
+\frac{3}{2}\\
+0
+\end{pmatrix}\\
+L_3(t): \left(
+\begin{array}{@{}cccc|c@{}}
+1 & 0 & -\frac{1}{3} & 0 & 0\\
+0 & 1 & 0 & - \frac{3}{5} & -\frac{3}{2}\\
+0  & 0 & 1 & 0  & 0\\
+0  & 0 & 0 & 1  & \frac{5}{2}\\
+\end{array}
+\right) & \Rightarrow L_3(t) = \begin{pmatrix}
+0\\
+0\\
+0\\
+\frac{5}{2}
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+Заметим, что у полученных векторов лишь одна координата ненулевая, и при этом, у всех  полученных векторов - эта координата разная. Так как векторы получены в ортогональом базисе, то, очевидно, что \textbf{они так же ортогональны} (\textit{каждый $L_i$ - фактически удлинённый базисный вектор $i$, а базисные векторы - ортогональны}).
+
+Аналогично найдём координаты многочлена $P_3(t)=2t^3+3t+1$, но уже в новом базисе $\mathcal{L}=\{L_0, L_1, L_2, L_3\}$:
+
+\begin{equation*}
+\begin{aligned}
+P_3(t)&: \left(
+\begin{array}{@{}cccc|c@{}}
+1 & 0 & -\frac{1}{2} & 0 & 1\\
+0 & 1 & 0 & -\frac{3}{2} & 3\\
+0  & 0 & \frac{3}{2} & 0  & 0\\
+0  & 0 & 0 & \frac{5}{2}  & 2\\
+\end{array}
+\right)  \Rightarrow P_3(t) = \begin{pmatrix}
+\frac{3}{2}\\
+\frac{9}{2}\\
+0\\
+\frac{4}{5}
+\end{pmatrix}\\
+ & \Rightarrow P_3(t) = \frac{3}{2}*L_0 + \frac{9}{2}*L_1 + 0*L_2 + \frac{4}{5}*L_3
+\end{aligned}
+\end{equation*}
+\subsection{Пункт Б)}
+Проверим, является ли система функций $B=\{1, \cos(t), \sin(t), \ldots, \cos(nt), \sin(nt)\}$ ортогональным базисом подпространства $P$.
+
+Так как любой $P_n(t) \in P$ равен:
+\begin{equation*}
+P_n(t)=\frac{a_0}{2} * 1 + a_1\cos(t)+b_1\sin(t)+\ldots+a_n\cos(nt)+b_n\sin(nt)
+\end{equation*},
+следовательно, любой элемент $P$ можно единственно представить как линейную комбинацию системы $B$. То есть $B$ - базис подпространства  $P$.
+
+Проверим ортогональность выбранного базиса (т.е рассмотрим попарные скалярные произведения элементов $B$):
+\begin{equation*}
+\begin{aligned}
+(1; \sin(nt)) &= \int\limits_{-\pi}^{\pi}\sin(nt)dt = -\left.\frac{1}{n}*\cos(nt)\right|_{-\pi}^{\pi} = 0\\
+(1; \cos(nx)) &= \int\limits_{-\pi}^{\pi}\cos(nx)dt = \left.\frac{1}{n}*\sin(nt)\right|_{-\pi}^{\pi} = 0\\
+(\sin(at); \sin(bt)) &= \int\limits_{-\pi}^{\pi}\sin(at) *\sin(bt) dt =  \left.\left(\frac{1}{2(a-b)}*\sin((a-b)x) - \frac{1}{2(a+b)}*\sin((a+b)x)\right)\right|_{-\pi}^{\pi} = 0\\
+(\cos(at); \cos(bt)) &= \int\limits_{-\pi}^{\pi}\cos(at) *\cos(bt) dt =  \left.\left(\frac{1}{2(a-b)}*\sin((a-b)x) + \frac{1}{2(a+b)}*\sin((a+b)x)\right)\right|_{-\pi}^{\pi} = 0\\
+(\cos(at); \sin(bt)) &= \int\limits_{-\pi}^{\pi}\cos(at) *\sin(bt) dt =  \left.\left(-\frac{1}{2(a-b)}*\sin((a-b)x) -\frac{1}{2(a+b)}*\sin((a+b)x)\right)\right|_{-\pi}^{\pi} = 0\\
+\end{aligned}
+\end{equation*}
+Нормируем расмотренную систему:
+\begin{equation*}
+\begin{aligned}
+||1||&= \sqrt{(1;1)} = \sqrt{\int\limits_{-\pi}^{\pi} 1 dt} =\sqrt{\left(\pi+\pi\right)} = \sqrt{2\pi}\\
+||\cos(nt)||&= \sqrt{(\cos(nt);\cos(nt))} = \sqrt{\int\limits_{-\pi}^{\pi} \cos^2(nt) dt} =\sqrt{\frac{1}{4n}*\int\limits_{-\pi}^{\pi} 1+\cos(2nt) d2nt}\\
+&= \sqrt{\frac{1}{4n}*\left.\left(2t+\sin(2nt)-2t-\sin(2nt)\right)\right|_{-\pi}^{\pi}}= \sqrt{\pi}\\
+||\sin(nt)||&= \sqrt{(\sin(nt);\sin(nt))} = \sqrt{\int\limits_{-\pi}^{\pi} \sin^2(nt) dt} =\sqrt{\frac{1}{4n}*\int\limits_{-\pi}^{\pi} 1-\cos(2nt) d2nt}\\
+&= \sqrt{\frac{1}{4n}*\left.\left(2t-\sin(2nt)-2t+\sin(2nt)\right)\right|_{-\pi}^{\pi}}= \sqrt{\pi} \Rightarrow\\
+&B^{0}=\{\frac{1}{\sqrt{2\pi}}, \frac{\cos(t)}{\sqrt{\pi}}, \frac{\sin(t)}{\sqrt{\pi}}, \ldots, \frac{\cos(nt)}{\sqrt{\pi}}, \frac{\sin(nt)}{\sqrt{\pi}}\}
+\end{aligned}
+\end{equation*}
+Далее, найдём проекции исходного вектора $f(t)$ (\ref{2taskFunc}) на векторы полученной ОРТН системы (при этом заметим, что ортогональная проекция вектора $x$ на нормированный вектор $e_i$ равна $\mathcal{P}_{e_i}(x)=(x;e_j)* e_j $):
+\begin{equation*}
+\begin{aligned}
+\mathcal{P}_{1^0}(4t) &=  \int\limits_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}}* 4t dt * \frac{1}{\sqrt{2\pi}} = \frac{4}{2\pi} * \left.\frac{t^2}{2}\right|_{-\pi}^{\pi}=0 * 1\\
+\mathcal{P}_{\cos^0(nt)}(4t) &=  \int\limits_{-\pi}^{\pi} \frac{\cos(nt)}{\sqrt{\pi}}* 4t dt * \frac{\cos(nt)}{\sqrt{\pi}} =\\
+\left|\text{Т.к. } \cos(nt) - \text{ чёт. } , 4t\right.&\left.- \text{ нечёт. } \rightarrow \cos(nt)*4t-\text{ нечёт. и промеж. симметр.} \Rightarrow \text{по св-у инт.}\right|\\
+& = 0 * \frac{\cos(nt)}{\sqrt{\pi}}\\
+\mathcal{P}_{\sin^0(nt)}(4t) &=  \int\limits_{-\pi}^{\pi} \frac{\sin(nt)}{\sqrt{\pi}}* 4t dt * \frac{\sin(nt)}{\sqrt{\pi}} =\\
+\left|\text{Т.к. } \sin(nt) - \text{ нечёт. } , 4t\right.&\left.- \text{ нечёт. } \rightarrow \sin(nt)*4t-\text{ чёт. и промеж. симметр.} \Rightarrow \text{по св-у инт.}\right|\\
+& = \frac{2*4}{\pi}* \int\limits_{0}^{\pi} \sin(nt)*t dt * \sin(nt) =\left|\text{По частям}\right|\\
+&= -\frac{8}{n\pi}*\left(\left. \cos(nt)* t \right|_{0}^{\pi} - \frac{1}{n}\int\limits_{0}^{\pi} cos(nt) d nt  \right) * \sin(nt)\\
+&= -\frac{8}{n\pi}*\left.\left(\cos(nt)* t - \frac{1}{n}*\sin(nt)  \right)\right|_0^{\pi} * \sin(nt)\\
+&= -\frac{8}{n}*\cos(n\pi) * \sin(nt)\\
+\end{aligned}
+\end{equation*}
+Таким образом, искомый многочлен  $P_n(t)$ равен:
+\begin{equation*}
+\begin{aligned}
+P_n(t)&=0*1 + \sum_{j=1}^n 0*\cos(jt) - \frac{8}{j}*\cos(j\pi) * \sin(jt)\\
+&= \sum_{i=1}^n - \frac{8}{i}*\cos(i*\pi) * \sin(i*t)
+\end{aligned}
+\end{equation*}
+Найденный $P_n$ - тригонометрический многочлен Фурье для функции $f(t)=4t$. Сравним графики $P_n$ при $n=5, 10, 20$ и $f(t)$:
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis y line = left,
+	axis x line = middle,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-14,
+	xmin=-6,
+	xmax=6,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis line style ={line width = .3pt},
+	ymax=14,
+	xtick distance={2},
+	ytick distance={2},
+	extra x ticks={ -3.14, 3.14},
+	extra x tick labels={$-\pi$, $\pi$},
+	extra x tick style ={
+	grid = none},
+	]
+\addplot[
+	line width=2pt,
+	dotted,
+    domain=-6:6,
+    samples=100,
+    color=purple,
+    restrict y to domain=-20:20,
+]
+{4*x};
+\addplot[
+	line width=2pt,
+    domain=-6:6,
+    samples=200,
+    color=peri,
+    restrict y to domain=-20:20,
+]
+{-(8/1)*cos(deg(1*pi))*sin(deg(1*x))-(8/2)*cos(deg(2*pi))*sin(deg(2*x))-(8/3)*cos(deg(3*pi))*sin(deg(3*x))-(8/4)*cos(deg(4*pi))*sin(deg(4*x))-(8/5)*cos(deg(5*pi))*sin(deg(5*x))};
+\draw [dashed, royal_blue, ultra thick] (-3.14, 0) -- (-3.14,-12.56) node[circle, solid, royal_blue, fill, inner sep=2pt, ultra thick ]{};
+\draw [dashed, royal_blue, ultra thick] (3.14,0) -- (3.14,12.56) node[circle, solid, royal_blue, fill, inner sep=2pt, ultra thick ]{};
+\legend{ $f(x)=4x$,$P_5(x)$}
+\end{axis}
+\end{tikzpicture}
+\caption{Графики исходной функции $f(x)$ и тригонометрического многочлена Фурье $P_5(x)$ для неё при $n=5$.}
+\label{gr:6}
+\end{figure}
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis y line = left,
+	axis x line = middle,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-14,
+	xmin=-6,
+	xmax=6,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis line style ={line width = .3pt},
+	ymax=14,
+	xtick distance={2},
+	ytick distance={2},
+	extra x ticks={ -3.14, 3.14},
+	extra x tick labels={$-\pi$, $\pi$},
+	extra x tick style ={
+	grid = none},
+	]
+\addplot[
+	line width=2pt,
+	dotted,
+    domain=-6:6,
+    samples=100,
+    color=purple,
+    restrict y to domain=-20:20,
+]
+{4*x};
+\addplot[
+	line width=2pt,
+    domain=-6:6,
+    samples=200,
+    color=peri,
+    restrict y to domain=-20:20,
+]
+{-(8/1)*cos(deg(1*pi))*sin(deg(1*x))-(8/2)*cos(deg(2*pi))*sin(deg(2*x))-(8/3)*cos(deg(3*pi))*sin(deg(3*x))-(8/4)*cos(deg(4*pi))*sin(deg(4*x))-(8/5)*cos(deg(5*pi))*sin(deg(5*x))-(8/6)*cos(deg(6*pi))*sin(deg(6*x))-(8/7)*cos(deg(7*pi))*sin(deg(7*x))-(8/8)*cos(deg(8*pi))*sin(deg(8*x))-(8/9)*cos(deg(9*pi))*sin(deg(9*x))-(8/10)*cos(deg(10*pi))*sin(deg(10*x))};
+\draw [dashed, royal_blue, ultra thick] (-3.14, 0) -- (-3.14,-12.56) node[circle, solid, royal_blue, fill, inner sep=2pt, ultra thick ]{};
+\draw [dashed, royal_blue, ultra thick] (3.14,0) -- (3.14,12.56) node[circle, solid, royal_blue, fill, inner sep=2pt, ultra thick ]{};
+\legend{ $f(x)=4x$,$P_{10}(x)$}
+\end{axis}
+\end{tikzpicture}
+\caption{Графики исходной функции $f(x)$ и тригонометрического многочлена Фурье $P_{10}(x)$ для неё при $n=10$.}
+\label{gr:7}
+\end{figure}
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis y line = left,
+	axis x line = middle,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-14,
+	xmin=-6,
+	xmax=6,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis line style ={line width = .3pt},
+	ymax=14,
+	xtick distance={2},
+	ytick distance={2},
+	extra x ticks={ -3.14, 3.14},
+	extra x tick labels={$-\pi$, $\pi$},
+	extra x tick style ={
+	grid = none},
+	]
+\addplot[
+	line width=2pt,
+	dotted,
+    domain=-6:6,
+    samples=100,
+    color=purple,
+    restrict y to domain=-20:20,
+]
+{4*x};
+\addplot[
+	line width=2pt,
+    domain=-6:6,
+    samples=200,
+    color=peri,
+    restrict y to domain=-20:20,
+]
+{-(8/1)*cos(deg(1*pi))*sin(deg(1*x))-(8/2)*cos(deg(2*pi))*sin(deg(2*x))-(8/3)*cos(deg(3*pi))*sin(deg(3*x))-(8/4)*cos(deg(4*pi))*sin(deg(4*x))-(8/5)*cos(deg(5*pi))*sin(deg(5*x))-(8/6)*cos(deg(6*pi))*sin(deg(6*x))-(8/7)*cos(deg(7*pi))*sin(deg(7*x))-(8/8)*cos(deg(8*pi))*sin(deg(8*x))-(8/9)*cos(deg(9*pi))*sin(deg(9*x))-(8/10)*cos(deg(10*pi))*sin(deg(10*x))-(8/11)*cos(deg(11*pi))*sin(deg(11*x))-(8/12)*cos(deg(12*pi))*sin(deg(12*x))-(8/13)*cos(deg(13*pi))*sin(deg(13*x))-(8/14)*cos(deg(14*pi))*sin(deg(14*x))-(8/15)*cos(deg(15*pi))*sin(deg(15*x))-(8/16)*cos(deg(16*pi))*sin(deg(16*x))-(8/17)*cos(deg(17*pi))*sin(deg(17*x))-(8/18)*cos(deg(18*pi))*sin(deg(18*x))-(8/19)*cos(deg(19*pi))*sin(deg(19*x))-(8/20)*cos(deg(20*pi))*sin(deg(20*x))};
+\draw [dashed, royal_blue, ultra thick] (-3.14, 0) -- (-3.14,-12.56) node[circle, solid, royal_blue, fill, inner sep=2pt, ultra thick ]{};
+\draw [dashed, royal_blue, ultra thick] (3.14,0) -- (3.14,12.56) node[circle, solid, royal_blue, fill, inner sep=2pt, ultra thick ]{};
+\legend{ $f(x)=4x$,$P_{20}(x)$}
+\end{axis}
+\end{tikzpicture}
+\caption{Графики исходной функции $f(x)$ и тригонометрического многочлена Фурье $P_{20}(x)$ для неё при $n=20$.}
+\label{gr:8}
+\end{figure}
+
+Легко заметить, что при увеличении порядка многочлена $P_n(t)$ (т. е. с ростом $n$), его график на промежутке $\left[-\pi;\pi\right]$ приближается к графику функции $f(t)$ (становится более похожим на него), т.е. уменьшается модуль разности этих функций и расстояние между соответствующими им векторами.
+
+\section{3-е Задание. Приведение уравнения поверхности 2-го порядка к каноническому виду.}
+\begin{task}
+Дано уравнение поверхности 2-го порядка:
+\begin{equation*}
+2x^2-3y^2+2z^2+2xz-12=0
+\end{equation*}
+
+Привести исходное уравнение к каноническому виду при помощи методов Лагранжа и ортогонального преобразования. Изобразить график уравнения в исходной системе координат. Какую поверхность оно задаёт? Указать на графике оси исходной и приведённой систем координат.
+\end{task}
+\subsection{Метод ортогонального преобразования}
+Приведём квадратичную форму $2x^2-3y^2+2z^2+2xz$ из исходного уравнения к каноническому виду с помощью ортогонального преобразования.
+
+Запишем матрицу формы:
+\begin{equation*}
+Q=\begin{pmatrix}
+2 & 0 & 1\\
+0 & -3 & 0\\
+1 & 0 & 2
+\end{pmatrix}
+\end{equation*}
+Так как считаем, что скалярное произведение определно стандартно, т.е. матрица Грама - единичная, то матрица присоединённого к форме линейного оператора $A=Q$:
+\begin{equation*}
+A=\begin{pmatrix}
+2 & 0 & 1\\
+0 & -3 & 0\\
+1 & 0 & 2
+\end{pmatrix}
+\end{equation*}
+
+Найдём матрицу для ортогонального преобразования как матрицу перехода в ортонормированный собственный базис линейного оператора $\mathcal{A}$. Множество собственных чисел $\lambda$ (т.е. спектр л.о.) является множеством корней характеристического многочлена:
+\begin{equation*}
+\begin{aligned}
+\mathcal{X}&=\left|A-\lambda*I\right|=\begin{vmatrix}
+2-\lambda & 0 & 1\\
+0 & -3-\lambda & 0\\
+1 & 0 & 2-\lambda\\
+\end{vmatrix}=\\
+&=-(2-\lambda)^2*(3+\lambda)+(3+\lambda)\\
+&=-(\lambda+3)*(\lambda-1)*(\lambda-3)\\
+\hline\\
+& (\lambda+3)*(\lambda-1)*(\lambda-3) = 0\\
+&\lambda_1=1 \text{ кр. 1}, \lambda_2=3 \text{ кр. 1}, \lambda_3=-3 \text{ кр. 1}
+\end{aligned}
+\end{equation*}
+Найдём собственные векторы:
+
+
+\begin{equation*}
+\begin{aligned}
+&\lambda = 1: (A-1*I)X=0 \Rightarrow
+\left(
+\begin{array}{@{}ccc|c@{}}
+1 & 0 & 1 & 0\\
+0 & -4 & 0  & 0\\
+1  & 0 & 1  & 0\\
+\end{array}
+\right) \sim 
+\left(
+\begin{array}{@{}ccc|c@{}}
+1 & 0 & 1 & 0\\
+0 & 1 & 0  & 0\\
+0  & 0 & 0  & 0\\
+\end{array}
+\right)\\
+& \Rightarrow \sqsupset z=c \Rightarrow X = c * \begin{pmatrix}
+-1\\
+0\\
+1
+\end{pmatrix}\\
+\hline\\
+&\lambda = 3: (A-3*I)X=0 \Rightarrow
+\left(
+\begin{array}{@{}ccc|c@{}}
+-1 & 0 & 1 & 0\\
+0 & -6 & 0  & 0\\
+1  & 0 & -1  & 0\\
+\end{array}
+\right) \sim 
+\left(
+\begin{array}{@{}ccc|c@{}}
+1 & 0 & -1 & 0\\
+0 & 1 & 0  & 0\\
+0  & 0 & 0  & 0\\
+\end{array}
+\right)\\
+& \Rightarrow \sqsupset z=c \Rightarrow X = c * \begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix}\\
+\hline\\
+&\lambda = -3: (A+3*I)X=0 \Rightarrow
+\left(
+\begin{array}{@{}ccc|c@{}}
+5 & 0 & 1 & 0\\
+0 & 0 & 0  & 0\\
+1  & 0 & 5  & 0\\
+\end{array}
+\right) \sim 
+\left(
+\begin{array}{@{}ccc|c@{}}
+5 & 0 & 1 & 0\\
+0 & 0 & 0  & 0\\
+1  & 0 & 5  & 0\\
+\end{array}
+\right)\\
+& \Rightarrow \sqsupset y=c \Rightarrow X = c * \begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}\\
+\end{aligned}
+\end{equation*}
+Таким образом, получаем базис из собственных векторов:
+\begin{equation} \label{cBasis}
+\lambda = 1: X_1 =\begin{pmatrix}
+-1\\
+0\\
+1\\
+\end{pmatrix}, \lambda = 3: X_2 = \begin{pmatrix}
+1\\
+0\\
+1\\
+\end{pmatrix} , \lambda = -3: X_3 = \begin{pmatrix}
+0\\
+1\\
+0\\
+\end{pmatrix}
+\end{equation}
+Заметим, что полученные векторы - ортогоналны. Нормализуем их:
+\begin{equation*}
+X_1' = \frac{1}{\sqrt{2}}\begin{pmatrix}
+-1\\
+0\\
+1
+\end{pmatrix},
+X_2' = \frac{1}{\sqrt{2}}\begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix},
+X_3' = \begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}
+\end{equation*}
+Таким образом, матрица перехода $T$ равна:
+\begin{equation*}
+T= \begin{pmatrix}
+-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0\\
+0 & 0 & 1\\
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0
+\end{pmatrix}
+\end{equation*}
+При этом обратная матрица $T^-1$ равна исходной матрице $T$ в силу её ортогональности.
+
+Диагонализуем матрицу формы ортогональным преобразованием:
+\begin{equation*}
+\begin{aligned}
+Q' &= T^T * Q * T =\begin{pmatrix}
+-\frac{1}{\sqrt{2}} & 0  & \frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}}\\
+0 & 1 & 0
+\end{pmatrix}
+ *   \begin{pmatrix}
+2 & 0 & 1\\
+0 & -3 & 0\\
+1 & 0 & 2
+\end{pmatrix}* \begin{pmatrix}
+-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0\\
+0 & 0 & 1\\
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0\\
+\end{pmatrix}\\
+&=\begin{pmatrix}
+1 & 0 & 0\\
+0 & 3 & 0\\
+0 & 0 & -3\\
+\end{pmatrix}\\
+\end{aligned}
+\end{equation*}
+Получим координаты векторов, параллельных осям приведённой системы координат (в которой исходное уравнение - каноническое):
+\begin{equation*}
+\begin{aligned}
+X&=TY\\
+Y&=T^{-1}*X\\
+\begin{pmatrix}
+x'\\
+y'\\
+z'
+\end{pmatrix} &= \begin{pmatrix}
+-\frac{1}{\sqrt{2}} & 0  & \frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}}\\
+0 & 1 & 0
+\end{pmatrix} * \begin{pmatrix}
+x\\
+y\\
+z
+\end{pmatrix}\\
+&\begin{cases}
+x' = -\frac{1}{\sqrt{2}}x + \frac{1}{\sqrt{2}} z = \begin{pmatrix}
+-\frac{1}{\sqrt{2}}\\
+0\\
+\frac{1}{\sqrt{2}}
+\end{pmatrix}\\
+y' = \frac{1}{\sqrt{2}}x + \frac{1}{\sqrt{2}} z = \begin{pmatrix}
+\frac{1}{\sqrt{2}}\\
+0\\
+\frac{1}{\sqrt{2}}
+\end{pmatrix}\\
+z' = y = \begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}
+\end{cases}
+\end{aligned}
+\end{equation*}
+Итак, запишем исходное уравнение в каноническом виде:
+\begin{equation*}
+\begin{aligned}
+2x^2-3y^2+2z^2+2xz-12&=0\\
+1*(-\frac{1}{\sqrt{2}}x + \frac{1}{\sqrt{2}}z)^2 + 3*(\frac{1}{\sqrt{2}}x + \frac{1}{\sqrt{2}}z)^2 - 3*y^2 &= 12\\
+(x')^2 + 3(y')^2 -3(z')^2 &= 12\\
+\frac{(x')^2}{(\sqrt{12})^2} + \frac{(y')^2}{2^2} -\frac{(z')^2}{2^2} &= 1\\
+\end{aligned}
+\end{equation*}
+\subsection{Метод Лагранжа}
+Аналогично приведём квадратичную форму $2x^2-3y^2+2z^2+2xz$ из исходного уравнения к каноническому виду с помощью метода Лагранжа.
+\begin{equation*}
+\begin{aligned}
+&2x^2-3y^2+2z^2+2xz\\
+&=(2x^2+2xz+\frac{1}{2}z^2)-\frac{1}{2}z^2+2z^2-3y^2\\
+&=(x+\frac{1}{2}z)^2-3y^2+\frac{3}{2}z^2\\
+&=\left|x''=\sqrt{2}x+\frac{1}{\sqrt{2}}z, y''=y, z''=z\right|\\
+&=2(x'')^2-3(y'')^2+\frac{3}{2}(z'')^2
+\end{aligned}
+\end{equation*}
+Тогда исходное уравнение в каноническом виде равно:
+\begin{equation*}
+\begin{aligned}
+2(x'')^2-3(y'')^2+\frac{3}{2}(z'')^2 &= 12\\
+\frac{(x'')^2}{(\sqrt{8})^2}-\frac{(y'')^2}{2^2}+\frac{(z'')^2}{(\sqrt{8})^2} &= 1\\
+\end{aligned}
+\end{equation*}
+Заметим, что при приведении уравнения в канонический вид разными способами были получены разные системы координат, в которыех это уравнения имеет канонический вид. При этом методом Лагранжа была найдена система с неортогональными осями! Оговоримся, правда, что и систему с ортогональными осями, совпадающую с системой, полученной при решении методом ортогонального преобразования, можно получить правильно выделив полные квадраты, нарушив, правда, шаги алгоритма Лагранжа.
+
+Анализируя полученные канонические уравнения поверхностей, приходим к выводу, что исходное уравнение описывает \textbf{однополостный гиперболоид} с общим уравнением:
+\begin{equation*}
+\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1
+\end{equation*}
+
+Изобразим на графиках описываемую поверхность в исходной системе координат, а так же оси приведённой системы.
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 5,
+xmin = -5,
+ymax = 5,
+ymin = -5,
+zmax = 5,
+zmin = -5,
+z buffer=sort,
+view/h=30,
+view/el=10
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+%\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+%colormap={whiteblue}{color=(peri) color=(peri)},
+%samples=20,domain=-5:5,y domain=-5:5, name path = line]
+%({x},
+%{sqrt(2*x^2-12+2*y^2+2*x*y)/3) },
+%{y});
+
+\addplot3[surf, opacity=0.4, 
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=20,domain=-3:3,y domain=0:360, name path = line]
+({(2*sqrt(1+(x^2/4))*cos(y)) - 0.5*(sqrt(8)*sqrt(1+(x^2/4))*sin(y))},
+{x},
+{(sqrt(8)*sqrt(1+(x^2/4))*sin(y))});
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (-5,0,0)
+  -- (5,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,-5,0)
+  -- (0,5,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,0,-5)
+  -- (0,0,5) node[ black, anchor=45]{\large $Z$};
+
+\draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (-3.55,0,3.55) node[ bloodred, anchor=45]{\large $5*\vec{x'}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (3.55,0,3.55) node[ bloodred, anchor=45]{\large $5*\vec{y'}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (0,5,0) node[ bloodred, anchor=45]{\large $5*\vec{z'}$};
+
+
+
+\legend{Гиперболоид}
+\end{axis}
+\end{tikzpicture}
+\caption{Однополостный гиперболоид, описываемый исходным уравнением и приведённые оси, полученные при ортогональном преобразовании (угол поворота $30\deg$).}
+\label{gr:basis}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 5,
+xmin = -5,
+ymax = 5,
+ymin = -5,
+zmax = 5,
+zmin = -5,
+z buffer=sort,
+view/h=0,
+view/el=0
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+%\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+%colormap={whiteblue}{color=(peri) color=(peri)},
+%samples=20,domain=-5:5,y domain=-5:5, name path = line]
+%({x},
+%{sqrt(2*x^2-12+2*y^2+2*x*y)/3) },
+%{y});
+
+\addplot3[surf, opacity=0.4, 
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=20,domain=-3:3,y domain=0:360, name path = line]
+({(2*sqrt(1+(x^2/4))*cos(y)) - 0.5*(sqrt(8)*sqrt(1+(x^2/4))*sin(y))},
+{x},
+{(sqrt(8)*sqrt(1+(x^2/4))*sin(y))});
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (-5,0,0)
+  -- (5,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,-5,0)
+  -- (0,5,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,0,-5)
+  -- (0,0,5) node[ black, anchor=45]{\large $Z$};
+
+\draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (-3.55,0,3.55) node[ bloodred, anchor=45]{\large $5*\vec{x'}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (3.55,0,3.55) node[ bloodred, anchor=45]{\large $5*\vec{y'}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (0,5,0) node[ bloodred, anchor=45]{\large $5*\vec{z'}$};
+
+
+
+\legend{Гиперболоид}
+\end{axis}
+\end{tikzpicture}
+\caption{Однополостный гиперболоид, описываемый исходным уравнением и приведённые оси, полученные при ортогональном преобразовании (угол поворота $0\deg$).}
+\label{gr:basis}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 5,
+xmin = -5,
+ymax = 5,
+ymin = -5,
+zmax = 5,
+zmin = -5,
+z buffer=sort,
+view/h=0,
+view/el=0
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+%\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+%colormap={whiteblue}{color=(peri) color=(peri)},
+%samples=20,domain=-5:5,y domain=-5:5, name path = line]
+%({x},
+%{sqrt(2*x^2-12+2*y^2+2*x*y)/3) },
+%{y});
+
+\addplot3[surf, opacity=0.4, 
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=20,domain=-3:3,y domain=0:360, name path = line]
+({(2*sqrt(1+(x^2/4))*cos(y)) - 0.5*(sqrt(8)*sqrt(1+(x^2/4))*sin(y))},
+{x},
+{(sqrt(8)*sqrt(1+(x^2/4))*sin(y))});
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (-5,0,0)
+  -- (5,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,-5,0)
+  -- (0,5,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,0,-5)
+  -- (0,0,5) node[ black, anchor=45]{\large $Z$};
+
+\draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (-3.55,0,3.55) node[ bloodred, anchor=45]{\large $5*\vec{x'}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (3.55,0,3.55) node[ bloodred, anchor=45]{\large $5*\vec{y'}$};
+  \draw[->, black, fill, draw = bloodred, line width = 2pt] (0,0,0)
+  -- (0,5,0) node[ bloodred, anchor=45]{\large $5*\vec{z'}$};
+
+
+
+\legend{Гиперболоид}
+\end{axis}
+\end{tikzpicture}
+\caption{Однополостный гиперболоид, описываемый исходным уравнением и приведённые оси, полученные при ортогональном преобразовании (угол поворота $0\deg$).}
+\label{gr:basis}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 5,
+xmin = -5,
+ymax = 5,
+ymin = -5,
+zmax = 5,
+zmin = -5,
+z buffer=sort,
+view/h=30,
+view/el=10
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+%\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+%colormap={whiteblue}{color=(peri) color=(peri)},
+%samples=20,domain=-5:5,y domain=-5:5, name path = line]
+%({x},
+%{sqrt(2*x^2-12+2*y^2+2*x*y)/3) },
+%{y});
+
+\addplot3[surf, opacity=0.4, 
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=20,domain=-3:3,y domain=0:360, name path = line]
+({(2*sqrt(1+(x^2/4))*cos(y)) - 0.5*(sqrt(8)*sqrt(1+(x^2/4))*sin(y))},
+{x},
+{(sqrt(8)*sqrt(1+(x^2/4))*sin(y))});
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (-5,0,0)
+  -- (5,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,-5,0)
+  -- (0,5,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,0,-5)
+  -- (0,0,5) node[ black, anchor=45]{\large $Z$};
+
+\draw[->, black, fill, draw = royal_blue, line width = 2pt] (0,0,0)
+  -- (5,0,2.5) node[ royal_blue, anchor=45]{\large $5*\vec{x''}$};
+  \draw[->, black, fill, draw = royal_blue, line width = 2pt] (0,0,0)
+  -- (0,5,0) node[ royal_blue, anchor=45]{\large $5*\vec{y''}$};
+  \draw[->, black, fill, draw = royal_blue, line width = 2pt] (0,0,0)
+  -- (0,0,5) node[ royal_blue, anchor=45]{\large $5*\vec{z''}$};
+
+
+
+\legend{Гиперболоид}
+\end{axis}
+\end{tikzpicture}
+\caption{Однополостный гиперболоид, описываемый исходным уравнением и приведённые неортогональные оси, полученные при решении методом Лагранжа (угол поворота $30\deg$).}
+\label{gr:basis}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $y$, zlabel = $z$, grid= both, 
+xmax = 5,
+xmin = -5,
+ymax = 5,
+ymin = -5,
+zmax = 5,
+zmin = -5,
+z buffer=sort,
+view/h=0,
+view/el=0
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+
+%\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+%colormap={whiteblue}{color=(peri) color=(peri)},
+%samples=20,domain=-5:5,y domain=-5:5, name path = line]
+%({x},
+%{sqrt(2*x^2-12+2*y^2+2*x*y)/3) },
+%{y});
+
+\addplot3[surf, opacity=0.4, 
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=20,domain=-3:3,y domain=0:360, name path = line]
+({(2*sqrt(1+(x^2/4))*cos(y)) - 0.5*(sqrt(8)*sqrt(1+(x^2/4))*sin(y))},
+{x},
+{(sqrt(8)*sqrt(1+(x^2/4))*sin(y))});
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (-5,0,0)
+  -- (5,0,0) node[ black, anchor=45]{\large $X$};
+
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,-5,0)
+  -- (0,5,0) node[ black, anchor=0]{\large $Y$};
+  
+\draw[->, black, fill, draw = gray, line width = 2pt] (0,0,-5)
+  -- (0,0,5) node[ black, anchor=45]{\large $Z$};
+
+\draw[->, black, fill, draw = royal_blue, line width = 2pt] (0,0,0)
+  -- (5,0,2.5) node[ royal_blue, anchor=45]{\large $5*\vec{x''}$};
+  \draw[->, black, fill, draw = royal_blue, line width = 2pt] (0,0,0)
+  -- (0,5,0) node[ royal_blue, anchor=45]{\large $5*\vec{y''}$};
+  \draw[->, black, fill, draw = royal_blue, line width = 2pt] (0,0,0)
+  -- (0,0,5) node[ royal_blue, anchor=45]{\large $5*\vec{z''}$};
+
+
+
+\legend{Гиперболоид}
+\end{axis}
+\end{tikzpicture}
+\caption{Однополостный гиперболоид, описываемый исходным уравнением и приведённые неортогональные оси, полученные при решении методом Лагранжа (угол поворота $0\deg$).}
+\label{gr:basis}
+\end{figure}
+
+\section{Выводы}
+При выполнении расчётно-графической работы мы получили линейный оператор  проектирования в пространстве геометрических вектров и исследовали его,  исследовали линейный оператор в пространстве функций и сравнили трудоёмкость вычисления образа при помощи матрицы с вычислением по формуле. Также мы рассмотрели процесс ортогонализации и нормирования базисных векторов на примере базиса пространства многочленов и вывели многочлен Фурье при поиске самого близкого к функции многочлена. По ходу решения последнего задания мы приводили уравнение поверхности 2-го порядка к каноническому виду методом Лагранжа и ортогонального преобразования, а также искали оси, в которых это уравнение и имеет канонический вид. 
+\newpage
+\section{Оценочный лист}
+\begin{center}
+\large
+\begin{tabular}{|l|l|l|l|r|}
+\hline
+Хороших & Дмитрий & P3117 & 1.5 & 100\%\\
+\hline
+Рамеев & Тимур & P3118 & 1.5  & 100\%\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
+

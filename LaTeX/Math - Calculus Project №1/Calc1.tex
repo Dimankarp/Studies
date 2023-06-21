@@ -1,0 +1,1261 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{xcolor}
+\pgfplotsset{width=\textwidth, compat=1.13}
+
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns.meta}
+
+
+\graphicspath{{./}}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+\pagestyle{plain}
+
+\fancypagestyle{firstpage}{%
+  \chead{
+  МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ 
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ  
+ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ\bigskip
+
+«Национальный исследовательский университет ИТМО»\bigskip
+
+ФАКУЛЬТЕТ ПРОГРАММНОЙ ИНЖЕНЕРИИ И КОМПЬЮТЕРНОЙ ТЕХНИКИ 
+}
+\fancyfoot[CO]{Санкт-Петербург, 2023}%
+}
+
+
+
+\definecolor{aqua}{HTML}{003844}
+\definecolor{peri}{HTML}{5EB1BF}
+\definecolor{royal_blue}{HTML}{0A2463}
+\definecolor{periwinkle}{HTML}{D8DCFF}
+\definecolor{cerulean}{HTML}{247BA0}
+\definecolor{bloodred}{HTML}{690500}
+\definecolor{imperial_red}{HTML}{FB3640}
+\definecolor{purple}{HTML}{511730}
+\definecolor{tangerine}{HTML}{FFA781}
+
+\newtheorem*{task}{Условие}
+\newtheorem*{finish}{Заключение}
+
+\tikzexternalize
+\begin{document}
+\newgeometry{top=1.6cm,bottom=1.6cm, left = 1.2cm, right = 1.2cm}
+
+\topskip0pt
+\vspace*{0.25\textheight}
+\begin{center}
+\textbf{\LARGE РАСЧЁТНО-ГРАФИЧЕСКАЯ РАБОТА}
+
+\LARGE по теме
+
+\LARGE <<Интеграл функции одной переменной>>
+
+\LARGE по дисциплине
+
+\LARGE <<Математика>>\bigskip
+
+\LARGE Вариант № 8
+\end{center}
+\vspace*{5cm}
+\begin{flushright}
+\begin{minipage}{.33\linewidth}
+\textit{\textbf{Выполнили:}}\\
+\begin{tabular}{l l @{\hspace{8pt}-\hspace{8pt}} l l}
+Митя ХХ
+\end{tabular}
+
+\textit{\textbf{Преподаватель:}}\\
+П. К.
+\end{minipage}
+\end{flushright}
+
+
+\thispagestyle{firstpage}
+\newpage
+\tableofcontents
+
+\restoregeometry
+\section{1-е Задание}
+\begin{task}
+Исследуйте интегральную сумму функции $\frac{1}{\sqrt{1-x^2}}$ на отрезке $\left[-\frac{\sqrt{3}}{2};\frac{\sqrt{3}}{2}\right]$.
+\end{task}
+
+\subsection{Интегральная сумма}
+Начнём исследование интегральной суммы функции со сравнения площади криволинейной трапеции, ограниченной графиком функции $\frac{1}{\sqrt{1-x^2}}$ на отрезке $\left[-\frac{\sqrt{3}}{2};\frac{\sqrt{3}}{2}\right]$, с площадью ступенчатой фигуры (изображающей интегральную сумму на плоскости). На рисунках \ref{gr:mid5} - \ref{gr:mid11} светлым цветом выделена криволинейная трапеция,а тёмным - ступени фигуры.
+
+Рассмотрим рисунок \ref{gr:mid5}, на котором ступенчатая фигура построена на 5-и элементарных отрезках, а $c_i$, определяющее высоту ступени по значению $f(c_i)$, установлено в середину каждого элементарного отрезка. Можно заметить, что площадь ступенчатой фигуры слабо совпадает с площадью трапеции - некоторые участки трапеции не покрыты фигурой, а некоторые участки фигуры выходят за пределы трапеции. Очевидно, что такое приблежение не очень точно.
+
+
+\newcommand{\stair}[2]{
+%x2
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.5,
+        domain =\st + #1*\sz:\st + (#1+1)*\sz,
+        name path = p#1
+    ]{#2};
+\node[circle, \scolor, fill, inner sep=1pt, thick] at (\st + #1*\sz, 0){};
+\node[circle, \scolor, fill, inner sep=1pt, thick] at (\st + (#1*\sz + 1*\sz, 0){};
+\draw [dotted, \scolor,  thick] (\st + #1*\sz + \sz*\npos, 0) node[rectangle, fill, inner sep=1.5pt]{} -- (\st + #1*\sz + \sz*\npos, #2) node[rectangle, fill, inner sep=1.5pt]{};
+
+\path[name path = axis#1] (\st + #1*\sz , 0) -- (\st + #1*\sz + 1*\sz , 0);
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=p#1 and axis#1,
+        soft clip={domain=\st+#1*\sz:\st + #1*\sz+1*\sz},
+    ];
+}
+
+\def\pcolor{peri}
+\def\scolor{royal_blue}
+%5 splits - mid
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-1,
+	xmin=-1.8,
+	xmax=1.8,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = -1,
+	ymax=5,
+	xtick distance={0.5},
+	extra x ticks={ -0.87, 0.87},
+	extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	extra x tick style ={
+	grid = none},
+	legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=-1:1,
+    samples=100,
+    color=\pcolor,
+    restrict y to domain=-20:20,
+    name path = f,
+]
+{1/(1-x^2)^0.5};
+\draw [dashed, \pcolor, ultra thick] (-0.87,0) -- (-0.87,2);
+\draw [dashed, \pcolor, ultra thick] (0.87,0) -- (0.87,2);
+\path[name path = axis] (-0.87,0) -- (0.87,0);
+
+\addplot [
+        thick,
+        color=\pcolor,
+        fill=\pcolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=-0.87:0.87},
+    ];
+
+\def\sz{0.348}
+\def\st{-0.87}
+\def\npos{0.5}
+\stair{0}{1.393}
+\stair{1}{1.067}
+\stair{2}{1.0}
+\stair{3}{1.067}
+\stair{4}{1.393}
+\legend{$\frac{1}{\sqrt{1-x^2}}$,,,$\overline{S}_i$}
+\end{axis}
+\end{tikzpicture}
+
+\caption{$f(x)$ со ступенчатой фигурой: $n = 5$, $c_i$ - середина отрезка}
+\label{gr:mid5}
+\end{figure}
+%5 splits-left
+\begin{figure}
+\begin{minipage}{.5\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-1,
+	xmin=-1.8,
+	xmax=1.8,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = -1,
+	ymax=5,
+	xtick distance={0.5},
+	extra x ticks={ -0.87, 0.87},
+	extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	extra x tick style ={
+	grid = none},
+	legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=-1:1,
+    samples=100,
+    color=\pcolor,
+    restrict y to domain=-20:20,
+    name path = f,
+]
+{1/(1-x^2)^0.5};
+\draw [dashed, \pcolor, ultra thick] (-0.87,0) -- (-0.87,2);
+\draw [dashed, \pcolor, ultra thick] (0.87,0) -- (0.87,2);
+\path[name path = axis] (-0.87,0) -- (0.87,0);
+
+\addplot [
+        thick,
+        color=\pcolor,
+        fill=\pcolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=-0.87:0.87},
+    ];
+\def\sz{0.348}
+\def\st{-0.87}
+\def\npos{0.0}
+\stair{0}{2.028}
+\stair{1}{1.172}
+\stair{2}{1.015}
+\stair{3}{1.015}
+\stair{4}{1.172}
+\end{axis}
+\end{tikzpicture}
+\caption{$f(x)$ со ступенчатой фигурой:\\ $n = 5$, $c_i$ - крайнее левое положение}
+\label{gr:left5}
+\end{minipage}%
+%
+%5 splits - right
+\begin{minipage}{.5\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-1,
+	xmin=-1.8,
+	xmax=1.8,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = -1,
+	ymax=5,
+	xtick distance={0.5},
+	extra x ticks={ -0.87, 0.87},
+	extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	extra x tick style ={
+	grid = none},
+	legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=-1:1,
+    samples=100,
+    color=\pcolor,
+    restrict y to domain=-20:20,
+    name path = f,
+]
+{1/(1-x^2)^0.5};
+\draw [dashed, \pcolor, ultra thick] (-0.87,0) -- (-0.87,2);
+\draw [dashed, \pcolor, ultra thick] (0.87,0) -- (0.87,2);
+\path[name path = axis] (-0.87,0) -- (0.87,0);
+
+\addplot [
+        thick,
+        color=\pcolor,
+        fill=\pcolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=-0.87:0.87},
+    ];
+\def\sz{0.348}
+\def\st{-0.87}
+\def\npos{1.0}
+\stair{0}{1.172}
+\stair{1}{1.015}
+\stair{2}{1.015}
+\stair{3}{1.172}
+\stair{4}{2.028}
+\end{axis}
+\end{tikzpicture}
+\caption{$f(x)$ со ступенчатой фигурой:\\ $n = 5$, $c_i$ - крайнее правое положение}
+\label{gr:right5}
+\end{minipage}
+\end{figure}
+
+Изменим положение точки $c_i$ и посмотрим, как при этом изменяется фигура.
+
+На рисунке \ref{gr:left5} ступенчатая фигура построена на 5-и элементарных отрезках, а точка $c_i$ установлена в крайнее \textbf{левое} положение каждого из отрезков. Легко видеть, что на участке 
+$\left[-\frac{\sqrt{3}}{2};0\right]$, на котором $f(x)$ убывает, ступенчатая фигура \textbf{переоценивает} криволинейную трапецию и выходит за её границу, а на участке $\left[0;\frac{\sqrt{3}}{2}\right]$ наоборот - \textbf{недооценивает}.
+
+Для ступенчатой фигуры с 5-ю элементарными отрезками и точкой $c_i$, установленной в крайнее \textbf{правое} положение каждого из отрезков, возникает противоположенная ситуация: на участке 
+$\left[-\frac{\sqrt{3}}{2};0\right]$ ступенчатая фигура \textbf{недооценивает} криволинейную трапецию, а на участке $\left[0;\frac{\sqrt{3}}{2}\right]$ - \textbf{переоценивает}.
+
+В сравнении со ступенчатой фигурой, изображённой на рисунке \ref{gr:mid5}, фигуры на рисунках \ref{gr:left5} и \ref{gr:right5} оценивает криволинейную трапеции менее точно. Таким образом, можно заключить, что оптимальное положение $c_i$ для оценки трапеции при малом числе ступеней - середина элементарного отрезка.
+
+%11 splits
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(x\),
+	ylabel = {\(f(x)\)},
+	ymin=-1,
+	xmin=-1.8,
+	xmax=1.8,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis x line shift = -1,
+	ymax=5,
+	xtick distance={0.5},
+	extra x ticks={ -0.87, 0.87},
+	extra x tick labels={$-\frac{\sqrt{3}}{2}$, $\frac{\sqrt{3}}{2}$},
+	extra x tick style ={
+	grid = none},
+	legend style = {row sep =0.5cm}
+	]
+
+\addplot[
+	ultra thick,
+    domain=-1:1,
+    samples=100,
+    color=\pcolor,
+    restrict y to domain=-20:20,
+    name path = f,
+]
+{1/(1-x^2)^0.5};
+\draw [dashed, \pcolor, ultra thick] (-0.87,0) -- (-0.87,2);
+\draw [dashed, \pcolor, ultra thick] (0.87,0) -- (0.87,2);
+\path[name path = axis] (-0.87,0) -- (0.87,0);
+
+\addplot [
+        thick,
+        color=\pcolor,
+        fill=\pcolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=-0.87:0.87},
+    ];
+\def\sz{0.158}
+\def\st{-0.87}
+\def\npos{0.5}
+\stair{0}{1.634}
+\stair{1}{1.291}
+\stair{2}{1.136}
+\stair{3}{1.054}
+\stair{4}{1.013}
+\stair{5}{1.0}
+\stair{6}{1.013}
+\stair{7}{1.054}
+\stair{8}{1.136}
+\stair{9}{1.291}
+\stair{10}{1.634}
+\legend{$\frac{1}{\sqrt{1-x^2}}$,,,$\overline{S}_i$}
+\end{axis}
+\end{tikzpicture}
+\caption{$f(x)$ со ступенчатой фигурой:\\ $n = 11$, $c_i$ - середина отрезка}
+\label{gr:mid11}
+\end{figure}
+
+Далее рассмотрим, как меняется ступенчатая фигура от изменения числа ступеней. На рисунке \ref{gr:mid11} изображена ступенчатая фигура на 11-и элементарных отрезках с точкой $c_i$, установленной в положение середины элементарного отрезка. Заметим, что в сравнении с фигурой на рисунке \ref{gr:mid5} данная фигура заметно лучше оценивает криволинейную трапецию под функцией.
+
+При рассмотрении фигуры с числом ступеней - 7 \textit{(больше чем число ступеней фигуры с рисунка \ref{gr:mid5}, но меньше чем у фигуры с рисунка \ref{gr:mid11})} удостоверяемся, что она оценивает трапецию лучше, чем фигура на рисунке \ref{gr:mid5}, имеющая 5 ступеней, но хуже, чем фигура на рисунке \ref{gr:mid11}, имеющая 11 ступеней. В связи с этим, можно сделать очевидный вывод, что, \textbf{чем больше ступеней имеет ступенчатая фигура, тем более точно она оценивает криволинейную трапецию}.
+
+Заметим также, что положение точки $c_i$ влияет на фигуру с 7-ю и 11-ю ступенями так же, как и на фигуры с 5-ю ступенями.
+
+\begin{finish}
+На точность оценивания криволинейной трапеции под графиком функции ступенчатой фигурой влияет:
+\begin{enumerate}
+\item \textbf{Положение точки $c_i$}, определяющей высоту ступени.
+\item \textbf{Число ступеней}. При этом фигуры с большим числом ступеней более точно оценивают трапецию.
+\end{enumerate}
+\end{finish}
+\subsection{Последовательность интегральных сумм}
+Построим интегральную суммы функции $f(x) = \frac{1}{\sqrt{1-x^2}}$ на отрезке $\left[-\frac{\sqrt{3}}{2};\frac{\sqrt{3}}{2}\right]$:
+\begin{enumerate}
+\item Разобьём криволинейную трапецию на n слоёв с равными элементарными отрезками длиной:
+\begin{equation*}
+\Delta x_i = \Delta x = \frac{\frac{\sqrt{3}}{2} - \left(-\frac{\sqrt{3}}{2} \right)}{n} = \frac{\sqrt{3}}{n}
+\end{equation*}
+Условимся, что $i$-й элементарный отрезок $ = \left[x_{i-1};x_i\right] \forall i\in 1\ldots n$
+
+При этом концы отрезков равны:
+\begin{align*}
+   x_{0} &= -\frac{\sqrt{3}}{2} \\
+   x_{1} &= x_0 + \Delta x_i = -\frac{\sqrt{3}}{2} + \frac{\sqrt{3}}{n} \\
+   x_{2} &= x_0 + 2 * \Delta x_i = -\frac{\sqrt{3}}{2} + 2 * \frac{\sqrt{3}}{n} \\
+   &\vdots\\
+   x_{n-1} &= x_0 + (n-1) * \Delta x_i = -\frac{\sqrt{3}}{2} + (n-1) * \frac{\sqrt{3}}{n} \\
+   x_{n} &= \frac{\sqrt{3}}{2}
+\end{align*}
+
+
+Также введём величину $\lambda = \max_{\substack{i = 1\ldots n}} \Delta x_i$ - \textit{мелкость разбиения}
+\item Приблизим площадь участка трапеции к площади прямоугольного слоя:
+\begin{equation*}
+\Delta S_i \approx\overline{\Delta S_i} = \Delta x_i * f(c_i)
+\end{equation*}
+где $\overline{\Delta S_i}$ - площадь $i$-го слоя, $\Delta S_i$ - площадь $f(x)$ на $i$-м элементарном отрезке,   \\$c_i\in \left[x_{i-1};x_i\right]$ - точка на элементарном отрезке.
+
+Пусть точка $c_i = x_{i-1} + \alpha * \Delta x$, где $\alpha \in \left[0;1\right]$ (в частности при $\alpha = 0.5$ $c_i$ - середина элементарного отрезка). Тогда, учитывая также, что $f(x) = \frac{1}{\sqrt{1-x^2}}$ и $\Delta x_i = \frac{\sqrt{3}}{n}$:
+\begin{equation*}
+\Delta S_i \approx\overline{\Delta S_i} =\frac{\sqrt{3}}{n} * \frac{1}{\sqrt{1-\left(-\frac{\sqrt{3}}{2} + \left(i-1 + \alpha\right)*\frac{\sqrt{3}}{n}\right)^2}} = \sqrt{\frac{3}{n^2-3\left(i-1+\alpha-\frac{n}{2}\right)^2}}
+\end{equation*}
+\item Запишем интегральную сумму:
+\begin{equation}
+S_n = \sum_{i=1}^{n} \Delta S_i \approx \sum_{i=1}^{n} \overline{\Delta S_i} =\sum_{i=1}^{n}\sqrt{\frac{3}{n^2-3\left(i-1+\alpha-\frac{n}{2}\right)^2}}
+\end{equation},
+где $\alpha \in \left[0;1\right]$ и показывает положение точки $c_i$ на элементарном отрезке.
+\end{enumerate}
+Исследуем значение $S_n$ при различных $n$ и положениях точки $c_i$ на элементарном отрезеке (то есть различных значениях $\alpha$):
+\begin{center}
+\begin{tabular}{l l l l}
+\textbf{n} & \textbf{Левый край $\left(\alpha=0\right)$} & \textbf{Середина $\left(\alpha=0.5\right)$} & \textbf{Правый край$\left(\alpha=1\right)$}\\
+\hline\\
+3 & 2.361 & 1.992 & 2.361\\
+\hline\\
+6 & 2.176 & 2.058 & 2.176\\
+\hline\\
+10 & 2.126 & 2.079 & 2.126\\
+\hline\\
+50 & 2.096 & 2.094 & 2.096\\
+\hline\\
+100 & 2.095 & 2.094 & 2.095\\
+\hline\\
+\end{tabular}
+
+\end{center}
+Можно заметить, что с ростом $n$ разность между значениями $S_n$ при различных положениях точки $c_i$ уменьшается, что говорит об увеличивающейся точности приближения интегральной суммы.
+
+Вычислим значение предела интегральных сумм, то есть вычислим интеграл от данной функции по отрезку:
+\begin{equation*}
+\int_{-\frac{\sqrt{3}}{2}}^{\frac{\sqrt{3}}{2}} \frac{1}{\sqrt{1-x^2}} dx
+\end{equation*}
+По теореме Ньютона-Лейбница:
+\begin{equation*}
+\int_{a}^{b} f(x) dx = \Phi(b) - \Phi(a)
+\end{equation*},
+где $\Phi(x)$ - первообразная $f(x)$.
+
+По определению неопределённого интеграла:
+\begin{equation*}
+\Phi(x) + C = \int f(x)dx = \int \frac{1}{\sqrt{1-x^2}}dx = \arcsin{x} + C
+\end{equation*}
+Cледовательно:
+\begin{equation*}
+\int_{-\frac{\sqrt{3}}{2}}^{\frac{\sqrt{3}}{2}} \frac{1}{\sqrt{1-x^2}} dx = arcsin{\frac{\sqrt{3}}{2}} - arcsin{-\frac{\sqrt{3}}{2}} = \frac{\pi}{3} + \frac{\pi}{3} = \frac{2\pi}{3} \approx 2.094
+\end{equation*}
+Сравним значения интегральныъ сумм при различных $n$ с точным значением интеграла:
+
+
+\newcommand{\sumPoint}[2]{
+\draw [dotted, \scolor,  thick] (#2, #1) node[rectangle, fill, inner sep=1.5pt]{};
+•}
+
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(n\),
+	ylabel = {$S_n$},
+	ymin=0,
+	xmin=0,
+	xmax=20,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	ymax=5,
+	xtick distance={2},
+	]
+
+\addplot[
+	ultra thick,
+    domain=0:20,
+    samples=100,
+    color=\pcolor,
+    name path = f,
+]
+{2.094};
+\addlegendentry{$\int f(x)$}
+\addplot[only marks, thick, \scolor] table[y index= 0, x index = 1] {1.dat};
+\addlegendentry{Левый и правый край}
+\addplot[only marks, thick, tangerine] table[y index= 0, x index = 1] {2.dat};
+\addlegendentry{Середина}
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Сравнение интегральных сумм с точным значением интеграла}
+\label{gr:integral}
+\end{figure}
+Анализируя рисунок \ref{gr:integral} можно заметить, что, во-первых, интегральные суммы для $c_i$ на левом и правом краю элементарного отрезка совпадают (что связано с симметричностью рассматриваемого отрезка и функции), а во-вторых - все последовательности сходятся к точному значению интеграла с ростом $n$.
+\begin{finish}
+По окончании исследования последовательности интегральных сумм можно заключить:
+\begin{enumerate}
+\item \textbf{Последовательности интегральных сумм сходятся} к точному значению интеграла с ростом $n$ вне зависимости от выбора точки $c_i$.
+\item \textbf{Выбор точки $c_i$} существенно меняет значение интегральной суммы только при малых $n$. 
+\end{enumerate}
+\end{finish}
+\section{2-e Задание}
+\begin{task}
+Найдите площадь плоской фигуры, ограниченной петлёй кривой $x= \frac{t^2}{1+t^2}, y=\frac{t(1-t^2)}{1+t^2}$.
+\end{task}
+\subsection{Решение}
+Рассмотрим искомую фигуру на рисунке \ref{gr:curve}:
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = {\(y\)},
+	ymin=-1,
+	xmin=-0.5,
+	xmax=1,
+	ymax =1,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.5},
+	]
+	\addplot [domain=-2:2, samples=100, ultra thick, \pcolor, name path=f] ({(x^2)/(1+x^2)},{x*(1-x^2)/(1+x^2)});
+	\path[name path = axis] (0,0) -- (0.5,0);
+
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=0:0.498},
+    ];
+\legend{$\left(\frac{t^2}{1+t^2}; \frac{t*(1-t^2}{1+t^2}\right)$, Искомая фигура}
+\end{axis}
+\end{tikzpicture}
+\caption{Петля $f(x)$ с закрашенной искомой фигурой}
+\label{gr:curve}
+\end{figure}
+Так как определённый интеграл Римана фактически равен площади под графиком функции, воспользуемся им для подсчёта площади данной фигуры.
+
+Сначала определим промежуток параметра $t$ на котором расположеная петля кривой. На графике видно, что петля смыкается
+при $y=0$, следовательно:
+\begin{equation*}
+\begin{aligned}
+y &= \frac{t*(1-t^2)}{1+t^2}=0\\
+t &= 0, t=\pm1\\
+x(0) &= 0, x(-1) = x(1) = 0.5
+\end{aligned}
+\end{equation*}
+Кривая дважды проходит через точку $\left(0.5, 0\right)$ при $t=\pm1$. При этом нижняя часть петли (ниже оси Ox) соответствует промежутку $t\in\left(-1, 0\right)$, а верхняя - $t\in\left(0, 1\right)$ (выше оси Ox). К тому же:
+\begin{equation*}
+y(-t) = -\frac{1*(1-t^2)}{1+t^2} = -y(t)
+\end{equation*},
+то есть $y(t)$ - нечётная функция, а значит - на симметричных промежутках ($\left[-1, 0\right]$ и $\left[0, 1\right]$) она принимает одинаковые по модулю, но разные по знаку значения. Значит, площадь фигуры под верхней веткой кривой равна площади над нижней веткой. Следовательно, площадь всей искомой фигуры можно посчитать как:
+\begin{equation*}
+S_{\Phi} = 2 * S_+
+\end{equation*}, где $S_+$ - площадь под верхней частью петли.
+
+Площадь под графиком функции $y(x)$ на отрезке $\left[a;b\right]$ равна:
+\begin{equation*}
+S = \int_a^b y(x)dx
+\end{equation*}
+При этом, если $y$ и $x$ выражены через параметр $t$, то:
+\begin{equation*}
+\int_a^b y(x)dx = \int_{t_1}^{t^2} y(t) dx(t) = \int_{t_1}^{t^2} y(t)x'(t) dt
+\end{equation*}
+Петля расположена выше оси OX при $t\in\left[0;1\right]$, следовательно:
+\begin{equation*}
+\begin{aligned}
+S_{+} &= \int_{0}^{1} y(t)x'(t) dt\\
+x'(t) &= \left(\frac{t^2}{1+t^2}\right)'=|\text{По св. произв. частн.}|=\frac{2*t*t^2 - 2 * t * (1+t^2)}{\left(1+t^2\right)^2} =\\
+&= \frac{2*t}{\left(1+t^2\right)^2},\\
+S_{+} &= \int_{0}^{1} \frac{t*(1-t^2)}{1+t^2} * \frac{2*t}{\left(1+t^2\right)^2} dt = \\
+&= \int_{0}^{1} \frac{2*(t^2-t^4)}{\left(1+t^2\right)^3} dt=|\text{По св. линейности соб. инт.}|=\\
+&= 2 * \left(\int_{0}^{1} \frac{t^2}{\left(1+t^2\right)^3} dt - \int_{0}^{1} \frac{t^4}{\left(1+t^2\right)^3} dt\right)\\
+\end{aligned}
+\end{equation*}
+Рассмотрим каждый из суммируемых интегралов по отдельности:
+\begin{equation*}
+\begin{aligned}
+\int_{0}^{1} \frac{t^2}{\left(1+t^2\right)^3} dt &= \int_{0}^{1} \frac{t^2 + 1 - 1}{\left(1+t^2\right)^3} dt =|\text{По св. лин. инт}| = \\
+&= \int_{0}^{1} \frac{1}{\left(1+t^2\right)^2} dt - \int_{0}^{1} \frac{1}{\left(1+t^2\right)^3} dt
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\int_{0}^{1} \frac{t^4}{\left(1+t^2\right)^3} dt &= \int_{0}^{1} \frac{t^4 + 2t^2 + 1 -2t^2 - 1}{\left(1+t^2\right)^3} dt = |\text{По св. лин. инт}|\\
+&= \int_{0}^{1} \frac{1}{\left(1+t^2\right)} dt - \int_{0}^{1} \frac{1+2t^2}{\left(1+t^2\right)^3} dt =\\
+&= \int_{0}^{1} \frac{1}{\left(1+t^2\right)} dt - \int_{0}^{1} \frac{2}{\left(1+t^2\right)^2} dt + \int_{0}^{1} \frac{1}{\left(1+t^2\right)^3} dt
+\end{aligned}
+\end{equation*}
+Следовательно:
+\begin{equation*}
+\begin{aligned}
+S_{+} = 2*\left( -\int_{0}^{1} \frac{1}{\left(1+t^2\right)} dt + \int_{0}^{1} \frac{3}{\left(1+t^2\right)^2} dt - \int_{0}^{1} \frac{2}{\left(1+t^2\right)^3} dt\right)\\
+\end{aligned}
+\end{equation*}
+Решим каждый из интегралов, участвующих в сумме по отдельности:
+\begin{equation*}
+\begin{aligned}
+\int_{0}^{1} \frac{1}{\left(1+t^2\right)} dt = |\text{Табл. инт}| = \left.\arctan{t}\right|_0^1
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\int_{0}^{1} \frac{3}{\left(1+t^2\right)^2} dt &=3 * \int_{0}^{1} \frac{1}{\left(1+t^2\right)^2} dt = |t = \tan{w}, w = \arctan{t}| =\\
+&=3 * \int_{w_1}^{w_2} \frac{1}{\left(\tan{w}^2+1\right)^2} * \frac{1}{\cos{w}^2} dw = \\
+&= 3 * \int_{w_1}^{w_2} \cos^4{w} * \frac{1}{\cos^2{w}} dw = |\text{По форм. пониж. степ.}| =\\
+&= 3 * \int_{w_1}^{w_2} \frac{1+\cos{2w}}{2} dw = |\text{Внес. под дифф.}| =\\
+&= \frac{3}{4} * \int_{w_1}^{w_2} 1+\cos{2w} d2w =\left. \frac{3}{4}(2w +\sin{2w})\right|_{w_1}^{w_2} =\\
+&= \left.\left(\frac{3}{2}\arctan{t} + \frac{3}{4}\sin{2\arctan{t}}\right)\right|_0^1 =\\
+&= |\sin{x}=\sqrt{\frac{\tan^2{x}}{1+\tan^2{x}}},\cos{x}=\sqrt{\frac{1}{1+\tan^2{x}}}, \sin{2x}=2*\sin{x}*\cos{x}| =\\
+&= \left.\left(\frac{3}{2}\arctan{t} + \frac{3}{4} * 2 *\sqrt{\frac{\tan^2{\arctan{t}}}{1+\tan^2{\arctan{t}}}}*\sqrt{\frac{1}{1+\tan^2{\arctan{t}}}}\right)\right|_0^1 =\\
+&=\left.\left(\frac{3}{2}\arctan{t} + \frac{3}{2}*\frac{t}{1+t^2}\right)\right|_0^1
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\int_{0}^{1} \frac{2}{\left(1+t^2\right)^3} dt &= 2 * \int_{0}^{1} \frac{1}{\left(1+t^2\right)^3} dt = |t = \tan{w}, w = \arctan{t}| =\\
+&=2 * \int_{w_1}^{w_2} \frac{1}{\left(\tan{w}^2+1\right)^3} * \frac{1}{\cos{w}^2} dw = \\
+&= 2 * \int_{w_1}^{w_2} \cos^6{w} * \frac{1}{\cos^2{w}} dw = |\text{По форм. пониж. степ.}| =\\
+&= 2 * \int_{w_1}^{w_2} \left(\frac{1+\cos{2w}}{2}\right)^2 dw=\\
+&= \frac{1}{2} * \int_{w_1}^{w_2} 1 + 2\cos{2w} + cos^2{2w} dw=\\
+&= |\text{По св. лин. и методу внес. под дифф.}| =\\
+&= \frac{1}{2} \left(w|_{w_1}^{w_2} +  \int_{w_1}^{w_2} \cos{2w} d2w + \frac{1}{8} \int_{w_1}^{w_2} 1 + \cos{4w} d4w\right)  =\\
+&= \left.\frac{1}{2} \left(w +  \sin{2w} + \frac{1}{8} * 4w + \frac{1}{8} * \sin{4w}\right)\right|_{w_1}^{w_2} =\\
+&=\left.\left(\frac{1}{2} * \arctan{t} + \frac{t}{1+t^2} + \frac{1}{4} * \arctan{t} + \frac{1}{4} * \frac{t}{(1+t^2)^2} - \frac{1}{4} * \frac{t^3}{(1+t^2)^2}\right)\right|_0^1 =\\
+&= \left.\frac{1}{4} * \left(\frac{t*(3t^2+5)}{(t^2+1)^2} + 3*\arctan{t}\right)\right|_0^1
+\end{aligned}
+\end{equation*}
+Возвращаемся к изначальной сумме:
+\begin{equation*}
+\begin{aligned}
+S_{+} &= \left.2 * \left( -\arctan{t} + \frac{3}{2}\arctan{t} + \frac{3}{2}*\frac{t}{1+t^2} - \frac{1}{4} * \left(\frac{t*(3t^2+5)}{(t^2+1)^2} + 3*\arctan{t}\right)\right)\right|_0^1=\\
+&= \left.\frac{1}{2} * \left(\frac{3t^3+t}{(t^2+1)^2}-\arctan{t}\right)\right|_0^1
+\end{aligned}
+\end{equation*}
+Тогда площадь фигуры равна:
+\begin{equation}
+S_\Phi = 2*S_{+} = \left.\left(\frac{3t^3+t}{(t^2+1)^2}-\arctan{t}\right)\right|_0^1 = \frac{4}{4} - \frac{\pi}{4} - 0 = \frac{4-\pi}{4} \approx 0.215
+\end{equation}
+\subsection{Приблежение другими фигурами}
+Приближённо найдём площадь данной фигуры при помощи треугольников:
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = {\(y\)},
+	ymin=-1,
+	xmin=-0.5,
+	xmax=1,
+	ymax =1,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.5},
+	]
+	\addplot [domain=-2:2, samples=100, ultra thick, \pcolor, name path=f] ({(x^2)/(1+x^2)},{x*(1-x^2)/(1+x^2)});
+	\path[name path = axis] (0,0) -- (0.5,0);
+
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=f and axis,
+        soft clip={domain=0:0.498},
+    ];
+\draw[tangerine, fill, draw = black, line width = 2pt] (0,0) node[black, anchor=north]{\large $A$}
+  -- (0.2,-0.3) node[ black, anchor=45]{\large $C$}
+  -- (0.2,0.3) node[ black, anchor=315]{\large $B$}
+  -- cycle;
+  \draw[purple, fill, draw = black, line width = 2pt] (0.2,0.3) node[ black,anchor=225]{\large $A'$}
+  -- (0.2,-0.3) node[black,anchor=135]{\large $C'$}
+  -- (0.5,0) node[black,anchor=270]{\large $B'$}
+  -- cycle;
+\legend{$\left(\frac{t^2}{1+t^2}; \frac{t*(1-t^2}{1+t^2}\right)$, Искомая фигура, s, s}
+\end{axis}
+\end{tikzpicture}
+\caption{Приближение площади треугольниками}
+\label{gr:curveByTrigs}
+\end{figure}
+Координаты вершин треугольника (подобраны исходя из графика):
+\begin{equation}
+\begin{aligned}
+&A = (0,0), &B = (0.2,0.3), &C = (0.2,-0.3)\\
+&A' =(0.2,0.3), &B' = (0.5,0),  &C' = (0.2,-0.3)
+\end{aligned}
+\end{equation}
+Приближенная площадь:
+\begin{equation*}
+S_\Phi \approx S_{ABC} + S_{A'B'C'} = \frac{1}{2} * (0.2 * 0.6 + 0.3 * 0.6) = 0.15 
+\end{equation*}
+Приближенная площадь отличается от точной на: $\delta S = 0.215 - 0.15 = 0.065 \approx 30\% * S$. Следовательно, хоть предложенное приблежение и не очень точно, оно всё равно помогает оценить правдоподобность площади, вычисленной точно, (грубой прикидкой на рисунке \ref{gr:areaApprox} можно оценить, что от площади всей фигуры не покрытой осталось около $20-30\%$, что сходится с полученными результатами).
+\section{3-е Задание}
+\begin{task}
+Найдите объём тела $T$, полученного вращением фигуры $\Phi$ вокруг оси Oy. Фигура $\Phi$ ограничена следующими кривыми:
+\[
+x = \sqrt{1-y^2}, y=\sqrt{\frac{3}{2}}x, y=0
+\]
+\end{task}
+\subsection{Решение}
+Изобразим на графике фигуру $\Phi$:
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = {\(y\)},
+	ymin=-2,
+	xmin=-2,
+	xmax=2,
+	ymax =2,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.5},
+	]
+	\addplot [domain=0:1, samples=100, ultra thick, \pcolor, name path=uparc] {(1-x^2)^0.5};
+	\addplot [domain=0:1, samples=100, ultra thick, \pcolor, name path=dwnarc] {-(1-x^2)^0.5};
+	\addplot [domain=-2:2, samples=100, ultra thick, purple, name path=stick] {(3/2)^0.5*x};
+	\addplot [domain=-2:2, samples=100, ultra thick, imperial_red, name path=axis] {0};
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=stick and axis,
+        soft clip={domain=0:0.6325},
+    ];
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=uparc and axis,
+        soft clip={domain=0.6325:1},
+    ];
+\node[circle, \scolor, fill, inner sep=2pt, thick, label = {180:{($\sqrt{\frac{2}{5}}$;$\sqrt{\frac{3}{5}}$)}}] at (0.63,0.77){};
+\legend{$x=\sqrt{1-y^2}$,,$y=\sqrt{\frac{3}{2}}x$, $y=0$, фигура $\Phi$}
+\end{axis}
+\end{tikzpicture}
+\caption{Кривые и ограничиваемая ими фигура $\Phi$}
+\label{gr:area}
+\end{figure}
+
+Изобразим тело вращения $T$ (вращая фигуру $\Phi$ вокруг оси Oy):
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\pgfdeclarelayer{pre main}
+\pgfsetlayers{pre main,main}
+
+\begin{axis}[xlabel = $x$, ylabel = $z$, zlabel = $y$, grid= both,
+xmax = 2,
+xmin = -2,
+ymax = 2,
+ymin = -2,
+zmax = 2,
+zmin = -2,
+z buffer=sort,
+%colormap={mycol}{color=(aqua), color=(royal_blue)},
+]
+\addplot3[surf, opacity=0.4, point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(bloodred) color=(bloodred)},
+samples=10,domain=0:1,y domain=0:2*pi, name path = sphere]
+({x * cos(deg(y)},
+{x * sin(deg(y)},
+{0});
+
+\addplot3[surf, opacity=0.4,point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(purple) color=(purple)},
+samples=10,domain=0:0.775,y domain=0:2*pi, name path = stick]
+({x *(2/3)^0.5 * cos(deg(y)},
+{x *(2/3)^0.5 * sin(deg(y)},
+{x});
+\addplot3[surf, opacity=0.6, point meta={abs(rawx+rawy+0.2*rawz)},
+colormap={whiteblue}{color=(peri) color=(peri)},
+samples=20,domain=0:0.775,y domain=0:2*pi, name path = sphere]
+({(1-x^2)^0.5 * cos(deg(y)},
+{(1-x^2)^0.5 * sin(deg(y)},
+{x});
+
+
+\end{axis}
+\end{tikzpicture}
+\caption{Тело вращения $T$}
+\label{gr:body}
+\end{figure}
+Объём тела вращения, образованного вращением фигуры, равен:
+\begin{equation*}
+V=\int_a^b S(x)dx =|\text{По св-ву инт.}|= \int_a^b S(y)dy
+\end{equation*}
+На рисунке \ref{gr:area} можно увидеть, что для тела $T$ функцию $S(y)$ можно задать как функцию для площади кольца ($S_{\text{кольцо}} = \pi * \left(R_{\text{внешний}}^2 - R_{\text{внутренний}}^2\right)$) в которой от свободной переменной $y$ зависят радиусы:
+\begin{equation*}
+\begin{aligned}
+S(y) &= \left(f(y)_{\text{Внешний радиус}}^2 - f(y)_{\text{Внутренный радиус}}^2\right) * \pi=\\
+&= \left(\left(\sqrt{1-y^2}\right)^2 - \left(\sqrt{\frac{2}{3}}y\right)^2\right)*\pi=\\
+&=\left(1-\frac{5}{3}y^2\right)*\pi
+\end{aligned}
+\end{equation*},
+где $f(y)_{\text{Внутренный радиус}}$ получена из прямой $y=\sqrt{\frac{3}{2}}x$, ограничивающей фигуру.
+
+Для определения пределов интегрирования найдём точку пересечения ограничивающих кривых: $x=\sqrt{1-y^2}$ и $y=\sqrt{\frac{3}{2}}x$:
+\begin{equation*}
+\begin{aligned}
+x =\sqrt{1-y^2} &= \sqrt{\frac{2}{3}}y\\
+2.5y^2 &=1.5\\
+y^2&=\frac{3}{5}\\
+y&=\pm\sqrt{\frac{3}{5}}\\
+\end{aligned}
+\end{equation*}
+Учитывая, что у искомой точки $x,y > 0$:
+\begin{equation*}
+\begin{aligned}
+y &=\sqrt{\frac{3}{5}}\\
+\end{aligned}
+\end{equation*}
+Вычислим объём тела:
+\begin{equation*}
+\begin{aligned}
+V &= \int_{0}^{\sqrt{\frac{3}{5}}}  \left(1-\frac{5}{3}y^2\right)*\pi dy\\
+&=\left.\pi * \left(y-\frac{5}{3}*\frac{y^3}{3}\right) \right|_{0}^{\sqrt{\frac{3}{5}}}\\
+&= \pi * \left(\sqrt{\frac{3}{5}}-\frac{5}{3}* \frac{3}{5} *\sqrt{\frac{3}{5}} * \frac{1}{3}\right) - 0=\\
+&=\frac{2\sqrt{3}}{3\sqrt{5}}*\pi \approx 1.622
+\end{aligned}
+\end{equation*}
+\subsection{Приблежение другими телами}
+Аппроксимируем объём тела вращения $T$ кольцами:
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = {\(y\)},
+	ymin=-2,
+	xmin=-2,
+	xmax=2,
+	ymax =2,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.5},
+	]
+	\addplot [domain=0:1, samples=100, ultra thick, \pcolor, name path=uparc] {(1-x^2)^0.5};
+	\addplot [domain=0:1, samples=100, ultra thick, \pcolor, name path=dwnarc] {-(1-x^2)^0.5};
+	\addplot [domain=-2:2, samples=100, ultra thick, purple, name path=stick] {(3/2)^0.5*x};
+	\addplot [domain=-2:2, samples=100, ultra thick, imperial_red, name path=axis] {0};
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=stick and axis,
+        soft clip={domain=0:0.6325},
+    ];
+\addplot [
+        thick,
+        color=\scolor,
+        fill=\scolor, 
+        fill opacity=0.2
+    ]
+    fill between[
+        of=uparc and axis,
+        soft clip={domain=0.6325:1},
+    ];
+
+\legend{$x=\sqrt{1-y^2}$,,$y=\sqrt{\frac{3}{2}}x$, $y=0$, фигура $\Phi$}
+
+\draw[purple, fill, draw = black, line width = 1pt] (0.2,0) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]270:{($0.2$;$0$)}}]{}
+  -- (1,0) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]45:{($1$;$0$)}}]{}
+  -- (1,0.25) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]0:{($0.2$;$0.25$)}}]{}
+  -- (0.2,0.25) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]180:{($1$;$0.25$)}}]{}
+  -- cycle;
+\draw[tangerine, fill, draw = black, line width = 1pt] (0.4,0.25) node[fill, circle, black, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]160:{($0.4$;$0.25$)}}]{}
+  -- (0.87,0.25) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]25:{($0.87$;$0.25$)}}]{}
+  -- (0.87,0.49) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]0:{($0.87$;$0.49$)}}]{}
+  -- (0.4,0.49) node[ circle, black, fill, inner sep=1.3pt, thick,label = {[font=\tiny,text=black]180:{($0.4$;$0.49$)}}]{}
+  -- cycle;
+  \draw[purple, fill, draw = black, line width = 1pt] (0.54,0.49) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]155:{($0.54$;$0.49$)}}]{}
+  -- (0.75,0.49) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]25:{($0.75$;$0.49$)}}]{}
+  -- (0.75,0.66) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]25:{($0.75$;$0.66$)}}]{}
+  -- (0.54,0.66) node[circle, black, fill, inner sep=1.3pt, thick, label = {[font=\tiny,text=black]155:{($0.54$;$0.66$)}}]{}
+  -- cycle;
+\end{axis}
+\end{tikzpicture}
+\caption{Приближение фигуры $T$ кольцами - сечения. }
+\label{gr:areaApprox}
+\end{figure}
+Для каждого кольца определим $R_{\text{внутренний}}$, $R_{\text{внешний}}$ и высоту $H$:
+\begin{equation*}
+\begin{aligned}
+&R_{i1} = 0.2, &R_{o1} = 1, &H_1 = 0.25\\
+&R_{i2} = 0.4, &R_{o2} = 0.87, &H_2 = 0.24\\
+&R_{i3} = 0.54, &R_{o3} = 0.75 &H_3 = 0.17\\
+\end{aligned}
+\end{equation*}, где $R_i$ - внутренний радиус, $R_o$ - внешний радиус, $H$ - высота кольца.
+
+Для вычисления объёма кольца воспользуемся формулой:
+\begin{equation*}
+V_{\text{кольцо}} = \pi * \left(R_{o}^2 - R_{i}^2\right) * H
+\end{equation*}
+Найдём объём каждого из колец:
+\begin{equation*}
+\begin{aligned}
+V_1 &= \pi * \left(1^2 - 0.2^2\right) * 0.25&= 0.24\pi\\
+V_2 &= \pi * \left(0.87^2 - 0.4^2\right) * 0.24&= 0.14\pi \\
+V_3 &= \pi * \left(0.75^2 - 0.54^2\right) * 0.17&= 0.08\pi\\
+\end{aligned}
+\end{equation*}, таким образом общий приближенный объём составляет:
+\begin{equation*}
+V_T \approx V_1 + V_2 + V_3 = 0.46\pi \approx 1.445\\
+\end{equation*}
+Приближенный объём отличается от точного на: $\delta V = 0.1.622 - 1.445 = 0.117 \approx 11\% * V$. Следовательно, найденная аппроксимация свидетельствует о правдободобности точного объёма тела $T$, найденного с использованием интеграла.
+\newpage
+\section{4-е Задание}
+\begin{task}
+Исследуйте несобственный интеграл на сходимость при всех значениях параметра $a$.
+
+\begin{equation*}
+x = \int_0^1\frac{dx}{x^a\arctan x}
+\end{equation*}
+\end{task}
+
+\subsection{Решение}
+
+Чтобы найти особые точки несобственного интеграла, необходимо посмотреть, где у подынтегрального выражения существует бессконечный разрыв.
+Для выражения $\int_0^1\frac{dx}{x^a\arctan x}$ такие точки соответствуют $x$, при которых знаменатель $x^a\arctan x$ равен $0$.
+
+
+\begin{itemize}
+		\item $\arctan x = 0$ при $x = 0$
+		\item $x^a = 0$ при $x = 0$
+\end{itemize}
+Единственной особой точкой является $x = 0$. Данный несобственный интеграл является интегралом от неограниченной функции (2-го рода)
+Подынтегральная функция является неотрицательной на промежутке на промежутке интегрирования от 0 до 1, так как $x^a$ при любых значениях $a$ будет положительным, также как и $\arctan x$.
+
+Предлагаю рассмотреть 3 значения $a$, при которых график функции $y = \frac{dx}{x\arctan x}$ ведет себя по-разному:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale = 0.8]
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = \(y\),
+	ymin=0.5,
+	xmin=0,
+	xmax=1.5,
+	ymax =1.5,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.2},
+	ytick distance={0.2}
+	]
+	\addplot [domain=0.001:1, samples=100, ultra thick,\pcolor, name path=f] {x/rad(atan(x))};
+	\path[name path = axis] (0,0) -- (0.5,0);
+\end{axis}
+\end{tikzpicture}
+\caption{график функции $y = \frac{x}{\arctan x}  $    (a = -1)}
+\label{gr:curve}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale = 0.8]
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = \(y\),
+	ymin=0,
+	xmin=0,
+	xmax=1.5,
+	ymax =1.5,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.2},
+	ytick distance={0.2}
+	]
+	\addplot [domain=0.001:1, samples=100, ultra thick,\pcolor, name path=f] {x^5/rad(atan(x))};
+	\path[name path = axis] (0,0) -- (0.5,0);
+\end{axis}
+\end{tikzpicture}
+\caption{график функции $y = \frac{x^5}{\arctan x}  $    (a < -1)}
+\label{gr:curve}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale = 0.8]
+\begin{axis}[
+	axis lines = middle,
+	xlabel = \(x\),
+	ylabel = \(y\),
+	ymin=0,
+	xmin=0,
+	xmax=2,
+	ymax =2,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+	xtick distance={0.2},
+	ytick distance={0.2}
+	]
+	\addplot [domain=0.5:1, samples=100, ultra thick,\pcolor, name path=f] {1/x^7*rad(atan(x))};
+	\path[name path = axis] (0,0) -- (0.5,0);
+\end{axis}
+\end{tikzpicture}
+\caption{график функции $y = \frac{1}{x^7\arctan x}  $    (a > -1)}
+\label{gr:curve}
+\end{figure}
+
+К моему сожалению, значений параметра $a$, при котором легко найти первообразную подынтегральной функции, нет. 
+
+Cуществует 3 признака для определения сходимости несобственных интегралов. Давайте сформулируем их (для 2 рода и промежутка (0; 1]:
+\begin{itemize}
+\item \textbf{\textit{признак сравнения с неравенствами}}
+Если на промежутке (0; 1] функции непрерывны, то 
+
+1)из сходимости интеграла с большей подынтегральной функцией следует сходимость интеграла с меньшей подынтегральной функцией.
+
+2)из расходимости интеграла с меньшей подынтегральной функцией следует расходимость интеграла с большей подынтегральной функцией.
+\item \textbf{\textit{предельный признак сравнения}}
+Пусть на промежутке (0; 1] функции непрерывны и терпят разрыв в точке $x = 0$. 
+
+Тогда если предел $\lim_{x\to0} \frac{f(x)}{g(x)} = k$ существует и $0 < k < \infty$, интегралы от данных функций ведут себя одинаково.
+\item \textbf{\textit{абсолютный признак}} Если интеграл от непрерывной функции на промежутке (0; 1] под модулем сходится, то и интеграл от этой же функции без модуля также будет сходиться.
+\end{itemize}
+
+Давайте исследуем на сходимость эталонный интеграл $\int_0^1\frac{1}{x^\beta}dx$
+Для этого рассмотрим 2 случая, когда $\beta = 1$ и когда $\beta \neq 1$:
+\begin{equation*}
+\int_0^1\frac{1}{x^\beta}dx = 
+ \begin{cases}
+   -\frac{1}{\beta - 1} * \frac{1}{x^{\beta - 1}}|^1_0, \beta \neq 1\\
+   \ln|x||^1_0, \beta = 1
+ \end{cases} =
+ \begin{cases}
+ 	\infty, \beta = 1,  PX\\
+ 	\infty, \beta > 1,  PX\\
+ 	-\frac{1}{\beta - 1} * \frac{1}{1^{\beta - 1}}, \beta < 1 , CX
+ \end{cases}
+\end{equation*}
+
+Трансцендентная функция $y = arctan x$ на промежутке $(0, 1]$ ограничена областью значений $(0, \frac{\pi}{4}]$
+
+Так как в нашей подынтегральной функции присутствует трансцендентная функция, сравнить исходный интеграл по Первому признаку (с неравенством) будет трудно, поэтому воспользуемся Вторым признаком сравнения (через предел отношения):
+ \begin{equation*}
+ 	\lim_{x\to0}\frac{f(x)}{g(x)} = \lim_{x\to0}\frac{\frac{1}{x^\beta}}{\frac{1}{x^a\arctan x}} = \lim_{x\to0}\frac{x^a \arctan x}{x^\beta} = |\arctan x \sim x| = \lim_{x\to0}\frac{x^{a+1}}{x^\beta}
+ \end{equation*}
+ 
+Для того, чтобы мы могли делать выводы по сходимости нашего интеграла по сходимости эталонного интеграла, предел их отношения не должен равняться $\infty$ или $0$, поэтому перейдем к равенству $\beta = a + 1 $. 
+
+При таких $\beta$ мы можем определить сходимость нашего исходного интеграла по сходимости эталонного.
+
+Так как эталонный интеграл для нашего исходного интеграла мы не нашли, воспользуемся общим эталонным интегралом для определения сходимости исходного интеграла при разных $a$.
+
+\begin{equation*}
+\begin{cases}
+\beta = a + 1\\
+\beta = 1, PX\\
+\beta < 1, CX\\
+\beta > 1, PX
+\end{cases} =
+\begin{cases}
+a = 0, PX\\
+a > 0, PX\\
+a < 0, CX
+\end{cases}
+\end{equation*}
+\section{5-e Задание}
+\begin{task}
+Решите задачу.\\
+Вычислите работу, необходимую для выкачивания масла из котла, имеющего форму полусферы радиуса 2 м. Удельный вес масла равен 0,9 (Указание: величина работы, затрачиваемой на поднятие веса, равна произведению веса на высоту подъема).
+\end{task}
+
+\begin{figure}[H]
+\centering
+
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+\begin{tikzpicture}[baseline=(current bounding box.north), scale =1]
+\begin{axis}[
+	axis on top,
+	axis lines = middle,
+	y axis line style={draw opacity=0},
+	xlabel = \(x\),
+	ylabel = {},
+	ymin=-2,
+	xmin=-2,
+	xmax=2,
+	ymax =1.5,
+	ticks = none,
+	axis y line*=left,
+	y axis line style={<-}
+	]
+\draw[name path = cauldron,  thick, fill = peri, draw = black, line width = 1pt] (-1.5,0) -- (1.5,0) arc(0:-180:1.5) --cycle;
+
+
+\draw[name path = newLevel, draw = black, line width = 1pt] (-1.42,-0.5) -- (1.42,-0.5);
+\begin{pgfonlayer}{main}
+
+\fill [orange!50,
+          intersection segments={
+            of=cauldron and newLevel,
+            sequence={L2--R2}}];
+\end{pgfonlayer}
+  
+\draw[name path = deltaLevel, draw = black, line width = 1pt] (-1.365,-0.65) -- (1.365,-0.65);
+
+  \path[
+        intersection segments={
+                of=cauldron and newLevel,
+                sequence={L2--R2}
+              },name path=new];
+
+ \begin{pgfonlayer}{main}
+\fill[
+          intersection segments={
+            of=new and deltaLevel,
+            sequence={L0--R3}}, pattern={
+Lines[angle=-45, distance=4mm,  line width=2mm]% <--- !
+},    pattern color=peri,];
+
+\end{pgfonlayer}
+\draw[|-|, dashed, ultra thick] (-0.7,-0.5) -- (-0.7,-0.65);
+\node[label ={$
+\Delta h$}] at (-0.5, -0.7) {}; 
+\draw[->,  thick] (-1.7,1.5)   -- (-1.7,-1.5) node[label = 45:{$H$}]{};
+
+\draw[-stealth, ultra thick] (0,-0.5) node[circle, fill, black, inner sep=1.5pt ]{}  -- (0,0.2) node[label = {$\overrightarrow{F_{\text{в.}}}$}]{};
+\draw[-stealth, ultra thick] (0,-0.5) node[circle, fill, black, inner sep=1.5pt ]{}  -- (0,-1.2) node[label = {180:$\overrightarrow{P_{\text{c}}}$}]{};
+
+\draw[|-|, dashed, ultra thick] (-1,-0.5) -- (-1,0);
+\node[label ={$
+h$}] at (-0.85, -0.4) {};
+
+\draw[|-, dashed, ultra thick] (0,-1.5) -- (1.5,-1.5);
+\node[label ={270:$R$}] at (0.75, -1.5) {};
+\draw[|-, dashed, ultra thick] (1.5,0) -- (1.5,-1.5);
+\node[label ={360:$R$}] at (1.5, -0.75) {};
+
+%
+%%Labels for the vertices are typeset.
+\end{axis}
+\end{tikzpicture}
+\caption{К условию задачи - котёл с маслом. }
+\label{gr:physics}
+\end{figure}
+
+
+\subsection{Решение}
+\textsc{\textbf{Условие:}}\\
+$R = 2$ м - радиус котла\\
+$ h$ м - расстояние, на которое необходимо поднять текущий слой масла\\
+$\rho = 0,9\text{ г}/\text{см}^3 = 900\text{ кг}/\text{м}^3$ - плотность\\
+$ F_{\text{в.}} $ H - сила, необходимая для поднятия текущего слоя масла\\
+$A$ Дж - работа, искомая величина\\
+$d(h)$ - толщина одного слоя\\
+$\Delta A$ - элементарная работа, необходимая для поднятия одного слоя масла\\
+\newpage
+\textsc{\textbf{Ход решения:}}
+
+\begin{equation*}
+\Delta A(h) \approx d(A) = F{\text{в.}} h = mgh = \rho Vgh =\rho \pi(R^2 - h^2)d(h) g h
+\end{equation*}
+Запишем интегральную сумму:
+\begin{equation*}
+\lim_{n\to \infty}\sum_{i = 1}^n \Delta A_i = \sum_{i = 1}^\infty \rho \pi (R^2 - h_i^2)d(h)gh_i
+\end{equation*}
+Переходим к определенному интегралу:
+\begin{equation*}
+\begin{aligned}
+A = \int_{0}^{2} \rho \pi (R^{2} - h^{2} ) hg d(h) &= |\text{По т. Н.-Л.}|\\
+&= \pi \rho g \left. \left( \frac{R^{2}h^{2} }{2} - \frac{h^{4} }{4} \right) \right|_{0}^{2} \\
+&= \pi \rho g \left( \frac{R^{4} }{2} - \frac{R^{4} }{4} \right)\\
+ &= \frac{ \pi \rho g R^{4} }{4} = \frac{3.14 * 900 * 10 * 16}{4} = 113 040\text{Дж} = 113,04\text{кДж}
+ \end{aligned}
+\end{equation*}
+
+Следовательно, работа, необходимая для выкачивания масла из котла, равна $113,04$ кДж
+
+
+\section{Выводы}
+При выполнении расчётно-графической работы мы провели исследование интеграла функции от одной переменной. Наша команда проанализировала интеграл Римана и интегральную сумму с точки зрения их смысла как площади фигуры, ограниченной графиком функции, рассмотрела практические приложения интегралов в качестве методов для расчёта площади и объёмов фигур и тел, ограниченных кривыми. Мы также провели исследования несобственного интеграла, в том числе на сходимость, и воспользовались методом интегрирования при  решении физической задачи.
+\newpage
+\section{Оценочный лист}
+\begin{center}
+\large
+\begin{tabular}{|l|l|l|l|r|}
+\hline
+Хороших & Дмитрий & P3117 & 1.5 & 100\%\\
+\hline
+Рамеев & Тимур & P3118 & 1.5  & 100\%\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
+
