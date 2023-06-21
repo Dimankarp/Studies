@@ -86,9 +86,12 @@ Introducing students to *GUI with JavaFX*. I've also done it partly in Kotlin.
  - [lab8/](./lab8/)
 	- [MarineLibrary/](./lab8/MarineLibrary) - Java Library that Server and Client depend on
 	- [MarineManagerClient/](./lab8/MarineManagerClient/) - The Client side of the Application
-		![Login Screen](login.png)
-		> It has this old-school green neon and black colorscheme. Love it!
-		![Main Screen](screen.png)
-		> I've spent ages tuning the TableView.
 	- [MarineManagerServer](./lab8/MarineManagerServer) - The Server side of the Application
-		
+	
+![Login Screen](./lab8/login.png)
+> It has this old-school green neon and black colorscheme. Love it!
+
+![Main Screen](./lab8/screen.png)
+> I've spent ages tuning the TableView.
+
+	
