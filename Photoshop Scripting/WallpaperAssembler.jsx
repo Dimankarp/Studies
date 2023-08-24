@@ -1,7 +1,17 @@
 ﻿/**
     Great Fonts
 Modern 20 - For modern paintings
+Harmony
+Bigilla
+Bosch
+Herming
+Remboy
+Durer
+Glusp
 
+Cyillic:
+Noir Pro
+Corruption 
 Baskerville old Face
 
 Bell MT
@@ -270,7 +280,7 @@ WallpaperAssemblerBox.prototype.run = function()
                                 if(backgroundImageFiles !== null && backgroundImageFiles.length > 0){
                                         var temp = ''
                                         for(var i=0; i<backgroundImageFiles.length; i++)temp+=backgroundImageFiles[i].name+';'
-                                        backgroundsST.text = temp
+                                        backgroundsST.text = decodeURI(temp)
                                     }
                                 else{
                                         backgroundsST.text = "No images are selected."
@@ -287,7 +297,7 @@ WallpaperAssemblerBox.prototype.run = function()
                                 if(paintingImageFiles !== null && paintingImageFiles.length > 0){
                                         var temp = ''
                                         for(var i=0; i<paintingImageFiles.length; i++)temp+=paintingImageFiles[i].name+';'
-                                        paintingsST.text  = temp;
+                                        paintingsST.text  = decodeURI(temp)
                                     }
                                 else{
                                         paintingsST.text = "No images are selected."
@@ -515,7 +525,8 @@ WallpaperAssemblerBox.prototype.run = function()
     for(var backgroundIndex = 0; backgroundIndex < backgroundImageFiles.length; backgroundIndex++)
     {
         var backFile = backgroundImageFiles[backgroundIndex]
-        var wallFolder = Folder( saveToRootFolder + backFile.name.split ('.')[0] + "\\");
+        
+        var wallFolder = Folder( saveToRootFolder + backFile.name.match(/.+(?=\..*?)/gm) [0]+ "\\");
         if(!wallFolder.exists) wallFolder.create();
 
         var backgroundDoc = OpenImage(backFile)
@@ -527,14 +538,16 @@ WallpaperAssemblerBox.prototype.run = function()
           
             var paintFile = paintingImageFiles[paintingIndex]
             
-            var resultPath = backFile.name.split ('.')[0] + "\\"+paintFile.name.split('.')[0] + '.png'
-            var textPiece = paintFile.name.replace ( /\..+$/gm, "").replace(/_+/gm, '\r').replace(/%20/gm,' ')   
+            var resultPath = backFile.name.match(/.+(?=\..*?)/gm)[0] + "\\"+paintFile.name.match(/.+(?=\..*?)/gm)[0] + '.png'
            
             var paintingDoc  = OpenImage(paintFile)
             paintingDoc.changeMode(ChangeMode.RGB)
             
             //Checking for landscape
             var isLandscape = paintingDoc.width >= 1.3 * paintingDoc.height
+
+            var textPiece = decodeURI(paintFile.name).replace ( /\.[^\.]*?$/gm, "").replace(/_+/gm, (isLandscape) ? ' ' : '\r')//No new lines with landscape mode
+
             var widthToHeigthRation = paintingDoc.width / paintingDoc.height
             if(isLandscape)
             {
@@ -544,7 +557,7 @@ WallpaperAssemblerBox.prototype.run = function()
              }
             else
             {
-                if(widthToHeigthRation > portraitWidthToHeightRation) paintingDoc.resizeImage(prefPortraitWidth, null, null, ResampleMethod.BICUBIC);
+                if(widthToHeigthRation > portraitWidthToHeightRatio) paintingDoc.resizeImage(prefPortraitWidth, null, null, ResampleMethod.BICUBIC);
                 else paintingDoc.resizeImage(null, prefPortraitHeight, null, ResampleMethod.BICUBIC);
             }
                 
@@ -565,6 +578,7 @@ WallpaperAssemblerBox.prototype.run = function()
                     textYOffset = canvasV - taskBarMaxHeight - textHeight
                     paintingVerticalOffset = centerY - halfHeight - taskBarMaxHeight - textHeight
                 }
+                app.doAction("Automate Curves", "Wallpaper Assembler")
                 paintingDoc.flatten()
                 paintingDoc.selection.selectAll()
                 paintingDoc.selection.copy()
@@ -596,6 +610,7 @@ WallpaperAssemblerBox.prototype.run = function()
             text.size = new UnitValue(fontSize * 72/backgroundDoc.resolution, 'pt');
             text.contents = textPiece
             text.font = currFontName
+            text.useAutoLeading=true
             text.position = [0, 0]
            
             
