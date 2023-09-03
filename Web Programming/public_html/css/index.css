@@ -1,0 +1,105 @@
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background: #f0ede8;
+}
+
+
+.header {
+    margin: 0 auto;
+    background: rgba(0,0,0,0.0);
+    height: 100px; 
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.title {
+    color: #141414;;
+    font-size:60px;
+    font-family:"Marny";
+    font-style: italic;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    user-select: none;
+
+}
+
+.title > a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.title span:not([id="name-text"]) {
+    font-size:45px;
+}
+
+.footer {
+    background-color: #dfd8ce;
+    text-align:justify;
+    position: relative;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: "Harmony";
+    font-size: 17px;
+}
+
+.footer  a {
+    position:absolute;
+    left:10%;
+    top:50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.footer  a:hover {
+    color: #a69377
+}
+.footer  a:visited {
+    color: #a69377
+}
+
+
+.content  {
+    background: #f0ede8;
+    color: #141414;
+    font-family: "Harmony";
+    
+}
+
+.content > .form-container {
+    display: block;
+    text-align: center;
+}
+
+.form-container form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+
+.header + .content {
+    padding-top: 102px;
+}
+/*
+position: fixed;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 4.5rem;
+    */
