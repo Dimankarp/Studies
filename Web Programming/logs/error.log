@@ -439,3 +439,11 @@
 [Mon Sep 04 01:27:16.330583 2023] [php:error] [pid 3812:tid 1100] [client ::1:52203] PHP Parse error:  Unclosed '{' on line 84 in C:\\Users\\marin\\OneDrive\\Documents\\Web\\public_html\\shot.php on line 137, referer: http://localhost/index.php
 [Mon Sep 04 01:28:32.332764 2023] [php:error] [pid 3812:tid 1100] [client ::1:52257] PHP Parse error:  syntax error, unexpected token "<<" in C:\\Users\\marin\\OneDrive\\Documents\\Web\\public_html\\shot.php on line 84, referer: http://localhost/index.php
 [Mon Sep 04 01:31:43.046448 2023] [php:error] [pid 3812:tid 1100] [client ::1:52382] PHP Parse error:  Unclosed '{' on line 93 in C:\\Users\\marin\\OneDrive\\Documents\\Web\\public_html\\shot.php on line 154, referer: http://localhost/index.php
+[Mon Sep 04 10:03:03.171514 2023] [mpm_winnt:notice] [pid 14628:tid 392] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Sep 04 10:03:33.178135 2023] [mpm_winnt:notice] [pid 14628:tid 392] AH00431: Parent: Forcing termination of child process 3812
+[Mon Sep 04 10:03:37.319118 2023] [mpm_winnt:notice] [pid 6612:tid 376] AH00455: Apache/2.4.57 (Win64) PHP/8.2.10 configured -- resuming normal operations
+[Mon Sep 04 10:03:37.319118 2023] [mpm_winnt:notice] [pid 6612:tid 376] AH00456: Apache Lounge VS17 Server built: Aug  2 2023 17:28:16
+[Mon Sep 04 10:03:37.319118 2023] [core:notice] [pid 6612:tid 376] AH00094: Command line: 'C:\\Apache24\\bin\\httpd.exe -d C:/Apache24'
+[Mon Sep 04 10:03:37.324101 2023] [mpm_winnt:notice] [pid 6612:tid 376] AH00418: Parent: Created child process 12160
+[Mon Sep 04 10:03:37.686590 2023] [mpm_winnt:notice] [pid 12160:tid 392] AH00354: Child: Starting 64 worker threads.
+[Mon Sep 04 23:46:04.007213 2023] [php:error] [pid 12160:tid 1088] [client ::1:50792] PHP Parse error:  syntax error, unexpected token "?", expecting "->" or "?->" or "{" or "[" in C:\\Users\\marin\\OneDrive\\Documents\\Web\\public_html\\shot.php on line 98, referer: http://localhost/index.php

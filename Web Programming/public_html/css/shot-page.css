@@ -2,13 +2,32 @@
     display: block;
     text-align: center;
     font-family: "Harmony";
-    font-size: 80px;
+    font-size: 50px;
 }
+.shot-screen h1{
+    font-size:  3em;
+}
+
 .shot-screen div {
-display: inline-block;
+display: block;
 margin-left: auto;
 margin-right: auto;
 text-align: center;
+}
+
+.shot-screen table {
+    display: inline-block;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.shot-screen tr{
+    border-bottom: 2px solid black;
+    
+}
+
+.shot-screen td{
+    min-width:80px;
 }
 
 

@@ -15,7 +15,7 @@ xCoordsButton.addEventListener('click', changeValue);
 box.addEventListener('input', function(event) 
         {
         //Вариант без блокировки вводимого значения, но с использованием системы validityCheck HTML
-        if(yIsValid(event.data))box.setCustomValidity("");
+        if(yIsValid(box.value))box.setCustomValidity("");
         else box.setCustomValidity(`Y coordinated must be a float number in range of: ${Y_MIN}..${Y_MAX}`)
         box.reportValidity();
 

@@ -11,7 +11,7 @@ function checkShot($x, $y, $radius) : bool {
      return false;
 }
 
-readonly class Shot {
+class Shot {
     function __construct(public bool $isHit, public int $x, public float $y, public int $radius, public string $timestamp)
     {}
 }

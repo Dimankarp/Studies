@@ -11,6 +11,6 @@ export function xIsValid(input){
 
 export function yIsValid(input){
     let val = Number(input);
-    if(val !== NaN && val > Y_MIN && val < Y_MAX)return true; 
+    if(val !== NaN && val >= Y_MIN && val <= Y_MAX){return true; }
     return false;
 }

@@ -10,18 +10,18 @@
     <script src="./js/response_desc.js" type="text/javascript"></script>
   </head>
 
-  <body>
+  <body style="margin: 100px;">
     <header class="header">
 
       <div class="title">
          <span>P3217</span>
-         <a id="test" href="./index.php"><span  id="name-text">Mitya Khoroshikh </span></a>   <!-- Вообще-то я Хороших Дмитрий Максимович, но Mitya Khoroshikh - стилёво!  -->
+         <a href="./index.php"><span  id="name-text">Mitya Khoroshikh </span></a>   <!-- Вообще-то я Хороших Дмитрий Максимович, но Mitya Khoroshikh - стилёво!  -->
          <span>Variant 2711</span>
         </div>
     </header>
 
 
-    <div class="content" style="height: 30cm;">
+    <div class="content">
         <div class="error-screen">
             <div>
             <h1>Error <?=http_response_code()?></h1>

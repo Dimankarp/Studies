@@ -1,9 +1,11 @@
 
 <?php
+$time_start = microtime(true);
   const X_ALLOWED_ARR = [-5, -4, -3, -2, -1, 0, 1, 2, 3];
   const Y_MAX = 5;
   const Y_MIN = -3;
   const RADIUS_ALLOWED_ARR = [1, 2, 3, 4, 5];
+
   
   
     ini_set('display_errors', '1');
@@ -72,7 +74,7 @@
         </div>
     </header>
 
-    <div class="content" style="min-height:30cm;">
+    <div class="content">
     
         <div class="shot-screen">
           <div>
@@ -82,6 +84,10 @@
           <div>
             <?php
             if(isset($_SESSION["shotsArray"])) {
+            $ternary = function($test, $true, $false)
+            {
+            return $test ? $true : $false;
+            }; //Madness?
             echo <<< EOF
             <table>
               <tr>
@@ -95,7 +101,7 @@
             foreach ($_SESSION["shotsArray"] as $shot) {
               echo <<<EOF
               <tr>
-                <td>$shot->isHit</td>
+                <td>{$ternary($shot->isHit, "Yes!", "No")}</td>
                 <td>$shot->x</td>
                 <td>$shot->y</td>
                 <td>$shot->radius</td>
@@ -119,6 +125,8 @@
       of a copyright of this masterpiece, but honeslty - I'm quite tired at this point.
       Anyway, this site was made as  a laboratory task №1 of the Web Programming course of the ITMO University.
       The Author - me, Dmitriy Khoroshikh, ISU number 367597. Was a lot of fun! Out!
+
+      This page rendered in <?=round((microtime(true) - $time_start)*1000, 2); ?> ms.
       <a href="https://github.com/Dimankarp">Github</a>
     </p>
     </footer>

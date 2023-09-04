@@ -19,22 +19,31 @@
     </header>
 
 
-    <div class="content" style="min-height:30cm">
+    <div class="content">
         <div class="form-container">
         
-        <form action="shot.php" method="POST">
+        <form class="coords-form" action="shot.php" method="POST">
           <h1>Try not to miss!</h1>
-          <p>X Coordinate:  <button form="target-coords-form" id="xCoord-button" >0</button> <input id="xCoord-input" type="hidden" name="xCoord" value="0"/></p>
-          <p>Y Coordinate: <input type="text" name="yCoord" id="y-textbox" value="0" required/> </p>
-          
-          <p>Radius: <select name="radius" id="radius-selector" required>
-          </select>
+          <div class="coords-input-pair">
+          <label for="xCoord-button">X Coordinate:</label>
+          <button form="target-coords-form" id="xCoord-button" >0</button> <input id="xCoord-input" type="hidden" name="xCoord" value="0"/>
+          </div>
 
-        </p>
-          <div><input type="submit" value="Shoot!"/></div>
+          <div class="coords-input-pair">
+          <label for="y-textbox">Y Coordinate:</label>
+          <input type="text" name="yCoord" id="y-textbox" value="0" required/> 
+          </div>
+
+          <div class="coords-input-pair">
+          <label for="radius-selector">Radius:</label>
+           <select name="radius" id="radius-selector" required>
+          </select>
+        </div> 
+          <button type="submit" id="coords-submit-btn">Shoot!</button>
           
         </form>
         </div>
+    
     
     
     </div>
