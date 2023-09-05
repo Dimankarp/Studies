@@ -12,7 +12,7 @@ function checkShot($x, $y, $radius) : bool {
 }
 
 class Shot {
-    function __construct(public bool $isHit, public int $x, public float $y, public int $radius, public string $timestamp)
+    function __construct(public bool $isHit, public int $x, public float $y, public int $radius, public int $timestamp)
     {}
 }
 

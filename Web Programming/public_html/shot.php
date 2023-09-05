@@ -36,7 +36,11 @@ $time_start = microtime(true);
             exit();
         }
 
-    } else {
+    } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+      header("Location: index.php");
+      exit();
+    }
+    else {
         #The request is not a POST
         http_response_code(403);
         include('error.php');
@@ -49,8 +53,8 @@ $time_start = microtime(true);
     session_start();
 
     $isHit = checkShot($xCoord, $yCoord, $radius);
-    if(isset($_SESSION["shotsArray"]))array_unshift($_SESSION["shotsArray"], new Shot($isHit, $xCoord, $yCoord, $radius, date('m.d.y h:i:s A')));
-    else $_SESSION["shotsArray"] = [new Shot($isHit, $xCoord, $yCoord, $radius, date('m.d.y h:i:s A'))];
+    if(isset($_SESSION["shotsArray"]))array_unshift($_SESSION["shotsArray"], new Shot($isHit, $xCoord, $yCoord, $radius, time()));
+    else $_SESSION["shotsArray"] = [new Shot($isHit, $xCoord, $yCoord, $radius, time())];
 ?>
 
 <!DOCTYPE html>
@@ -87,6 +91,7 @@ $time_start = microtime(true);
             {
             return $test ? $true : $false;
             }; //Madness?
+            $date = function($time){return date('m.d.y H:i:s', $time);};
             echo <<< EOF
             <table>
               <tr>
@@ -104,7 +109,7 @@ $time_start = microtime(true);
                 <td>$shot->x</td>
                 <td>$shot->y</td>
                 <td>$shot->radius</td>
-                <td>$shot->timestamp</td>
+                <td>{$date($shot->timestamp)}</td>
               </tr>
             EOF;
             }
@@ -125,7 +130,7 @@ $time_start = microtime(true);
       Anyway, this site was made as  a laboratory task №1 of the Web Programming course of the ITMO University.
       The Author - me, Dmitriy Khoroshikh, ISU number 367597. Was a lot of fun! Out!
 
-      This page rendered in <?=round((microtime(true) - $time_start)*1000, 2); ?> ms at <?= date('m.d.y h:i:s A')?>.
+      This page rendered in <?=round((microtime(true) - $time_start)*1000, 2); ?> ms at <?= date('m.d.y H:i:s')?>.
       <a href="https://github.com/Dimankarp">Github</a>
     </p>
     </footer>
