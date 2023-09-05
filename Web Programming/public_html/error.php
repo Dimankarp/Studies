@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/error-page.css">
-    <script src="./js/response_desc.js" type="text/javascript"></script>
   </head>
 
   <body style="margin: 100px;">

@@ -22,7 +22,7 @@ $time_start = microtime(true);
             include('error.php');
             exit();
         }
-
+        if(isset($_POST["time-zone"]) && !empty(strip_tags($_POST["time-zone"]))) date_default_timezone_set(strip_tags($_POST["time-zone"]));
         header("Content-Type: text/HTML; charset=utf-8");
         header("Content-Transfer-Encoding: 8bit");
         $success =true;
@@ -66,7 +66,6 @@ $time_start = microtime(true);
 
   <body>
     <header class="header" id="sticky_header">
-    <script src="./js/sticky_header.js" type="text/javascript"></script>
       <div class="title">
          <span>P3217</span>
          <a href="./index.php"><span  id="name-text">Mitya Khoroshikh </span></a>   <!-- Вообще-то я Хороших Дмитрий Максимович, но Mitya Khoroshikh - стилёво!  -->
@@ -126,7 +125,7 @@ $time_start = microtime(true);
       Anyway, this site was made as  a laboratory task №1 of the Web Programming course of the ITMO University.
       The Author - me, Dmitriy Khoroshikh, ISU number 367597. Was a lot of fun! Out!
 
-      This page rendered in <?=round((microtime(true) - $time_start)*1000, 2); ?> ms.
+      This page rendered in <?=round((microtime(true) - $time_start)*1000, 2); ?> ms at <?= date('m.d.y h:i:s A')?>.
       <a href="https://github.com/Dimankarp">Github</a>
     </p>
     </footer>

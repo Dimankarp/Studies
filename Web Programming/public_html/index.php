@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>Mitya's site</title>
     <meta charset="utf-8">
@@ -38,6 +37,8 @@
           <label for="radius-selector">Radius:</label>
            <select name="radius" id="radius-selector" required>
           </select>
+          <input id="time-zone-input" type="hidden" name="time-zone" value="">
+          <script>document.getElementById("time-zone-input").value = Intl.DateTimeFormat().resolvedOptions().timeZone </script>
         </div> 
           <button type="submit" id="coords-submit-btn">Shoot!</button>
           
