@@ -1,0 +1,320 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multirow}
+\pgfplotsset{width=\textwidth, compat=1.13}
+
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{statistics}
+\usetikzlibrary{patterns.meta}
+
+
+\graphicspath{{./}}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+\pagestyle{plain}
+
+\fancypagestyle{firstpage}{%
+  \chead{
+  МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ 
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ  
+ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ\bigskip
+
+«Национальный исследовательский университет ИТМО»\bigskip
+
+ФИЗИЧЕСКИЙ ФАКУЛЬТЕТ 
+}
+\fancyfoot[CO]{Санкт-Петербург, 2023}%
+}
+
+
+
+\definecolor{aqua}{HTML}{003844}
+\definecolor{peri}{HTML}{5EB1BF}
+\definecolor{royal_blue}{HTML}{0A2463}
+\definecolor{periwinkle}{HTML}{D8DCFF}
+\definecolor{cerulean}{HTML}{247BA0}
+\definecolor{bloodred}{HTML}{690500}
+\definecolor{imperial_red}{HTML}{FB3640}
+\definecolor{purple}{HTML}{511730}
+\definecolor{tangerine}{HTML}{FFA781}
+
+\definecolor{blue1}{HTML}{54BEBE}
+\definecolor{blue2}{HTML}{76C8C8}
+\definecolor{blue3}{HTML}{98D1D1}
+\definecolor{blue4}{HTML}{BADBDB}
+
+\definecolor{pink1}{HTML}{C80064}
+\definecolor{pink2}{HTML}{D7658B}
+\newtheorem*{task}{Условие}
+\newtheorem*{finish}{Заключение}
+
+%\tikzexternalize
+\begin{document}
+\newgeometry{top=1.6cm,bottom=1.6cm, left = 1.2cm, right = 1.2cm}
+
+\topskip0pt
+\vspace*{0.25\textheight}
+\begin{center}
+\textbf{\LARGE РАБОЧИЙ ПРОТОКОЛ И ОТЧЁТ }
+
+\LARGE по лабораторной работе №1.01
+
+\LARGE <<Исследование распределения случайной величины>>
+
+\end{center}
+\vspace*{5cm}
+\begin{flushright}
+\begin{minipage}{.33\linewidth}
+\textit{\textbf{Выполнил:}}\\
+Хороших Дмитрий - P3217\\
+\textit{\textbf{Преподаватель:}}\\
+Коробков Максим Петрович
+\end{minipage}
+\end{flushright}
+
+
+\thispagestyle{firstpage}
+\newpage
+\tableofcontents
+
+\restoregeometry
+\section{Введение}
+\begin{enumerate}
+\item Цель работы:
+
+Вычисление распределения случайной величины на примере измерений амплитуд частот в записи шума и сравнение его с нормальным распределением.
+
+\item Задачи:
+	\begin{enumerate}
+		\item[1.]  С помощью микрофона записать несколько секунд звукового шума.
+		\item[2.] Получить массив амплитуд по всем записываемым частотам.
+		\item[3.] Построить гистограмму распределения результатов измерений.
+		\item[4.] Вычислить выборочное среднее и выборочное среднеквадратичное отклонение.
+		\item[5.] Сравнить гистограмму с графиком функции нормального распределения (функции Гаусса) с таким же как и у экспериментального распределения средним значением и среднеквадратичным отклонением.
+		\item[6.] Высчитать среднеквадратичное отклонение среднего значения и доверительный интервал для  этого среднего значения.
+	\end{enumerate}
+		
+\item Объект исследования:
+
+5-секундный звуковой файл с шумом (в формате .WAV).
+
+\item Метод экспериментального исследования:
+
+Однократный прямой замер амплитуд набора частот.
+
+\item Рабочие формулы:
+
+Функция Гаусса:
+\begin{equation}
+ \rho (t) = \frac{1}{\sigma \sqrt{2\pi}}\exp\left( -\frac{(t-\langle t \rangle)^2}{2 \sigma^2}\right)
+\end{equation}
+
+Выборочное среднее (приближение мат. ожидания):
+\begin{equation}
+\langle t \rangle_N = \frac{1}{N} \sum^N_{i=1} t_i
+\end{equation}
+
+Выборочное среднеквадратичное отклонение:
+
+\begin{equation}
+\sigma_N = \sqrt{\frac{1}{N-1}\sum^N_{i=1} (t_i - \langle t \rangle_N)^2}
+\end{equation}
+
+Среднеквадратичное отклонение среднего значения:
+\begin{equation}
+\sigma_{\langle t \rangle} = \sqrt{ \frac{1}{N * (N-1)} * \sum^N_{i=1} (t_i - \langle t \rangle_N)^2}
+\end{equation}
+
+Доверительный интервал для среднего значения амплитуды:
+\begin{equation}
+\Delta t = t_{\alpha, N} * \sigma_{\langle t \rangle} 
+\end{equation}
+\item Исходные данные:
+
+Файл с полученными амплитудами доступен по ссылке: \url{https://github.com/Dimankarp}.
+
+\item Измерительные приборы:
+
+\begin{center}
+
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+№ п/п & Наименование & Тип & Используемый диапазон & Погрешность прибора\\
+\hline
+1 & Микрофон WH-CH500 & Электронный & -  & -\\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+\end{enumerate}
+\section{Результаты прямых измерений и их обработка}
+\subsection{Прямые измерения}
+
+Получим список амплитуд (в единицах измерения dBFS) \footnote{dBFS (decibels to full scale) - опорный сигнал (мощность, напряжение) соответствует полной шкале аналого-цифрового преобразователя} из звукового файла и отразим его в таблице. В силу большого числа обрабатываемых данных в таблице приведены лишь начальные и конечные измерения. Полная таблица \ref{tab:1} доступна по ссылке: \url{https://github.com/Dimankarp}.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabularx}{\linewidth}{l| l l L}
+\hline
+№ & $t_i$, dBFS & $t_i-\langle t \rangle_N$, dBFS & $(t_i-\langle t \rangle_N)^2$, $(dBFS)^2$\\
+\hline
+1 & 346.0 & 96.945 & 9398.294 \\ 
+\hline 
+2 & 333.0 & 83.945 & 7046.729 \\ 
+\hline 
+3 & 343.0 & 93.945 & 8825.625 \\ 
+\hline
+... & ... & ... & ... \\
+\hline
+4998 & 264.0 & 14.945 & 223.347 \\ 
+\hline 
+4999 & 288.0 & 38.945 & 1516.697 \\ 
+\hline 
+5000 & 323.0 & 73.945 & 5467.833 \\ 
+\hline \\
+ & $\langle t \rangle_N = 249.06 $ dBFS & $\sum^N_{t=1} (t_i - \langle t \rangle_N)=-7.63 * 10^{-11}$ dBFS &  $\sigma_N = 56.91$  dBFS  $\rho_{max}=0.007 $ $dBFS^{-1}$\\
+ \hline
+\end{tabularx}
+\caption{Результаты прямых измерений}
+\end{center}
+\label{tab:1}
+\end{table}
+
+\subsection{Построение гистограммы и функции Гаусса}
+Подготовим данные для построения гистограммы плотности распределения вероятности и графика функции нормального распределения. Аналогично, случаю с прямыми измерениями, таблица \ref{tab:2} приведена частично и доступна полностью по ссылке: \url{https://github.com/Dimankarp}.
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Границы интервалов, $dBFS$ & $\Delta N$& $\frac{\Delta N}{N*\Delta t}$, $dBFS^{-1}$ & $t$, $dBFS$ & $\rho$, $dBFS^{-1}$\\
+\hline 
+[79.0;83.47]& 2 &  9e-05 & 81.235 & 9e-05 \\ 
+\hline
+[83.47;87.94] & 1 & 4e-05 & 85.705 & 0.00011 \\ 
+\hline
+[87.94;92.41] & 1 & 4e-05 & 90.175 & 0.00014 \\ 
+\hline
+... & ... & ... & ... & ...\\
+\hline
+[248.91;253.39] & 178 & 0.00796 & 251.15 & 0.00701 \\ 
+\hline
+[253.39;257.86] & 138 & 0.00617 & 255.625 & 0.00696 \\ 
+\hline
+[257.86;262.33] & 203 & 0.00908 & 260.095 & 0.00688 \\ 
+\hline
+... & ... & ... & ... & ...\\
+\hline
+[378.59;383.06] & 5 & 0.00022 & 380.825 & 0.00048 \\ 
+\hline
+[383.06;387.53] & 2 & 9e-05 & 385.295 & 0.0004 \\ 
+\hline
+[387.53;392.0] & 2 & 9e-05 & 389.765 & 0.00033 \\ 
+\hline
+\end{tabular}
+\caption{Данные для построения гистограммы}
+\end{center}
+\label{tab:2}
+\end{table}
+
+Гистограмма плотности распределения вероятности и график функции нормального распределения приведены на рисунке \ref{gr:1}.
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+	axis lines = left,
+	xlabel = \(t\),
+	ylabel = {\(\rho\)},
+	ymin=0,
+	xmin=40,
+	xmax=420,
+	grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    minor tick num=5,
+	axis x line = bottom,
+	axis line style ={line width = .3pt},
+	ymax=0.01,
+	legend style={at={(0.03,0.9)},anchor=west}
+	]
+\addplot[ybar, style = {fill=blue3, draw=blue1, mark=none, bar width = 5pt, fill opacity=0.9, draw opacity=0.9}] table [x, y, col sep=comma] {hist.csv};
+\addplot[smooth, pink1, line width=2pt, dashed] table [x, y, col sep=comma] {normal.csv};
+\legend{Гистограмма плотности вероятности, Функция нормального распределения}
+\end{axis}
+\end{tikzpicture}
+\caption{Сравнение плотности распределения вероятности с функцией Гаусса (функцией нормального распределения)}
+\label{gr:1}
+\end{figure}
+
+\subsection{Сравнение полученного распределения с нормальным}
+При визуальном сравнение гистограммы и графика очевидно сходство их общей формы и некоторой симметрии относительно математического ожидания.  
+
+Рассмотрим таблицу соответствия долей попавшихв $\sigma$-интервалы амплитуд к соответствующим значениям вероятности нормального распределения.
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{} & \multicolumn{2}{c}{Интервал, $dBFS$} & \multirow{2}{*}{$\Delta N$} & \multirow{2}{*}{$\frac{\Delta N}{N}$} & \multirow{2}{*}{$P$}\\
+\cline{2-3}
+& от & до & & &\\
+\hline 
+
+$\langle t \rangle_N \pm \sigma_N$  & 192.146 & 305.964 &  3319& 0.664&$\approx 0.683$ \\
+\hline
+$\langle t \rangle_N \pm 2\sigma_N$  & 135.237 & 362.873 & 4781& 0.956&$\approx 0.954$\\
+\hline
+$\langle t \rangle_N \pm 3\sigma_N$ & 78.328 & 419.783 & 5000& 1.000 & $\approx 0.997$\\
+\hline
+\end{tabular}
+\caption{Данные для построения гистограммы}
+\end{center}
+\label{tab:3}
+\end{table}
+
+Заметим, что значения $\frac{\Delta N}{N}$ доли попавших в интервал амплитуд близко к вероятности, соответствующей нормальному распределению. 
+
+\subsection{Отклонение среднего значения и его доверительный интервал}
+Вычислим среднеквадратичное отклонение среднего значения и его доверительный интервал.
+\begin{equation*}
+\sigma_{\langle t \rangle} = \sqrt{ \frac{1}{N * (N-1)} * \sum^N_{i=1} (t_i - \langle t \rangle_N)^2} \approx 0.805
+\end{equation*}
+Табличное значение коэффециент Стьюдента для числа измерений $N=5000$ и доверительной вероятности $\alpha=0.95$ равно $t_{\alpha, N}\approx 1.9604$.
+
+Таким образом доверительный интервал равен:
+
+\begin{equation*}
+\Delta t = t_{\alpha, N} * \sigma_{\langle t \rangle} \approx 1.578 
+\end{equation*}
+
+
+\section{Вывод}
+Таким образом, в ходе выполнения лабораторной работы удалось, взяв в качестве исходных данных массив амплитуд из аудиозаписи шума, вычислить распределение случайной величины и установить её схожесть с нормальным распределением.
+
+
+\section{Приложение}
+Проект этой лабораторной работы, содержащий полные таблицы, фалй с Python-кодом, использованным для вычисления, аудиозапись шума и исходны TeX-файлы доступен по ссылке: \url().
+
+\end{document}
+
+
+
