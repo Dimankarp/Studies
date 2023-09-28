@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "version": "0.1",
+  "name": "Beige Shirts",
+  "theme": {
+    "images" : {
+      "theme_ntp_background" : "images/flower-pattern.png"
+    },
+    "colors" : {
+      "frame" : [221, 190, 169] ,
+      "frame_inactive" : [221, 190, 169] ,
+      "toolbar" : [227, 218, 205],
+      "ntp_text" :[14, 14, 14],
+      "ntp_link" : [14, 14, 14],
+      "ntp_header":   [14, 14, 14],
+      "ntp_section" : [14, 14, 14],
+      "ntp_background" : [243,238,232],
+      "button_background" :[221, 190, 169] ,
+      "background_tab":   [221, 190, 169] ,
+      "background_tab_inactive":   [221, 190, 169] ,
+      "bookmark_text":   [14, 14, 14],
+      "omnibox_background":   [255, 255, 255],
+      "omnibox_text":   [14, 14, 14],
+      "tab_background_text":   [14, 14, 14],
+      "tab_background_text_inactive":   [14, 14, 14],
+      "tab_text":   [20, 20, 20],
+      "toolbar_button_icon":   [14, 14, 14],
+      "toolbar_text":   [14, 14, 14]
+    },
+    "tints": {
+         "buttons": [ 0, 0, 0 ],
+         "frame_inactive": [ -1, -1, -1 ],
+         "frame_incognito": [ -1, -1, -1 ],
+         "frame_incognito_inactive": [ -1, -1, -1 ]
+      },
+      "properties": {
+        "ntp_background_alignment": "bottom",
+        "ntp_background_repeat": "repeat",
+        "ntp_logo_alternate": 1
+     }
+  }
+}
+
+//beige [227, 218, 205]
+//light beige [243,238,232]
+//blueish [136, 178, 198]
+//pink  [248, 193, 202]
