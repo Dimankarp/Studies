@@ -1,1 +1,7 @@
 *.pak #Compiled chrome theme
+
+*.toc
+*.synctex.gz
+*.out
+*.log
+*.aux
