@@ -45,11 +45,12 @@ public class ControllerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request);
+		System.out.println("Responding with STARTING INDEX");
 		ServletContext servletContext = getServletContext();
 		if(	   request.getParameter("xCoord") != null
 			&& request.getParameter("yCoord") != null
 			&& request.getParameter("radius") != null) {
-			servletContext.getNamedDispatcher("AreaChecker").forward(request, response);
+			servletContext.getRequestDispatcher("/checker").forward(request, response);
 			return;
 		}
 		if(request.getHeader("accept_json") != null && request.getHeader("accept_json").equals("true")) {
@@ -73,8 +74,12 @@ public class ControllerServlet extends HttpServlet {
 				}
 			return;
 		}
+		/* Uncomment if the logic of Controller Servlet controlling literally  everything has changed
 		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		servletContext.getRequestDispatcher("/error").forward(request, response);
+		*/
+		System.out.println("Responding with INDEX");
+		servletContext.getRequestDispatcher("/index").forward(request, response);
 		}
 		
 

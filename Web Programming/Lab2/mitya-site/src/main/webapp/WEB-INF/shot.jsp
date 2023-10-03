@@ -14,11 +14,11 @@
     <title>Mitya's Site</title>
     <meta charset="utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/fonts.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shot-page.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/record-table.css">
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/cloud_favicon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fonts.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shot-page.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/record-table.css">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/cloud_favicon.png">
 </head>
 
 <body>

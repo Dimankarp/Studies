@@ -5,11 +5,10 @@
 <head>
     <title>Mitya's Site</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/fonts.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/record-table.css">
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/cloud_favicon.png">
-    <script type="module" src="./js/index_page.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fonts.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/record-table.css">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/cloud_favicon.png">
 </head>
 
 <body>
@@ -45,8 +44,8 @@
     <div class="canvas-container">
         <canvas width="400px" height="400px" id="target-canvas"></canvas>
         <div class="target-settings">
-                <input type="checkbox" id="child-mode-check" value="false">
-                <input type="checkbox" id="prefire-mode-check" value="false">
+                <input type="checkbox" id="child-mode-check">
+                <input type="checkbox" id="prefire-mode-check">
 
             </div>
 
@@ -69,8 +68,8 @@
         <a href="https://github.com/Dimankarp">Github</a>
     </p>
 </footer>
-<script type="module" src="./js/index_page.js"></script>
-<script type="module" src="./js/drawing.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/resources/js/index_page.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/resources/js/drawing.js"></script>
 </body>
 </html>
 

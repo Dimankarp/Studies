@@ -60,13 +60,15 @@ if(lastRadius !== undefined){
 const childModeCheckbox = document.getElementById("child-mode-check")
 let childModeChecked = getCookie("childModeChecked")
 if(childModeChecked !== undefined){
-    childModeCheckbox.checked = childModeChecked.val
+    if(childModeChecked.val==='true' !== childModeCheckbox.checked){
+        childModeCheckbox.click()
+    }
 }
 
 const prefireModeCheckbox = document.getElementById("prefire-mode-check")
 let prefireModeChecked = getCookie("prefireModeChecked")
 if(prefireModeChecked !== undefined){
-    prefireModeCheckbox.checked = prefireModeChecked.val
+    if(prefireModeChecked.val==='true'  !== prefireModeCheckbox.checked)prefireModeCheckbox.click()
 }
 
 

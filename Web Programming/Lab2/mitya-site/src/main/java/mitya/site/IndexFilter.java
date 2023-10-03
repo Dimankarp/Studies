@@ -12,13 +12,15 @@ import java.io.IOException;
 public class IndexFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        if (!req.getMethod().equals("GET")) {
-            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            getServletContext().getRequestDispatcher("/error").forward(req, res);
-        }
-        else {
+        String requestPath = req.getRequestURI().substring(req.getContextPath().length());
+        System.out.println(requestPath);
+        if(requestPath.startsWith("/resources")){
             chain.doFilter(req, res);
         }
+        else {
+            req.getRequestDispatcher("/pages"+requestPath).forward(req, res);
+        }
+
     }
 
 }

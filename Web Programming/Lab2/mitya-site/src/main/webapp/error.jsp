@@ -6,8 +6,8 @@
         Ooops...
     </jsp:attribute>
     <jsp:attribute name="head_additives">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/css/error-page.css">
-        <script type = "text/javascript" src="${pageContext.request.contextPath}/js/response_desc.js"></script>
+          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/error-page.css">
+        <script type = "text/javascript" src="${pageContext.request.contextPath}/resources/js/response_desc.js"></script>
     </jsp:attribute>
 
     <jsp:attribute name="post_scripts">
