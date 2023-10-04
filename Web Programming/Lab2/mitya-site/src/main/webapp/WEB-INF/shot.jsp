@@ -1,4 +1,4 @@
-<%@page import="java.text.SimpleDateFormat, java.util.TimeZone, java.util.Date, java.util.LinkedList, mitya.site.Shot" %>
+<%@page import="java.text.SimpleDateFormat, java.util.TimeZone, java.util.Date, java.util.LinkedList, mitya.site.model.Shot" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%
     long start_time = System.currentTimeMillis();

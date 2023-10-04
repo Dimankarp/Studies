@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fonts.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/record-table.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/cloud_favicon.png">
+    <script type="module" src="${pageContext.request.contextPath}/resources/js/index_page.js"></script>
 </head>
 
 <body>
@@ -68,8 +69,6 @@
         <a href="https://github.com/Dimankarp">Github</a>
     </p>
 </footer>
-<script type="module" src="${pageContext.request.contextPath}/resources/js/index_page.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/resources/js/drawing.js"></script>
 </body>
 </html>
 

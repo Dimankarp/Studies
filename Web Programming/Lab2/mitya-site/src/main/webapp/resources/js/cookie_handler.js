@@ -1,5 +1,3 @@
-
-
 export function getCookies(){
     return document.cookie.split("; ").map((value, index, array)=>{
         let {key, val} = value.split("=")

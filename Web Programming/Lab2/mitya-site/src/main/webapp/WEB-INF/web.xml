@@ -44,11 +44,11 @@
     </servlet-mapping>
 
     <filter>
-        <filter-name>IndexFilter</filter-name>
-        <filter-class>mitya.site.IndexFilter</filter-class>
+        <filter-name>ResourceFilter</filter-name>
+        <filter-class>mitya.site.ResourceFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>IndexFilter</filter-name>
+        <filter-name>ResourceFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
