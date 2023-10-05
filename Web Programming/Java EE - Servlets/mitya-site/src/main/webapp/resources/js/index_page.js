@@ -1,6 +1,5 @@
 
 import {Y_MAX, Y_MIN, yIsValid, RADIUS_ALLOWED_ARR, X_ALLOWED_ARR, xIsValid} from './input_validator.js'
-import {setCookie, getCookie, getCookies} from './cookie_handler.js'
 import {Drawer, LOCKED_COLOR, UNLOCKED_COLOR} from "./drawing.js";
 const DATE_FORMAT_OPTIONS = {
     hour12: false,
@@ -106,13 +105,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    //COOKING
+    //LOCAL STORAGE OPERATIONS
     let chosenIndex = 4;
-    let lastXCoords = getCookie("xCoord")
-    if(lastXCoords !== undefined){
-        if(xIsValid(lastXCoords.val)){
-            inputXButton.innerHTML =lastXCoords.val
-            inputX.value =lastXCoords.val
+    let lastXCoords = window.localStorage.getItem("xCoord")
+    if(lastXCoords !== null){
+        if(xIsValid(lastXCoords)){
+            inputXButton.innerHTML =lastXCoords
+            inputX.value =lastXCoords
         }
     }
     function changeValue() {
@@ -122,10 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     inputXButton.addEventListener('click', changeValue);
 
-    let lastYCoords = getCookie("yCoord")
-    if(lastYCoords !== undefined){
-        if(yIsValid(lastYCoords.val)){
-            inputY.value =lastYCoords.val
+    let lastYCoords = window.localStorage.getItem("yCoord")
+    if(lastYCoords !== null){
+        if(yIsValid(lastYCoords)){
+            inputY.value =lastYCoords
 
         }
     }
@@ -144,34 +143,34 @@ document.addEventListener("DOMContentLoaded", function () {
         inputRadius.appendChild(new Option(RADIUS_ALLOWED_ARR[i], RADIUS_ALLOWED_ARR[i], i===0))
     }
 
-    let lastRadius = getCookie("radius")
-    if(lastRadius !== undefined){
-        let ind = RADIUS_ALLOWED_ARR.indexOf(Number(lastRadius.val))
+    let lastRadius = window.localStorage.getItem("radius")
+    if(lastRadius !== null){
+        let ind = RADIUS_ALLOWED_ARR.indexOf(Number(lastRadius))
         if(ind !== -1){
             inputRadius.selectedIndex = ind
         }
     }
 
-    let childModeChecked = getCookie("childModeChecked")
-    if(childModeChecked !== undefined){
-        if(childModeChecked.val==='true' !== childModeCheckbox.checked){
+    let childModeChecked = window.localStorage.getItem("childModeChecked")
+    if(childModeChecked !== null){
+        if(childModeChecked==='true' !== childModeCheckbox.checked){
             childModeCheckbox.click()
         }
     }
 
-    let prefireModeChecked = getCookie("prefireModeChecked")
-    if(prefireModeChecked !== undefined){
-        if(prefireModeChecked.val==='true'  !== prefireModeCheckbox.checked)prefireModeCheckbox.click()
+    let prefireModeChecked = window.localStorage.getItem("prefireModeChecked")
+    if(prefireModeChecked !== null){
+        if(prefireModeChecked==='true'  !== prefireModeCheckbox.checked)prefireModeCheckbox.click()
     }
 
 
     document.getElementById("main-coords-form").addEventListener("formdata", (e)=>{
         const formData = e.formData
-        setCookie("xCoord", formData.get("xCoord"))
-        setCookie("yCoord", formData.get("yCoord"))
-        setCookie("radius", formData.get("radius"))
-        setCookie("childModeChecked", childModeCheckbox.checked)
-        setCookie("prefireModeChecked", prefireModeCheckbox.checked)
+        window.localStorage.setItem("xCoord", formData.get("xCoord"))
+        window.localStorage.setItem("yCoord", formData.get("yCoord"))
+        window.localStorage.setItem("radius", formData.get("radius"))
+        window.localStorage.setItem("childModeChecked", childModeCheckbox.checked)
+        window.localStorage.setItem("prefireModeChecked", prefireModeCheckbox.checked)
     })
 
     //GETTING SHOTS
