@@ -1,0 +1,25 @@
+\addplot[only marks, blue1, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ blue1,mark size=0.4pt, line width=4pt }, error bar style={fill=blue1,scale=2, line width=1pt}] table [y = STR1_T1, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[blue1, domain=1:6] {8.589090909090908*x};
+\addplot[only marks, blue2, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ blue2,mark size=0.4pt, line width=4pt }, error bar style={fill=blue2,scale=2, line width=1pt}] table [y = STR1_T2, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[blue2, domain=1:6] {9.65090909090909*x};
+\addplot[only marks, blue3, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ blue3,mark size=0.4pt, line width=4pt }, error bar style={fill=blue3,scale=2, line width=1pt}] table [y = STR1_T3, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[blue3, domain=1:6] {10.58*x};
+\addplot[only marks, blue4, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ blue4,mark size=0.4pt, line width=4pt }, error bar style={fill=blue4,scale=2, line width=1pt}] table [y = STR1_T4, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[blue4, domain=1:6] {11.658181818181818*x};
+\addplot[only marks, blue5, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ blue5,mark size=0.4pt, line width=4pt }, error bar style={fill=blue5,scale=2, line width=1pt}] table [y = STR1_T5, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[blue5, domain=1:6] {12.469090909090909*x};
+\addplot[only marks, blue6, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ blue6,mark size=0.4pt, line width=4pt }, error bar style={fill=blue6,scale=2, line width=1pt}] table [y = STR1_T6, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[blue6, domain=1:6] {13.340000000000002*x};
+\addplot[only marks, pink1, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ pink1,mark size=0.4pt, line width=4pt }, error bar style={fill=pink1,scale=2, line width=1pt}] table [y = STR2_T1, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[pink1, domain=1:6] {14.036363636363637*x};
+\addplot[only marks, pink2, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ pink2,mark size=0.4pt, line width=4pt }, error bar style={fill=pink2,scale=2, line width=1pt}] table [y = STR2_T2, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[pink2, domain=1:6] {15.796363636363635*x};
+\addplot[only marks, pink3, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ pink3,mark size=0.4pt, line width=4pt }, error bar style={fill=pink3,scale=2, line width=1pt}] table [y = STR2_T3, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[pink3, domain=1:6] {17.05090909090909*x};
+\addplot[only marks, pink4, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ pink4,mark size=0.4pt, line width=4pt }, error bar style={fill=pink4,scale=2, line width=1pt}] table [y = STR2_T4, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[pink4, domain=1:6] {18.367272727272727*x};
+\addplot[only marks, pink5, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ pink5,mark size=0.4pt, line width=4pt }, error bar style={fill=pink5,scale=2, line width=1pt}] table [y = STR2_T5, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[pink5, domain=1:6] {19.61090909090909*x};
+\addplot[only marks, pink6, mark size =2pt, mark=square*, error bars/.cd, y dir=both, y explicit, x dir=both, x explicit, error mark options={ pink6,mark size=0.4pt, line width=4pt }, error bar style={fill=pink6,scale=2, line width=1pt}] table [y = STR2_T6, x = N,  col sep=comma] {../freq_by_harm.csv}; 
+\addplot[pink6, domain=1:6] {21.02*x};
+\legend{,$T_{\text{эласт} 1}$, ,$T_{\text{эласт} 2}$, ,$T_{\text{эласт} 3}$, ,$T_{\text{эласт} 4}$, ,$T_{\text{эласт} 5}$, ,$T_{\text{эласт} 6}$, ,$T_{\text{неэласт} 1}$, ,$T_{\text{неэласт} 2}$, ,$T_{\text{неэласт} 3}$, ,$T_{\text{неэласт} 4}$, ,$T_{\text{неэласт} 5}$, ,$T_{\text{неэласт} 6}$}
