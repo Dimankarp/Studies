@@ -1,2 +1,0 @@
-\addplot[blue1, domain=0:3] {255.81530477099787*x}; 
-\addplot[blue3, domain=0:3] {645.6013983475088*x}; 
