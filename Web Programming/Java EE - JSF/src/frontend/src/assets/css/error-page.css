@@ -1,0 +1,13 @@
+.error-screen {
+    display: block;
+    text-align: center;
+    font-family: "Marny";
+    font-size: 80px;
+}
+.error-screen div {
+display: inline-block;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+}
+

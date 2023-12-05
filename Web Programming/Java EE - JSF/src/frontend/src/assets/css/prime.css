@@ -1,0 +1,26 @@
+html body .form-slider.ui-slider{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #dfd8ce;
+    height: 10px;
+}
+
+
+html .form-slider.ui-slider .ui-slider-range{
+    background: #77665c;
+}
+
+html body .form-slider.ui-slider .ui-slider-handle{
+    width: 18px;
+    height: 18px;
+    border: 3px dashed #77665c;
+    box-sizing: border-box;
+    background: #dfd8ce;
+    top: -4px;
+    border-radius: 0%;
+}
+
+html body .form-slider.ui-slider .ui-slider-handle.ui-state-hover{
+    background: #77665c;
+    border: 2px dotted #77665c;
+}

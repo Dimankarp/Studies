@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Marny";
+    font-weight: 400;
+    font-style: italic;
+    src:
+        local("Marny"),
+        url("/resources/fonts/MarnyRegularItalic.otf") format("opentype");
+
+}
+
+@font-face {
+    font-family: "Harmony";
+    font-weight: 400;
+    src:
+        local("Marny"),
+        url("/resources/fonts/HarmonyRegular.otf") format("opentype");
+
+}

@@ -1,0 +1,21 @@
+.shot-screen {
+    display: block;
+    text-align: center;
+    font-family: "Harmony";
+    font-size: 50px;
+}
+.shot-screen h1{
+    font-size:  3em;
+}
+
+.shot-screen div {
+display: block;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+}
+
+.shot-screen .record-table-container{
+    font-size: 50px;
+}
+
