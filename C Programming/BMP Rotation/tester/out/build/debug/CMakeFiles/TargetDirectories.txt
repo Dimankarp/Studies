@@ -1,0 +1,4 @@
+/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/image-matcher.dir
+/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/check.dir
+/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/edit_cache.dir
+/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/rebuild_cache.dir

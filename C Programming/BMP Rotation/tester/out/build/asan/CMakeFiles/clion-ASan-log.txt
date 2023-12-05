@@ -1,0 +1,110 @@
+/snap/clion/250/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=ASan -DCMAKE_MAKE_PROGRAM=/snap/clion/250/bin/ninja/linux/x64/ninja -DCMAKE_C_COMPILER=clang -G Ninja -DCMAKE_BUILD_TYPE=ASan -S /home/dimankarp/assignment-3-image-rotation/tester -B /home/dimankarp/assignment-3-image-rotation/tester/out/build/asan
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) in CMakeLists.txt:
+  cmake_minimum_required() should be called prior to this top-level project()
+  call.  Please see the cmake-commands(7) manual for usage documentation of
+  both commands.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:11 (list):
+  Syntax error in cmake code at
+
+    /home/dimankarp/assignment-3-image-rotation/tester/CMakeLists.txt:11
+
+  when parsing string
+
+    .*/\.gitignore
+
+  Invalid escape sequence \.
+
+  Policy CMP0010 is not set: Bad variable reference syntax is an error.  Run
+  "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:15 (list):
+  Policy CMP0007 is not set: list command no longer ignores empty elements.
+  Run "cmake --help-policy CMP0007" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.  List has value =
+  [;home;dimankarp;assignment-3-image-rotation;tester;tests;1].
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:15 (list):
+  Policy CMP0007 is not set: list command no longer ignores empty elements.
+  Run "cmake --help-policy CMP0007" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.  List has value =
+  [;home;dimankarp;assignment-3-image-rotation;tester;tests;2].
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:15 (list):
+  Policy CMP0007 is not set: list command no longer ignores empty elements.
+  Run "cmake --help-policy CMP0007" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.  List has value =
+  [;home;dimankarp;assignment-3-image-rotation;tester;tests;3].
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:15 (list):
+  Policy CMP0007 is not set: list command no longer ignores empty elements.
+  Run "cmake --help-policy CMP0007" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.  List has value =
+  [;home;dimankarp;assignment-3-image-rotation;tester;tests;4].
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:15 (list):
+  Policy CMP0007 is not set: list command no longer ignores empty elements.
+  Run "cmake --help-policy CMP0007" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.  List has value =
+  [;home;dimankarp;assignment-3-image-rotation;tester;tests;5].
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:15 (list):
+  Policy CMP0007 is not set: list command no longer ignores empty elements.
+  Run "cmake --help-policy CMP0007" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.  List has value =
+  [;home;dimankarp;assignment-3-image-rotation;tester;tests;6].
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 3.26)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+CMake Warning (dev):
+  Policy CMP0058 is not set: Ninja requires custom command byproducts to be
+  explicit.  Run "cmake --help-policy CMP0058" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  This project specifies custom command DEPENDS on files in the build tree
+  that are not specified as the OUTPUT or BYPRODUCTS of any
+  add_custom_command or add_custom_target:
+
+   image-transformer
+
+  For compatibility with versions of CMake that did not have the BYPRODUCTS
+  option, CMake is generating phony rules for such files to convince 'ninja'
+  to build.
+
+  Project authors should add the missing BYPRODUCTS or OUTPUT options to the
+  custom commands that produce these files.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Build files have been written to: /home/dimankarp/assignment-3-image-rotation/tester/out/build/asan

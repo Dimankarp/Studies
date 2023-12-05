@@ -1,0 +1,9 @@
+# ninja log v5
+0	135	1700167483177223632	CMakeFiles/image-matcher.dir/src/main.o	eb9985b702d3a5c9
+0	162	1700167483205223071	CMakeFiles/image-matcher.dir/src/bmp.o	6ec9a1ef0494e820
+0	6	0	/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/cmake.verify_globs	701aafeacfc349f1
+135	210	1700167483249222186	CMakeFiles/image-matcher.dir/src/util.o	436373a09d376b13
+1	160	1700167483201223151	CMakeFiles/image-matcher.dir/src/file_cmp.o	ca38ab3a6025a84f
+211	273	1700167483313220902	image-matcher	95ab40fe14da84c1
+7	32	0	/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/cmake.verify_globs	701aafeacfc349f1
+4	20	0	/home/dimankarp/assignment-3-image-rotation/tester/out/build/debug/CMakeFiles/cmake.verify_globs	701aafeacfc349f1

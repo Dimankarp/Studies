@@ -1,0 +1,7 @@
+### Dictionary in NASM ###
+/obj
+/__pycache__
+/report.xml
+/xmlrunner.py
+### Python compiled
+*.pyc

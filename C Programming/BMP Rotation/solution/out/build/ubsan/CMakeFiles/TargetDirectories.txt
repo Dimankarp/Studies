@@ -1,0 +1,3 @@
+/home/dimankarp/assignment-3-image-rotation/solution/out/build/ubsan/CMakeFiles/image-transformer.dir
+/home/dimankarp/assignment-3-image-rotation/solution/out/build/ubsan/CMakeFiles/edit_cache.dir
+/home/dimankarp/assignment-3-image-rotation/solution/out/build/ubsan/CMakeFiles/rebuild_cache.dir
