@@ -1,0 +1,35 @@
+<ui:composition template="/WEB-INF/templates/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+>
+    <ui:define name="title">Mitya's Site</ui:define>
+    <ui:define name="links">
+        <h:outputStylesheet library="css" name="index.css"/>
+        <h:outputStylesheet library="css" name="fonts.css"/>
+        <h:outputStylesheet library="css" name="record-table.css"/>
+        <h:outputStylesheet library="css" name="shot-redirect.css"/>
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/resources/img/cloud_favicon.png"/>
+        <script src="#{request.contextPath}/resources/js/clock.js"></script>
+    </ui:define>
+    <ui:define name="body">
+
+        <div class="content">
+            <div class="clock-container">
+                <span id="clock-date"></span>
+                <br/>
+                <span id="clock-time"></span>
+            </div>
+
+            <div class="shoot-redirect-div">
+                <h:button value="Time to shoot!" outcome="shot"/>
+            </div>
+
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

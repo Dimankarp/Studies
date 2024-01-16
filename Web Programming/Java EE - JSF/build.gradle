@@ -1,0 +1,39 @@
+plugins {
+  id 'java'
+  id 'war'
+}
+
+group 'mitya.sites'
+version '3.1'
+
+repositories {
+  mavenCentral()
+  maven {
+    url   'https://mvnrepository.com/artifact/org.primefaces/primefaces'
+  }
+}
+
+ext {
+  junitVersion = '5.9.2'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
+dependencies {
+  compileOnly('jakarta.platform:jakarta.jakartaee-web-api:9.1.0')
+
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+  implementation 'org.primefaces:primefaces:13.0.1:jakarta'
+  implementation('com.google.code.gson:gson:2.10.1')
+  implementation("org.hibernate.orm:hibernate-core:6.3.0.Final")
+}
+
+test {
+  useJUnitPlatform()  }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>
+        <ui:insert name="title">Mitya's Site</ui:insert>
+    </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF8"/>
+    <ui:insert name="links">
+
+    </ui:insert>
+</h:head>
+<h:body>
+
+    <header class="header" id="sticky_header">
+        <div class="title">
+            <span>P3217</span>
+            <h:link outcome="home"><span id="name-text">Mitya Khoroshikh </span></h:link>
+            <span>Variant 1765</span>
+        </div>
+    </header>
+    <ui:insert name="body"> </ui:insert>
+
+    <footer class="footer">
+        <p>
+            This is a very long text that should be sort
+            of a copyright of this masterpiece, but honestly - I'm quite tired at this point.
+            Anyway, this site was made as  a laboratory task №3 of the Web Programming course of the ITMO University.
+            The Author - me, Dmitriy Khoroshikh, ISU number 367597. Was a lot of fun! Out!
+            <a href="https://github.com/Dimankarp">Github</a>
+        </p>
+    </footer>
+</h:body>
+
+</html>

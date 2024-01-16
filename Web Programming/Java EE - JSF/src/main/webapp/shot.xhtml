@@ -1,0 +1,136 @@
+
+<ui:composition template="/WEB-INF/templates/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ps="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+>
+    <ui:define name="title">Mitya's Site</ui:define>
+    <ui:define name="links">
+        <h:outputStylesheet library="css" name="index.css"/>
+        <h:outputStylesheet library="css" name="fonts.css"/>
+        <h:outputStylesheet library="css" name="record-table.css"/>
+        <h:outputStylesheet library="css" name="shot-page.css"/>
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/resources/img/cloud_favicon.png"/>
+        <script src="#{request.contextPath}/resources/js/input_validator.js"></script>
+        <script src="#{request.contextPath}/resources/js/drawing.js"></script>
+        <script src="#{request.contextPath}/resources/js/index_page.js"></script>
+    </ui:define>
+    <ui:define name="body">
+        <h:outputStylesheet library="css" name="prime.css"/>
+        <div class="content">
+
+            <div class="shot-screen" id="shot-outcome-div" tabindex="0">
+                <h1>
+                    <h:panelGroup id="shot-outcome-group">
+                        <h:outputText id="hit-text"
+                                      rendered="#{shotRecorder.lastShotRecord != null and shotRecorder.lastShotRecord.hit}"
+                                      value="That's a hit!"/>
+                        <h:outputText id="miss-text"
+                                      rendered="#{shotRecorder.lastShotRecord != null and !shotRecorder.lastShotRecord.hit}"
+                                      value="Ooops...You've missed!"/>
+                    </h:panelGroup>
+                </h1>
+            </div>
+            <div class="form-container">
+                <h:form class="coords-form" id="main-coords-form">
+                    <h1 id="test">Try not to miss!</h1>
+                    <div class="coords-input-pair">
+                        <h:outputLabel for="xCoord-textbox" value="X Coordinate:"/>
+                        <h:inputText id="xCoord-textbox" value="#{shot.x}" required="true" maxlength="14"
+                                     validatorMessage="Must be a double between -5 and 5!"
+                                     converterMessage="Must be a number!">
+                            <f:validateDoubleRange minimum="-5" maximum="5"/>
+                            <f:ajax event="blur" render="xCoord-message"/>
+                        </h:inputText>
+                        <p:slider id="x-slider" widgetVar="x-slide"
+                                  for="xCoord-textbox" minValue="-5" maxValue="5" step="0.1" styleClass="form-slider">
+                            <p:ajax event="slideEnd" render="xCoord-message"/>
+                        </p:slider>
+                        <h:message id="xCoord-message" for="xCoord-textbox"/>
+                    </div>
+
+                    <div class="coords-input-pair">
+                        <h:outputLabel for="yCoord-textbox" value="Y Coordinate:"/>
+                        <h:inputText id="yCoord-textbox" value="#{shot.y}" required="true" maxlength="14"
+                                     validatorMessage="Must be a double between -3 and 3!"
+                                     converterMessage="Must be a number!">
+                            <f:validateDoubleRange minimum="-3" maximum="3"/>
+                            <f:ajax event="blur" render="yCoord-message"/>
+                        </h:inputText>
+                        <h:message id="yCoord-message" for="yCoord-textbox"/>
+                    </div>
+
+
+                    <div class="coords-input-pair">
+                        <h:outputLabel for="radius-textbox" value="Radius:"/>
+                        <h:inputText id="radius-textbox" value="#{shot.radius}" required="true" maxlength="14"
+                                     validatorMessage="Must be a double between 1 and 4!"
+                                     converterMessage="Must be a number!">
+                            <f:validateDoubleRange minimum="1" maximum="4"/>
+                            <f:ajax event="blur" render="radius-message"/>
+                        </h:inputText>
+                        <h:message id="radius-message" for="radius-textbox"/>
+                        <h:inputHidden id="time-zone-input" value="#{dateFormatter.zone}">
+                            <f:converter converterId="mitya.sites.face.converters.TimeZoneConverter"/>
+                        </h:inputHidden>
+                        <script>document.getElementById("main-coords-form:time-zone-input").value = Intl.DateTimeFormat().resolvedOptions().timeZone </script>
+                    </div>
+                    <h:commandButton id="coords-submit-btn" action="#{shotProcesser.process}" value="Shoot!">
+                        <f:ajax execute="@form" render="record-data-table
+                        hit-text miss-text record-table shot-outcome-group
+                        radius-message yCoord-textbox xCoord-textbox  shot-json"
+                                onevent="function (data){ajaxExecuted(data)}"/>
+                    </h:commandButton>
+                </h:form>
+                <h:outputText style="display: none" id="shot-json" value="#{shotRecorder.getJSON()}"/>
+
+            </div>
+
+            <div class="canvas-container">
+                <canvas width="400px" height="400px" id="target-canvas"></canvas>
+                <div class="target-settings">
+                    <h:selectBooleanCheckbox type="checkbox" ps:id="child-mode-check"/>
+                    <h:selectBooleanCheckbox type="checkbox" ps:id="prefire-mode-check"/>
+                </div>
+
+
+            </div>
+
+            <div id="record-table" class="record-table-container">
+                <h:dataTable id="record-data-table" value="#{shotRecorder.recordedShots.stream().sorted().toList()}" var="record">
+                    <h:column>
+                        <f:facet name="header">Is Hit</f:facet>
+                        #{record.hit ? "Yes!": "No"}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">X</f:facet>
+                        #{record.x}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Y</f:facet>
+                        #{record.y}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Radius</f:facet>
+                        #{record.radius}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Time</f:facet>
+                        #{dateFormatter.format(record.timeStamp)}
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>
