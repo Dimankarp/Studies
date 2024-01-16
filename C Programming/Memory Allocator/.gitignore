@@ -1,0 +1,9 @@
+/.vscode
+/.idea
+!/.idea/cmake.xml
+/.cache
+/build
+/docs
+/obj
+/out
+/report.xml

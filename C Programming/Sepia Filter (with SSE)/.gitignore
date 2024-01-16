@@ -1,0 +1,8 @@
+/build
+/out
+/paintings
+/tester
+/.idea
+!./idea/cmake.xml
+*.html
+
