@@ -1,0 +1,26 @@
+@import 'colors.scss';
+
+
+%text-holder{
+  color: $onyx_black;
+  font-family: "Harmony";
+}
+
+%centered {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+%align-center {
+  display: flex;
+  align-items: center;
+}
+
+%hover-light{
+  &:hover{
+    background-color: #9E9488;
+    color: #f0ede8;
+  }
+}
+

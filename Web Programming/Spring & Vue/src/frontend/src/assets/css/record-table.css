@@ -1,0 +1,14 @@
+.record-table-container table {
+    display: inline-block;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.record-table-container tr{
+    border-bottom: 2px solid black;
+
+}
+
+.record-table-container td{
+    min-width:80px;
+}

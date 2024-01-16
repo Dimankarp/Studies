@@ -1,0 +1,97 @@
+@import "colors.scss";
+@import "media_queries.scss";
+@import "vue-inputs.scss";
+
+.form-container {
+    @extend %centered;
+    text-align: left;
+    font-size: 1rem;
+    width: 30%;
+
+    > *:not(h1) {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    button,
+    input[type="button"],
+    input[type="submit"] {
+        background-color: $milk_beige;
+        @extend %text-holder;
+        @extend %hover-light;
+        @extend %centered;
+        border-width: 1px;
+        border-bottom-width: 2px;
+        border-style: solid;
+        border-color: $cream_beige;
+
+        width: 100px;
+        height: 40px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+        background-color: $floarl_white;
+        @extend %text-holder;
+        font-size: 0.75em;
+        height: 30px;
+        border-style: solid;
+        border-top-color: $floarl_white;
+        border-left-color: $floarl_white;
+        border-right-color: $floarl_white;
+        border-bottom-color: $milk_beige;
+        border-width: 2px 2px 2px 2px;
+
+        &:focus {
+            border-color: $milk_beige;
+            outline: none;
+        }
+
+        &:invalid {
+            border-bottom-color: $cream_beige;
+            &:focus {
+                border-color: $cream_beige;
+            }
+        }
+    }
+    input[type="password"]{
+        font-family: Verdana;
+        letter-spacing: 0.125em;
+    }
+}
+
+.input-pair {
+    @extend %text-holder;
+
+    width: 100%;
+    white-space: nowrap;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    font-size: 1.5em;
+    
+
+    > *:nth-child(2) {
+        margin-top: 2%;
+    }
+    &_errormsg {
+        font-size: 0.5em;
+    }
+
+    button,
+    input,
+    select {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
+
+.register-link, .login-link{
+    @extend %text-holder;
+    @extend %centered;
+    text-align: center;
+    &:hover{
+        color: $milk_beige;
+    }
+}

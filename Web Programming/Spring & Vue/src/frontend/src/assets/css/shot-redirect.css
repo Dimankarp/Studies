@@ -1,0 +1,37 @@
+.shoot-redirect-div input[type='button'] {
+    display: block;
+    box-sizing: border-box;
+    background-color: #c0b9a9;
+    color: #141414;
+    font-family: "Harmony";
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 27px;
+    width: 300px;
+    height: 60px;
+    border-width: 1px;
+    border-bottom-width: 2px;
+    border-style: solid;
+    border-color: #9E9488;
+
+}
+
+
+.shoot-redirect-div input[type='button']:hover{
+    background-color: #9E9488;
+    color: #f0ede8;
+
+}
+.clock-container{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 30%;
+}
+.clock-container > *{
+    box-sizing: border-box;
+    color: #141414;
+    font-family: "Harmony";
+    font-size: 27px;
+}
