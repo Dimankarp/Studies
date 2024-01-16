@@ -1,3 +1,0 @@
-C:/Users/marin/OneDrive/Documents/Studies/C Programming/BMP Rotation/solution/cmake-build-debug/CMakeFiles/image-transformer.dir
-C:/Users/marin/OneDrive/Documents/Studies/C Programming/BMP Rotation/solution/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/marin/OneDrive/Documents/Studies/C Programming/BMP Rotation/solution/cmake-build-debug/CMakeFiles/rebuild_cache.dir
